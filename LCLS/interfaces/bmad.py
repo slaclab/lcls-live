@@ -67,6 +67,18 @@ def bmad_linac_phasing_lines(epics):
     ]
     return lines
 
+def write_bmad_linac_phasing_lines(filePath='linac_settings.bmad', epics=None, verbose=False):
+    """
+    Writes linac phasing lines to a Bmad file. Requires epics (or proxy object). 
+    """
+    lines = bmad_linac_phasing_lines(epics)
+    with open(filePath, 'w') as f:
+        for l in lines:
+            f.write(l+'\n')
+    if verbose:
+        print('Written:', filePath)
+
+
 
 def tao_LEM_lines(epics):
     """
@@ -85,7 +97,16 @@ def tao_LEM_lines(epics):
     lines.append('set dat BC2.offset[1]|meas = '+str(bc2_offset))
 
     return lines 
-
+def write_tao_LEM_lines(filePath='LEM_settings.tao', epics=None, verbose=False):
+    """
+    Writes tao LEM lines to a .tao file. Requires epics (or proxy object). 
+    """
+    lines =tao_LEM_lines(epics)
+    with open(filePath, 'w') as f:
+        for l in lines:
+            f.write(l+'\n')
+    if verbose:
+        print('Written:', filePath)
 
 
 
