@@ -4,7 +4,7 @@ import requests
 
 
 
-def lcls_archiver_restore(pvlist, isotime='2018-10-22T10:40:00.000-07:00', verbose=True):
+def lcls_archiver_restore(pvlist, isotime='2018-08-11T10:40:00.000-07:00', verbose=True):
     """
     Returns a dict of {'pvname':val} given a list of pvnames, at a time in ISO 8601 format, using the EPICS Archiver Appliance:
     

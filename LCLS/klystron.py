@@ -1,30 +1,39 @@
 from .devices import Device
-    
+
+from math import pi, cos
+
 class Klystron(Device):
     """
     Klystron
     
     """
-    def __init__(self, sector, station, 
+    def __init__(self, name=None,
+                sector=-1, station=-1,
                 faults_callback=None, triggers_callback=None,
                 epics=None, 
                 verbose=False):
         
+        if sector > -1 and station > -1:
+            name = klystron_name(sector, station)
+        else:
+            sector, station = klystron_sector_station(name)    
+        
+        
         self.sector = sector
         self.station = station  
-        self.basePV = klystron_basePV(sector, station)
+        self.name = klystron_name(sector, station)
         self.faults_callback = faults_callback
         self.triggers_callback = triggers_callback   
-        super().__init__(basePV=self.basePV, epics=epics, verbose=verbose)
+        super().__init__(name=self.name, epics=epics, verbose=verbose)
         
         # Full PV name dictionary. Keys will be attributes of this class
         self.PVname = {'enld':  klystron_enldPV(sector, station), 
                        'phase': klystron_phasePV(sector, station),         
-                       'pdes': self.basePV+':PDES',              
-                       'swrd': self.basePV+':SWRD',        
-                       'stat':self.basePV+':STAT',
-                       'hdsc':self.basePV+':HDSC', 
-                       'dsta':self.basePV+':DSTA',
+                       'pdes': self.name+':PDES',              
+                       'swrd': self.name+':SWRD',        
+                       'stat':self.name+':STAT',
+                       'hdsc':self.name+':HDSC', 
+                       'dsta':self.name+':DSTA',
                        'acc_trigger_status':self.beamcodeStatPV(self.typicalBeamcode()) }
         
         self.update()
@@ -53,10 +62,10 @@ class Klystron(Device):
         self.monitor['acc_trigger_status'].add_callback(self.triggersChanged)            
          
     def beamcodeStatPV(self, beamcode):
-        return "{0}:BEAMCODE{1}_STAT".format(self.basePV, beamcode)
+        return "{0}:BEAMCODE{1}_STAT".format(self.name, beamcode)
         
     def onbeamPV(self,beamcode):
-        return "{0}:BEAMCODE{1}_TCTL".format(self.basePV, beamcode)  
+        return "{0}:BEAMCODE{1}_TCTL".format(self.name, beamcode)  
     
     def typicalBeamcode(self):
         if self.sector > 20:
@@ -131,11 +140,32 @@ class Klystron(Device):
             s = s+', has faults'
         if not self.is_usable():
             s = s+', is NOT usable'
-        return s
+        if not self.is_accelerating():
+            s = s+', is NOT accelerating'
+    
+        if self.is_usable() and self.is_accelerating():
+            de = self.enld * cos(self.phase*pi/180)
+            s += '\n   Approximate energy gain = '+str(self.enld) + '*cos('+str(self.phase)+'*pi/180) = '+ str(de)+' MeV'
                 
+        return s
+           
+           
+def klystron_sector_station(name):
+    """
+    Decodes sector, station. Name should be of the form:
+    KLYS:LI<sector>:<station>1
+    
+    (Note the extra 1)
+    """
+    x = name.split(':')
+    assert x[0] == 'KLYS'
+    
+    sector = int(x[1].split('LI')[1])
+    station = int(x[2][0])
+    return sector, station                
 
 # Sector, station dependent PV names
-def klystron_basePV(sector, station):
+def klystron_name(sector, station):
     if station == 0:
         return "SBST:LI{0}:1".format(sector)
         
@@ -146,7 +176,7 @@ def klystron_enldPV(sector, station):
     if sector == 21 and station == 2:
         return 'ACCL:LI21:180:L1X_S_AV'
         
-    return klystron_basePV(sector, station)+":ENLD"
+    return klystron_name(sector, station)+":ENLD"
 
 def klystron_phasePV(sector, station):
     # L1 special
@@ -172,7 +202,7 @@ def klystron_phasePV(sector, station):
     if sector == 30:
         return 'ACCL:LI30:0:KLY_PDES' 
 
-    return klystron_basePV(sector, station)+":PHAS"
+    return klystron_name(sector, station)+":PHAS"
 
       
 #Below is the module-level stuff for turning status words into faults.
@@ -339,8 +369,12 @@ def lcls_complement():
     return complement
 
 
+
+
+
+
 # List of all LCLS klystrons by sector, station    
-Existing_LCLS_Klystrons = [
+existing_LCLS_klystrons_sector_station = [
     (21, 1), (21, 2), (21, 3), (21, 4), (21, 5), (21, 6), (21, 7), (21, 8), 
     (22, 1), (22, 2), (22, 3), (22, 4), (22, 5), (22, 6), (22, 7), (22, 8), 
     (23, 1), (23, 2), (23, 3), (23, 4), (23, 5), (23, 6), (23, 7), (23, 8),
@@ -352,10 +386,13 @@ Existing_LCLS_Klystrons = [
     (29, 1), (29, 2), (29, 3), (29, 4), (29, 5), (29, 6), (29, 7), (29, 8), 
     (30, 1), (30, 2), (30, 3), (30, 4), (30, 5), (30, 6), (30, 7), (30, 8)]
 
+# Convert these to device names
+existing_LCLS_klystron_names = [klystron_name(x[0], x[1]) for x in existing_LCLS_klystrons_sector_station]
 
-def LCLS_Klystrons(epics):
+# Function to create list of objects
+def existing_LCLS_klystrons(epics):
     
-    klist = [Klystron(sector, station, epics=epics) for sector, station in Existing_LCLS_Klystrons]
+    klist = [Klystron(name=devicename, epics=epics) for devicename in existing_LCLS_klystron_names]
     return klist
 
 

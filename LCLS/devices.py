@@ -20,17 +20,17 @@ class Device(object):
             super().__init__(**kwargs)
             
             # Full PV name dictionary. Keys will be attributes of this class
-            self.PVname = {'bact': self.basePV+':BACT', 
-                           'z': self.basePV+':Z',         
-                           'madname': self.basePV+':MADNAME'}
+            self.PVname = {'bact': self.name+':BACT', 
+                           'z': self.name+':Z',         
+                           'madname': self.name+':MADNAME'}
             self.configure()
         
     """
-    def __init__(self, basePV='DeviceType:Area:Position', 
+    def __init__(self, name='DeviceType:Area:Position', 
                 epics=None,
                 verbose=False
                 ):
-        self.basePV = basePV
+        self.name = name
         self.epics = epics
         self.verbose = verbose
         
@@ -43,7 +43,7 @@ class Device(object):
         
     @property
     def type(self):
-        return self.basePV.split(':')[0]
+        return self.name.split(':')[0]
             
     @property
     def attributes(self):
@@ -113,6 +113,30 @@ class Device(object):
         if self.use_monitors:
             self.connect_monitors()      
             
+
+            
+class Collimator(Device):
+    """
+    Collimator
+    
+    """
+    def __init__(self, **kwargs): 
+        super().__init__(**kwargs)
+        
+    
+        # Full PV name dictionary. Keys will be attributes of this class
+        self.PVname = {'motr': self.name+':MOTR',
+                      'lvpos': self.name+':LVPOS'
+                      }
+    
+        self.update()
+  
+     # String representation for printing:
+    def __str__(self):
+        s= self.type+' with offset '+str(self.motr)+' mm'
+        return s        
+
+            
             
             
 class Magnet(Device):
@@ -125,9 +149,9 @@ class Magnet(Device):
         
     
         # Full PV name dictionary. Keys will be attributes of this class
-        self.PVname = {'bact': self.basePV+':BACT', 
-                       'z': self.basePV+':Z',         
-                       'madname': self.basePV+':MADNAME'}
+        self.PVname = {'bact': self.name+':BACT'}
+                       #'z': self.name+':Z',         
+                       #'madname': self.name+':MADNAME'}
     
         self.update()
   
@@ -147,10 +171,10 @@ class BPM(Device):
         
         
         # Full PV name dictionary. Keys will be attributes of this class
-        self.PVname = {'x': self.basePV+':X', 
-                       'y': self.basePV+':Y',
-                       'z': self.basePV+':Z',         
-                       'madname': self.basePV+':MADN'}
+        self.PVname = {'x': self.name+':X', 
+                       'y': self.name+':Y',
+                       'z': self.name+':Z',         
+                       'madname': self.name+':MADN'}
         
         self.update()
         

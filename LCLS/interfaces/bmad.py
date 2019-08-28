@@ -1,4 +1,4 @@
-from LCLS.klystron import Klystron, LCLS_Klystrons, unusable_faults
+from LCLS.klystron import Klystron, existing_LCLS_klystrons, unusable_faults
 from math import isnan
 
 def bmad_klystron_lines(klystron):
@@ -59,9 +59,12 @@ def bmad_linac_phasing_lines(epics):
     """
     Linac phasing
     
+    Note that these overlays override individual klystron phases. 
+    
     """
     lines = [
         '! Linac overall phasing',
+        'O_L1[phase_deg] = 0 ! K21_1 sets this directly', 
         'O_L2[phase_deg] = '+str(epics.caget('SIOC:SYS0:ML00:CALC204')),
         'O_L3[phase_deg] = '+str(epics.caget('SIOC:SYS0:ML00:AO499'))
     ]
@@ -112,6 +115,7 @@ def write_tao_LEM_lines(filePath='LEM_settings.tao', epics=None, verbose=False):
 
 
 INFO_PVS = {
+    'GDET:FEE1:241:ENRC': 'FEL pulse energy from gas detector (mJ)',
     'SIOC:SYS0:ML00:AO470':'Bunch charge off the cathode', 
     'SIOC:SYS0:ML00:CALC252': 'Bunch charge in the LTU',
     'SIOC:SYS0:ML00:AO485': 'BC1 mean current (A)',
@@ -120,6 +124,7 @@ INFO_PVS = {
     'SIOC:SYS0:ML00:AO483':'BC1 Energy',
     'SIOC:SYS0:ML00:AO489':'BC2 Energy',
     'SIOC:SYS0:ML00:AO500':'DL2 Energy',
+    'ACCL:LI21:1:L1S_S_PV': 'L1 Phase',
     'SIOC:SYS0:ML00:CALC204':'L2 Phase',
     'SIOC:SYS0:ML00:AO499':'L3 Phase',
     'ACCL:IN20:350:FUDGE': 'L0 energy fudge factor',
