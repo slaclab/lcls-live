@@ -1,4 +1,7 @@
 from LCLS.klystron import Klystron, existing_LCLS_klystrons, unusable_faults
+from LCLS import Collimator
+
+
 from math import isnan
 
 def bmad_klystron_lines(klystron):
@@ -111,7 +114,29 @@ def write_tao_LEM_lines(filePath='LEM_settings.tao', epics=None, verbose=False):
     if verbose:
         print('Written:', filePath)
 
-
+        
+        
+def bmad_collimator_lines(epics):
+    """
+    Sets the CE11 collimator
+    """
+    coll1 = Collimator(name='COLL:LI21:235', epics=epics)
+    coll2 = Collimator(name='COLL:LI21:236', epics=epics)
+    lines = []
+    lines.append('CE11[x1_limit] = ' + str(-coll1.lvpos*1e-3))
+    lines.append('CE11[x2_limit] = ' + str(coll2.lvpos*1e-3))
+                 
+    return lines        
+def write_bmad_collimator_lines(filePath='collimator_settings.bmad', epics=None, verbose=False):
+    """
+    Writes collimator settings
+    """
+    lines = bmad_collimator_lines(epics)
+    with open(filePath, 'w') as f:
+        for l in lines:
+            f.write(l+'\n')
+    if verbose:
+        print('Written:', filePath)
 
 
 INFO_PVS = {
