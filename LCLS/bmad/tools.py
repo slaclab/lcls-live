@@ -3,6 +3,8 @@ from LCLS import Collimator
 
 from math import isnan, sqrt
 
+import pandas
+
 def bmad_klystron_lines(klystron):
     '''
     Form Bmad lines to set klystron overlays.
@@ -156,9 +158,42 @@ def write_bmad_collimator_lines(filePath='collimator_settings.bmad', epics=None,
     if verbose:
         print('Written:', filePath)
 
+        
+        
+        
 
+        
+        
+        
+def bmad_from_csv(csvfile, epics, outfile=None):
+    """
+    Create Bmad-style settings from a CSV mapping file, and an epics interface.
+    
+    Example: 
+        bmad_from_csv('collimator_mapping.csv', epics, 'test.bmad')
+        
+    """
+    df = pandas.read_csv(csvfile)
+    pvlist = list(df['device_name'] +':'+ df['attribute'].str.strip())
+    
+    # Get values
+    df['value'] = epics.caget_many(pvlist)
+    
+    # Form lines
+    lines = df['bmad_ele_name']+'[' + df['bmad_attribute'] + '] = '+ (df['bmad_factor'].astype(str)+'*'+df['value'].astype(str))
+    
+    if outfile:
+        with open(outfile, 'w') as f:
+            for line in lines:
+                f.write(line+'\n')
+        print('Written:', outfile)
+    
+    return list(lines)        
+        
+        
 INFO_PVS = {
     'GDET:FEE1:241:ENRC': 'FEL pulse energy from gas detector (mJ)',
+    'SIOC:SYS0:ML00:AO020': 'UV Pulse Length RMS (ps)', 
     'LASR:IN20:475:PWR1H': 'Laser heater power (uJ)',
     'SIOC:SYS0:ML00:AO470':'Bunch charge off the cathode', 
     'SIOC:SYS0:ML00:CALC252': 'Bunch charge in the LTU',
