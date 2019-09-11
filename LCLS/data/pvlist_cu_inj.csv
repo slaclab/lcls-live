@@ -1,0 +1,27 @@
+﻿Process Variable,Description,Units,Guidance
+SHTR:LR20:100:UV_STS,Coherent 1 laser shutter,,"0=moving, 1=open, 2=closed"
+SHTR:LR20:200:UV_STS,Coherent 2 laser shutter,,"0=moving, 1=open, 2=closed"
+LASR:LR20:1:UV_LASER_MODE,Active laser,,"0=Coh1, 1=Coh2, 2=Both,…  This is based on logic using the above values plus the status of a switching mirror that has changed physical configuration over the last couple of years. BOTH means in very non-standard configuration."
+SHTR:LR20:117:SARM_STS,Stacker S arm shutter,," (0=moving, 1=out, 2=in) At normal charge and for normal ops, both arms are open. If only one is open, typically means operating in low-charge mode or performing some MD activity."
+SHTR:LR20:117:PARM_STS,Stacker P arm shutter,," (0=moving, 1=out, 2=in) At normal charge and for normal ops, both arms are open. If only one is open, typically means operating in low-charge mode or performing some MD activity."
+PSDL:LR20:117:TACT,Stacker delay (actual),ps,"For normal charge and normal ops, always ~2 ps relative to the delay resulting in zero overlap. If it is different by > 4 ps from neighboring hours, likely running in very nonstandard twin bunch mode."
+PSDL:LR20:117:PSDL_MOTR.RBV,Stacker stage position (actual),mm,"Redundant, proportional to :TACT"
+WPLT:LR20:117:PSWP_ANGLE.RBV,Stacker waveplate,degrees,Changes the intensity balance between the two polarizations in the laser stacker
+SIOC:SYS0:ML00:AO468,UV laser pulse length (FWHM),ps,The most recently measured laser pulse length. Historically this may actually be from either laser. Can also search for the matlab files and retrieve the data.
+MPS:IN20:1:SHUTTERSTATE,MPS Shutter,,"0=closed, 1=open (No e- beam when closed!)"
+OSC:LR20:20:POC,"Coherent 1 (yes, 1) phase offset",degS,Should only be changed during a systematic phase scan
+OSC:LR20:20:PDES,Coherent 1 phase desired,degS,Genrally this is -30 deg during normal operation
+OSC:LR20:10:POC,"Coherent 2 (yes, 2) phase offset",degS,Should only be changed during a systematic phase scan
+OSC:LR20:10:PDES,Coherent 2 phase desired,degS,Genrally this is -30 deg during normal operation
+ROOM:LR20:1:AIRTEMP1,Laser room temperature,degF,One of several laser room temp monitors
+CATH:IN20:111:QE,Cathode quantum efficiency,elec./photon,Figure of merit. Higher is better. Technically # electrons measured after the gun / # photons measured at diode before vacuum window to cathode. Valid only when laser is on cathode and gun is active & on-phase. Over 1e-04 is very bad. 1.0e-05 and lower is great.
+TORO:IN20:215:TMIT1H,Charge from gun,N electrons,Absolute measure of charge emitted from gun
+SIOC:SYS0:ML01:CALCOUT008,Charge from gun,pC,"Same as above, scaled to pC = N*1.6e-7"
+PMTR:LR20:121:PWR,Laser power on iris,uJ,"Figure of merit when it comes to steering the laser before the iris. Like QE, the charge (TMIT) from the gun divided by this is also better if higher."
+LASR:IN20:196:PWR1H,Laser power on cathode,uJ,
+MIRR:LR20:125:M13_MOTR_H.RBV,IRIS steering mirror (horiz.),mm,
+MIRR:LR20:125:M13_MOTR_V.RBV,IRIS steering mirror (vert.),mm,
+SIOC:SYS0:ML00:AO328,VCC X offset,mm,"The position on VCC if alignment has been performed, feedback on."
+SIOC:SYS0:ML00:AO329,VCC Y offset,mm,"The position on VCC if alignment has been performed, feedback on."
+WPLT:IN20:181:VCC_ANGLE.RBV,VCC waveplate,degrees,Angle of the VCC waveplate. Informational. May affect the images by changing the relative intensity of the two stacker arms seen on the camera. Being updated in next run to not do that anymore.
+LASR:IN20:475:PWR1H,Heater power,uJ,"This may be a rabbit hole. The appropriate value for this depends on a number of other settings downstream, like the desired final peak current. But certainly the VHC heater camera properties like skew would be interesting to check."

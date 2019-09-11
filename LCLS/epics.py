@@ -168,6 +168,9 @@ def lcls_classic_info(epics):
     charge0 = get('SIOC:SYS0:ML00:AO470')*1e3 # nC -> pC
     charge1 = get('SIOC:SYS0:ML00:CALC252')
     
+    vcc_x = get('SIOC:SYS0:ML00:AO328') # mm
+    vcc_y = get('SIOC:SYS0:ML00:AO329') # mm
+    
     laser_heater_uJ = get('LASR:IN20:475:PWR1H') # uJ
     laser_heater_keV = laser_heater_to_energy_spread(laser_heater_uJ) # keV
     
@@ -178,6 +181,7 @@ def lcls_classic_info(epics):
     gdet = get('GDET:FEE1:241:ENRC')
     
     lines.append(f'Bunch charge off cathode: {charge0:6.4} pC')
+    lines.append(f'VCC offset x, y: {vcc_x:6.3}, {vcc_y:6.3} mm')
     lines.append(f'Laser heater energy {laser_heater_uJ:10.4} \u03BCJ => {laser_heater_keV:6.4} keV rms energy spread')
     
     

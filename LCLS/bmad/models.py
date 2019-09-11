@@ -55,11 +55,17 @@ class LCLSTaoModel(TaoModel):
     def load_all_settings(self):
         self.vprint('Loading all settings')
         return load_all_settings(self)
-        
+   
+
+    def load_corrector_settings(self):
+        self.vprint('Loading corrector settings')
+        return load_corrector_settings(self)   
         
     def load_quad_settings(self):
         self.vprint('Loading quad settings')
         return load_quad_settings(self)
+    
+ 
         
     def LEM(self):
         self.vprint('LEMing')
@@ -133,14 +139,19 @@ def load_all_settings(model):
     
     
 def load_quad_settings(model):
-   # root, _ =os.path.split(LCLS.__file__)
-   # data_dir = os.path.join(root, 'data/')
     csvfile=os.path.join(data_dir, 'quad_mapping_classic.csv')
     qfile = os.path.join(model.path, 'settings/quad_settings.bmad')
     tools.bmad_from_csv(csvfile, model.epics, outfile=qfile)
     model.cmd('set ele quad::* field_master = T')
     model.cmd('read lattice '+qfile)    
 
+    
+def load_corrector_settings(model):
+    csvfile=os.path.join(data_dir, 'cor_mapping_classic.csv')
+    cor_file = os.path.join(model.path, 'settings/cor_settings.bmad')
+    tools.bmad_from_csv(csvfile, model.epics, outfile=cor_file)
+    model.cmd('set ele kicker::* field_master = T')
+    model.cmd('read lattice '+cor_file)    
     
     
 def offset_bunch_compressors(model, script='scripts/BC_offsets.tao'):
