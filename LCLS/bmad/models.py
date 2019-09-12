@@ -3,17 +3,50 @@ from LCLS.klystron import existing_LCLS_klystrons
 from LCLS.bmad import tools
 from LCLS.epics import lcls_classic_info
 from LCLS import data_dir
-
-
 from math import pi, cos, sqrt
-
 import os
+
+
+def find_model(model_name):
+    """
+    Helper routine to find models using standard environmental variables:
+    $LCLS_LATTICE   should point to a checkout of https://github.com/slaclab/lcls-lattice 
+    $LCLS2_LATTICE  should point to a checkout of https://github.com/slaclab/lcls2-lattice
+    
+    Availble models:
+        lcls_classic
+        cu_hxr
+        sc_sxr
+    
+    """
+    if model_name == 'lcls_classic':
+        tao_initfile = os.path.join(os.environ['LCLS_LATTICE'], 'bmad/model/tao.init')
+    elif model_name in ['cu_hxr', 'sc_sxr']:
+        root = os.environ['LCLS2_LATTICE']
+        
+        tao_initfile = os.path.join(root, 'bmad/models/', model_name, 'tao.init')  
+        
+    else:
+        print('Not a valid model:', model_name)
+        return None
+    
+    
+    assert os.path.exists(tao_initfile), 'Error: file does not exist: '+tao_initfile
+    
+    return tao_initfile
+
+
+   
+
+
+
 
 class LCLSTaoModel(TaoModel):
     """
     """
     def __init__(self,
-                 input_file='tao.init',
+                 model_name='lcls_classic',  # Used if input_file==None
+                 input_file=None,
                  ploton = True,
                  use_tempdir=True,
                  workdir=None,
@@ -22,6 +55,10 @@ class LCLSTaoModel(TaoModel):
                  epics=None,
                  auto_configure=True
                 ):
+        
+        if not input_file:
+            # 
+            input_file=find_model(model_name) 
         
         # TaoModel needs these
         super().__init__(
@@ -138,16 +175,16 @@ def load_all_settings(model):
     
     
     
-def load_quad_settings(model):
-    csvfile=os.path.join(data_dir, 'quad_mapping_classic.csv')
+def load_quad_settings(model, csvfile='classic/quad_mapping_classic.csv'):
+    csvfile=os.path.join(data_dir, csvfile)
     qfile = os.path.join(model.path, 'settings/quad_settings.bmad')
     tools.bmad_from_csv(csvfile, model.epics, outfile=qfile)
     model.cmd('set ele quad::* field_master = T')
     model.cmd('read lattice '+qfile)    
 
     
-def load_corrector_settings(model):
-    csvfile=os.path.join(data_dir, 'cor_mapping_classic.csv')
+def load_corrector_settings(model, csvfile='classic/cor_mapping_classic.csv'):
+    csvfile=os.path.join(data_dir, csvfile)
     cor_file = os.path.join(model.path, 'settings/cor_settings.bmad')
     tools.bmad_from_csv(csvfile, model.epics, outfile=cor_file)
     model.cmd('set ele kicker::* field_master = T')
