@@ -25,3 +25,5 @@ SIOC:SYS0:ML00:AO328,VCC X offset,mm,"The position on VCC if alignment has been 
 SIOC:SYS0:ML00:AO329,VCC Y offset,mm,"The position on VCC if alignment has been performed, feedback on."
 WPLT:IN20:181:VCC_ANGLE.RBV,VCC waveplate,degrees,Angle of the VCC waveplate. Informational. May affect the images by changing the relative intensity of the two stacker arms seen on the camera. Being updated in next run to not do that anymore.
 LASR:IN20:475:PWR1H,Heater power,uJ,"This may be a rabbit hole. The appropriate value for this depends on a number of other settings downstream, like the desired final peak current. But certainly the VHC heater camera properties like skew would be interesting to check."
+ACCL:IN20:300:L0A_PDES ,L0A Phase,degS,Default is around 0
+ACCL:IN20:400:L0B_PDES,L0A Phase,degS,Default is around 0

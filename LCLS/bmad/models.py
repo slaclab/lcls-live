@@ -10,19 +10,20 @@ import os
 def find_model(model_name):
     """
     Helper routine to find models using standard environmental variables:
-    $LCLS_LATTICE   should point to a checkout of https://github.com/slaclab/lcls-lattice 
-    $LCLS2_LATTICE  should point to a checkout of https://github.com/slaclab/lcls2-lattice
+    $LCLS_CLASSIC_LATTICE   should point to a checkout of https://github.com/slaclab/lcls-lattice 
+    $LCL2_LATTICE  should point to a checkout of https://github.com/slaclab/lcls2-lattice
     
     Availble models:
         lcls_classic
         cu_hxr
+        cu_spec
         sc_sxr
     
     """
     if model_name == 'lcls_classic':
-        tao_initfile = os.path.join(os.environ['LCLS_LATTICE'], 'bmad/model/tao.init')
-    elif model_name in ['cu_hxr', 'sc_sxr']:
-        root = os.environ['LCLS2_LATTICE']
+        tao_initfile = os.path.join(os.environ['LCLS_CLASSIC_LATTICE'], 'bmad/model/tao.init')
+    elif model_name in ['cu_hxr', 'cu_spec', 'sc_sxr']:
+        root = os.environ['LCLS_LATTICE']
         
         tao_initfile = os.path.join(root, 'bmad/models/', model_name, 'tao.init')  
         
@@ -56,10 +57,12 @@ class LCLSTaoModel(TaoModel):
                  auto_configure=True
                 ):
         
-        if not input_file:
-            # 
+        if input_file:
+            self.model_name = 'unkown'
+        else:
             input_file=find_model(model_name) 
-        
+            self.model_name = model_name
+            
         # TaoModel needs these
         super().__init__(
                 input_file,
@@ -79,11 +82,11 @@ class LCLSTaoModel(TaoModel):
     def configure(self):
         super().configure()
         
-        
-        self.load_all_settings()
-        self.offset_bunch_compressors()
-        self.LEM()
-        
+        if self.model_name == 'lcls_classic':
+            self.load_all_settings()
+            self.offset_bunch_compressors()
+            self.LEM()
+            
         self.vprint('Configured.')
     
     
