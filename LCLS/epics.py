@@ -29,8 +29,8 @@ class epics_proxy(object):
         
         if filename and os.path.exists(filename): 
             self.load()
-        else:
-            print('File does not exist:', filename)
+        elif not epics:
+            print('File does not exist:', filename, 'and no epics source provided.')
             raise 
         
             
