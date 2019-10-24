@@ -22,7 +22,7 @@ def find_model(model_name):
     """
     if model_name == 'lcls_classic':
         tao_initfile = os.path.join(os.environ['LCLS_CLASSIC_LATTICE'], 'bmad/model/tao.init')
-    elif model_name in ['cu_hxr', 'cu_spec', 'sc_sxr']:
+    elif model_name in ['cu_hxr', 'cu_sxr', 'cu_spec', 'sc_sxr', 'sc_hxr']:
         root = os.environ['LCLS_LATTICE']
         
         tao_initfile = os.path.join(root, 'bmad/models/', model_name, 'tao.init')  
@@ -116,10 +116,12 @@ class LCLSTaoModel(TaoModel):
         return offset_bunch_compressors(self)
         
         
-        
     def __str__(self):
         s = super().__str__()
-        info = lcls_classic_info(self.epics)
+        if self.model_name == 'lcls_classic':
+            info = lcls_classic_info(self.epics)
+        else: 
+            info = [f'TODO: epics hooks for {self.model_name}']
         return '\n'.join(info)        
         
         
