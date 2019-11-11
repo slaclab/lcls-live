@@ -1,5 +1,5 @@
-from LCLS.klystron import Klystron, existing_LCLS_klystrons, unusable_faults
-from LCLS import Collimator
+from lcls_live.klystron import Klystron, existing_LCLS_klystrons, unusable_faults
+from lcls_live import Collimator
 
 from math import isnan, sqrt
 

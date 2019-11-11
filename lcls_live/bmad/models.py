@@ -1,8 +1,8 @@
 from pytao import TaoModel
-from LCLS.klystron import existing_LCLS_klystrons
-from LCLS.bmad import tools
-from LCLS.epics import lcls_classic_info
-from LCLS import data_dir
+from ..klystron import existing_LCLS_klystrons
+from ..bmad import tools
+from ..epics import lcls_classic_info
+from .. import data_dir
 from math import pi, cos, sqrt
 import os
 
