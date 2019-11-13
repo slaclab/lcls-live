@@ -1,4 +1,5 @@
 from pytao import TaoModel
+from ..archiver import lcls_archiver_restore
 from ..klystron import existing_LCLS_klystrons
 from ..bmad import tools
 from ..epics import lcls_classic_info
@@ -91,6 +92,21 @@ class LCLSTaoModel(TaoModel):
     
     
     # Custom routines
+    def archiver_restore(self, isotime):
+        """
+        
+        Restores PVs from a snapho
+        
+        isotime should be in ISO 8601 format, as in: '2018-08-11T10:40:00.000-07:00'
+        
+        """
+        epics = self.epics
+        epics.pvdata = lcls_archiver_restore(list(epics.pvdata), isotime=isotime, verbose=self.verbose)
+        #self.configure()
+        self.load_all_settings()
+        self.offset_bunch_compressors()
+        self.LEM()
+    
     
     def load_all_settings(self):
         self.vprint('Loading all settings')

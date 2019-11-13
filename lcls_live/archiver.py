@@ -12,8 +12,13 @@ def lcls_archiver_restore(pvlist, isotime='2018-08-11T10:40:00.000-07:00', verbo
     
     
     """
+    
     url="http://lcls-archapp.slac.stanford.edu/retrieval/data/getDataAtTime?at="+isotime+"&includeProxies=true"
     headers = {'Content-Type':'application/json'}
+    
+    if verbose:
+        print('Requesting:', url)
+    
     data = pvlist
     r = requests.post(url, headers=headers, json=data)
     res = r.json()

@@ -103,11 +103,21 @@ def tao_BC_and_LEM_lines(epics):
     
     bc1_current=epics.caget('SIOC:SYS0:ML00:AO485')
     bc2_current=epics.caget('SIOC:SYS0:ML00:AO195')
-    # Assumes parabolic distribution
-    bc1_sigma_z = q_after_horn_cutting*299792458 / sqrt(10) / bc1_current
-    # Assumes Gaussian distribution
-    bc2_sigma_z = q_after_horn_cutting*299792458 / sqrt(12) / bc2_current
     
+    # Catch bad settings
+    if bc1_current==0:
+        print('Warning: BC1 current is zero!')
+        bc1_sigma_z = 0
+    else:
+        # Assumes parabolic distribution
+        bc1_sigma_z = q_after_horn_cutting*299792458 / sqrt(10) / bc1_current
+
+    if bc2_current==0:
+        print('Warning: BC1 current is zero!')
+        bc2_sigma_z = 0
+    else:
+        # Assumes Gaussian distribution
+        bc2_sigma_z = q_after_horn_cutting*299792458 / sqrt(12) / bc2_current    
     
     lines = []
     lines.append('set dat BC1.energy[1]|meas = '+str(bc1_e0))
