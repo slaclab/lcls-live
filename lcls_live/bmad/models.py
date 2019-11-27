@@ -84,9 +84,12 @@ class LCLSTaoModel(TaoModel):
         super().configure()
         
         if self.model_name == 'lcls_classic':
+            self.cmd('set global plot_on = F')
             self.load_all_settings()
             self.offset_bunch_compressors()
             self.LEM()
+            if self.ploton:
+                self.cmd('set global plot_on = T')
             
         self.vprint('Configured.')
     
@@ -103,9 +106,12 @@ class LCLSTaoModel(TaoModel):
         epics = self.epics
         epics.pvdata = lcls_archiver_restore(list(epics.pvdata), isotime=isotime, verbose=self.verbose)
         #self.configure()
+        self.cmd('set global plot_on = F')
         self.load_all_settings()
         self.offset_bunch_compressors()
         self.LEM()
+        if self.ploton:
+            self.cmd('set global plot_on = T')    
     
     
     def load_all_settings(self):
