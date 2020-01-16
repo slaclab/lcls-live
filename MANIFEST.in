@@ -1,3 +1,0 @@
-include lcls_live/data/*
-include README.md
-include requirements.txt
