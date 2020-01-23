@@ -1,17 +1,15 @@
 # Welcome to lcls-live
 
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+For full source see [lcls-live](https://github.com/slaclab/lcls-live) on GitHub.
 
-## Commands
+## LCLS Tao Model in Python
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
 
-## Project layout
+A Tao model is instantiated in Python with the following:
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+```python
+from lcls_live.bmad import LCLSTaoModel
+M = LCLSTaoModel('sc_sxr')
+```
+
+

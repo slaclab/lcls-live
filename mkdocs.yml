@@ -1,1 +1,24 @@
-site_name: My Docs
+
+
+nav:
+  - index.md
+  - Developer: 
+    - developer/index.md
+    - mkdocs: developer/mkdocs.md
+  
+  
+  
+  
+  
+site_name: LCLS-Live
+
+theme:
+  name: 'material'
+  
+  
+markdown_extensions:
+  - codehilite  
+  
+plugins:
+    - search
+    - minify
