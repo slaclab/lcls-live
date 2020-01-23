@@ -36,7 +36,7 @@
     
     
       
-        <title>LCLS-Live</title>
+        <title>Developer setup - LCLS-Live</title>
       
     
     
@@ -101,7 +101,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Developer
+                Developer setup
               
             </span>
           
@@ -183,6 +183,27 @@
   
 
 
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Developer
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Developer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
   <li class="md-nav__item md-nav__item--active">
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
@@ -191,11 +212,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Developer
+        Developer setup
       </label>
     
-    <a href="./" title="Developer" class="md-nav__link md-nav__link--active">
-      Developer
+    <a href="./" title="Developer setup" class="md-nav__link md-nav__link--active">
+      Developer setup
     </a>
     
       
@@ -243,6 +264,23 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="mkdocs/" title="mkdocs" class="md-nav__link">
+      mkdocs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -313,28 +351,32 @@
                 <h1 id="developer-setup">Developer setup</h1>
 <h2 id="bmad-production-environment">Bmad Production Environment</h2>
 <p>The current version of the Bmad distribution can be enabled with:</p>
-<pre><code class="shell">source /usr/local/lcls/package/bmad_distributions/enable
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nb">source</span> /usr/local/lcls/package/bmad_distributions/enable
+</pre></div>
+
 
 <h3 id="python">Python</h3>
 <p>The standard Python 3.7 environment is enabled with:</p>
-<pre><code>source /usr/local/lcls/package/anaconda/envs/python3.7env/bin/activate
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nb">source</span> /usr/local/lcls/package/anaconda/envs/python3.7env/bin/activate
+</pre></div>
+
 
 <p>Custom packages are maintained in <code>/usr/local/lcls/model/python</code>:</p>
-<pre><code>export PYTHONPATH=$PYTHONPATH:/usr/local/lcls/model/python
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$PYTHONPATH</span>:/usr/local/lcls/model/python
+</pre></div>
+
 
 <h3 id="lattice-files">Lattice files</h3>
 <p>Lattice files are maintained in standard locations, and are referred to with these standard environmental variables:</p>
-<pre><code>export LCLS_LATTICE=/usr/local/lcls/model/lattice/lcls-lattice
-export LCLS_CLASSIC_LATTICE=/usr/local/lcls/model/lattice/lcls-classic-lattice
-</code></pre>
+<div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">LCLS_LATTICE</span><span class="o">=</span>/usr/local/lcls/model/lattice/lcls-lattice
+<span class="nb">export</span> <span class="nv">LCLS_CLASSIC_LATTICE</span><span class="o">=</span>/usr/local/lcls/model/lattice/lcls-classic-lattice
+</pre></div>
+
 
 <p>These files are updated with <code>git</code>:</p>
-<pre><code>cd /usr/local/lcls/model/lattice/lcls-lattice
+<div class="codehilite"><pre><span></span><span class="nb">cd</span> /usr/local/lcls/model/lattice/lcls-lattice
 git pull -r
-</code></pre>
+</pre></div>
                 
                   
                 
@@ -370,6 +412,20 @@ git pull -r
             </div>
           </a>
         
+        
+          <a href="mkdocs/" title="mkdocs" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                mkdocs
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
