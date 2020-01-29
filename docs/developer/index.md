@@ -1,4 +1,4 @@
-# Developer setup
+# SLAC Developer setup
 
 ## Bmad Production Environment
 
