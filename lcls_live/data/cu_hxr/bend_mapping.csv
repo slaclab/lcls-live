@@ -1,0 +1,48 @@
+device_name,attribute,unit,bmad_ele_name,bmad_factor,bmad_offset,bmad_attribute,example_value
+BEND:IN20:461,BDES,kG*m,BXH1,-1.0 * -1.0/(10.0 * 0.125),-0.47542,b_field_error,0
+BEND:IN20:461,BDES,kG*m,BXH2,1.0 * -1.0/(10.0 * 0.125),0.47542,b_field_error,0
+BEND:IN20:461,BDES,kG*m,BXH3,1.0 * -1.0/(10.0 * 0.125),0.47542,b_field_error,0
+BEND:IN20:461,BDES,kG*m,BXH4,-1.0 * -1.0/(10.0 * 0.125),-0.47542,b_field_error,0
+BEND:IN20:751,BDES,GeV/c,BX01,-1.0 * 10**9 * -1.4973 / 2.99792458e8,-0.67428,b_field_error,0
+BEND:IN20:751,BDES,GeV/c,BX02,-1.0 * 10**9 * -1.4973 / 2.99792458e8,-0.67428,b_field_error,0
+BEND:LI21:231,BDES,kG*m,BX11,-1.0 * -1.0/(10.0 * 0.203),-0.33746,b_field_error,0
+BEND:LI21:231,BDES,kG*m,BX12,1.0 * -1.0/(10.0 * 0.203),0.33746,b_field_error,0
+BEND:LI21:231,BDES,kG*m,BX13,1.0 * -1.0/(10.0 * 0.203),0.33746,b_field_error,0
+BEND:LI21:231,BDES,kG*m,BX14,-1.0 * -1.0/(10.0 * 0.203),-0.33746,b_field_error,0
+BEND:LI24:790,BDES,kG*m,BX21,-1.0 * -1.0/(10.0 * 0.549),-1.1229,b_field_error,0
+BEND:LI24:790,BDES,kG*m,BX22,1.0 * -1.0/(10.0 * 0.549),1.1229,b_field_error,0
+BEND:LI24:790,BDES,kG*m,BX23,1.0 * -1.0/(10.0 * 0.549),1.1229,b_field_error,0
+BEND:LI24:790,BDES,kG*m,BX24,-1.0 * -1.0/(10.0 * 0.549),-1.1229,b_field_error,0
+KICK:LI25:344,BDES,GeV/c,BXKIK,-1.0 * 10**9 * 9.4331e-13 / 2.99792458e8,1.7286e-11,b_field_error,0
+BEND:BSYH:882,BDES,kG*m,BCX311,1.0 * -1.0/(10.0 * 0.35),-0.0,b_field_error,0
+BEND:BSYH:882,BDES,kG*m,BCX312,1.0 * -1.0/(10.0 * 0.35),-0.0,b_field_error,0
+BEND:BSYH:882,BDES,kG*m,BCX313,1.0 * -1.0/(10.0 * 0.35),-0.0,b_field_error,0
+BEND:BSYH:882,BDES,kG*m,BCX314,1.0 * -1.0/(10.0 * 0.35),-0.0,b_field_error,0
+BEND:LTUH:125,BDES,GeV/c,BY1,-1.0 * 10**9 * -0.0022773 / 2.99792458e8,-0.060771,b_field_error,0
+BEND:LTUH:125,BDES,GeV/c,BY2,-1.0 * 10**9 * -0.0022773 / 2.99792458e8,-0.060771,b_field_error,0
+BEND:DMPH:400,BDES,GeV/c,BX31,-1.0 * 10**9 * 0.003327 / 2.99792458e8,0.08878,b_field_error,0
+BEND:DMPH:400,BDES,GeV/c,BX32,-1.0 * 10**9 * 0.003327 / 2.99792458e8,0.08878,b_field_error,0
+BEND:LTUH:301,BDES,kG*m,BCX321,1.0 * -1.0/(10.0 * 0.35),0.76855,b_field_error,0
+BEND:LTUH:301,BDES,kG*m,BCX322,-1.0 * -1.0/(10.0 * 0.35),-0.76855,b_field_error,0
+BEND:LTUH:301,BDES,kG*m,BCX323,-1.0 * -1.0/(10.0 * 0.35),-0.76855,b_field_error,0
+BEND:LTUH:301,BDES,kG*m,BCX324,1.0 * -1.0/(10.0 * 0.35),0.76855,b_field_error,0
+KICK:LTUH:320,BDES,GeV/c,BYKIK1,-1.0 * 10**9 * 3.5374e-16 / 2.99792458e8,9.4396e-15,b_field_error,0
+KICK:LTUH:320,BDES,GeV/c,BYKIK2,-1.0 * 10**9 * 3.5374e-16 / 2.99792458e8,9.4396e-15,b_field_error,0
+BEND:LTUH:376,BDES,kG*m,BCX351,1.0 * -1.0/(10.0 * 0.35),0.54344,b_field_error,0
+BEND:LTUH:376,BDES,kG*m,BCX352,-1.0 * -1.0/(10.0 * 0.35),-0.54344,b_field_error,0
+BEND:LTUH:376,BDES,kG*m,BCX353,-1.0 * -1.0/(10.0 * 0.35),-0.54344,b_field_error,0
+BEND:LTUH:376,BDES,kG*m,BCX354,1.0 * -1.0/(10.0 * 0.35),0.54344,b_field_error,0
+BEND:DMPH:400,BDES,GeV/c,BX35,-1.0 * 10**9 * -0.003327 / 2.99792458e8,-0.08878,b_field_error,0
+BEND:DMPH:400,BDES,GeV/c,BX36,-1.0 * 10**9 * -0.003327 / 2.99792458e8,-0.08878,b_field_error,0
+BEND:LTUH:506,BDES,kG*m,BCX361,1.0 * -1.0/(10.0 * 0.35),0.54344,b_field_error,0
+BEND:LTUH:506,BDES,kG*m,BCX362,-1.0 * -1.0/(10.0 * 0.35),-0.54344,b_field_error,0
+BEND:LTUH:506,BDES,kG*m,BCX363,-1.0 * -1.0/(10.0 * 0.35),-0.54344,b_field_error,0
+BEND:LTUH:506,BDES,kG*m,BCX364,1.0 * -1.0/(10.0 * 0.35),0.54344,b_field_error,0
+BEND:UNDH:2830,BDES,kG*m,BCXHS1,1.0 * -1.0/(10.0 * 0.364),-0.0,b_field_error,0
+BEND:UNDH:2830,BDES,kG*m,BCXHS2,1.0 * -1.0/(10.0 * 0.364),-0.0,b_field_error,0
+BEND:UNDH:2830,BDES,kG*m,BCXHS3,1.0 * -1.0/(10.0 * 0.364),-0.0,b_field_error,0
+BEND:UNDH:2830,BDES,kG*m,BCXHS4,1.0 * -1.0/(10.0 * 0.364),-0.0,b_field_error,0
+BEND:DMPH:395,BDES,GeV/c,BYDSH,-1.0 * 10**9 * 0.0012 / 2.99792458e8,0.032022,b_field_error,0
+BEND:DMPH:400,BDES,GeV/c,BYD1,-1.0 * 10**9 * 0.015427 / 2.99792458e8,0.41168,b_field_error,0
+BEND:DMPH:400,BDES,GeV/c,BYD2,-1.0 * 10**9 * 0.015427 / 2.99792458e8,0.41168,b_field_error,0
+BEND:DMPH:400,BDES,GeV/c,BYD3,-1.0 * 10**9 * 0.015427 / 2.99792458e8,0.41168,b_field_error,0
