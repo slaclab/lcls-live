@@ -1,4 +1,4 @@
-# lcls2-live
+# lcls-live
 
 
 
