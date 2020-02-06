@@ -1,4 +1,4 @@
-# Welcome to lcls-live
+# Welcome to LCLS Live
 
 For full source see [lcls-live](https://github.com/slaclab/lcls-live) on GitHub.
 

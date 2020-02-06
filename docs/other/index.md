@@ -23,7 +23,7 @@
 
 ## Device, element name and PV name references
 
-[Oracle](https://oraweb.slac.stanford.edu/apex/slacdev/f?p=116)
+[Oracle](https://oraweb.slac.stanford.edu/apex/slacprod/f?p=116)
 
 [File](https://www.slac.stanford.edu/cgi-bin/cvsweb/optics/script/elementdevices.dat?cvstag=HEAD&content-type=text/x-cvsweb-markup&cvsroot=LCLS)
 

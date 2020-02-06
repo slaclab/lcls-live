@@ -6,6 +6,9 @@ nav:
     - developer/index.md
     - mkdocs: developer/mkdocs.md
   
+  - Bmad:
+    - Overview: bmad/index.md
+  
   - other/index.md
   
   
