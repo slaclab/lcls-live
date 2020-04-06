@@ -1,10 +1,12 @@
 from pytao import TaoModel
+
 from ..archiver import lcls_archiver_restore
 from ..klystron import existing_LCLS_klystrons
 from ..bmad import tools
 from ..epics import lcls_classic_info
 from .. import data_dir
-from math import pi, cos, sqrt
+#from math import pi, cos, sqrt
+from time import time
 import os
 
 
@@ -59,7 +61,7 @@ class LCLSTaoModel(TaoModel):
                 ):
         
         if input_file:
-            self.model_name = 'unkown'
+            self.model_name = 'unknown'
         else:
             input_file=find_model(model_name) 
             self.model_name = model_name
@@ -83,7 +85,7 @@ class LCLSTaoModel(TaoModel):
     def configure(self):
         super().configure()
         
-        if self.model_name == 'lcls_classic':
+        if self.model_name == 'lcls_classic' and self.epics:
             self.cmd('set global plot_on = F')
             self.load_all_settings()
             self.offset_bunch_compressors()
@@ -128,6 +130,19 @@ class LCLSTaoModel(TaoModel):
         return load_quad_settings(self)
     
  
+    def run_beam(self):
+        
+        self.run_info = {}
+        t1 = time()
+        self.run_info['start_time'] = t1
+        
+        # Beam on, off
+        self['global:track_type'] = 'beam'
+        self['global:track_type'] = 'single'
+        
+        self.run_info['run_time'] = time() - t1    
+        
+
         
     def LEM(self):
         self.vprint('LEMing')
@@ -137,6 +152,7 @@ class LCLSTaoModel(TaoModel):
         self.vprint('offsetting bunch compressors')
         return offset_bunch_compressors(self)
         
+
         
     def __str__(self):
         s = super().__str__()
@@ -147,10 +163,7 @@ class LCLSTaoModel(TaoModel):
         return '\n'.join(info)        
         
         
-        
-        
-        
-        
+
 
         
         
