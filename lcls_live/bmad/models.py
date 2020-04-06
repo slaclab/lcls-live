@@ -156,7 +156,7 @@ class LCLSTaoModel(TaoModel):
         
     def __str__(self):
         s = super().__str__()
-        if self.model_name == 'lcls_classic':
+        if self.model_name == 'lcls_classic' and self.epics:
             info = lcls_classic_info(self.epics)
         else: 
             info = [f'TODO: epics hooks for {self.model_name}']

@@ -12,6 +12,7 @@ import os
 
 
 def run_LCLSTao(settings=None,
+                run_commands=['set global track_type=beam'],
                 model_name='lcls_classic',
                 input_file=None,
                 ploton=False,
@@ -37,7 +38,8 @@ def run_LCLSTao(settings=None,
     if settings:
         apply_settings(M, settings)
     
-    M.run_beam()
+    for command in run_commands:
+        M.cmd(command)
     
     return M
     
