@@ -172,6 +172,8 @@ def load_all_settings(model):
     """
     Loads klystron, linac, and collimator settings into model from its internal epics.
     
+    For lcls_classic model only
+    
     """
 
     path = model.path
@@ -181,7 +183,7 @@ def load_all_settings(model):
     # Klystrons
     klist = existing_LCLS_klystrons(epics)
     kfile='settings/klystron_settings.bmad'
-    model.vprint('Reading:',  kfile)
+    model.vprint('Reading:', kfile)
     kfile = os.path.join(path, kfile)
     tools.write_bmad_klystron_settings(klist, filePath=kfile, verbose=verbose)
     cmd='read lattice '+kfile
@@ -189,19 +191,14 @@ def load_all_settings(model):
     
     # Linac oveall
     linacfile='settings/linac_settings.bmad' 
-    model.vprint('Reading:',  linacfile)
+    model.vprint('Reading:', linacfile)
     linacfile = os.path.join(path,linacfile)
     tools.write_bmad_linac_phasing_lines(filePath=linacfile, epics=epics, verbose=verbose)
     cmd='read lattice '+linacfile
     model.cmd(cmd)
     
     # Collimators
-    collfile = 'settings/collimator_settings.bmad'
-    model.vprint('Reading:', collfile)
-    collfile = os.path.join(path, collfile)
-    tools.write_bmad_collimator_lines(filePath=collfile, epics=epics, verbose=verbose)
-    cmd = 'read lattice '+collfile
-    model.cmd(cmd)
+    load_coll_settings(model, csvfile='classic/coll_mapping.csv')    
 
     # BC and LEM settings 
     bclemfile = 'settings/LEM_settings.tao'
@@ -221,6 +218,12 @@ def load_quad_settings(model, csvfile='classic/quad_mapping_classic.csv'):
     tools.bmad_from_csv(csvfile, model.epics, outfile=qfile)
     model.cmd('set ele quad::* field_master = T')
     model.cmd('read lattice '+qfile)    
+    
+def load_coll_settings(model, csvfile='classic/coll_mapping.csv'):
+    csvfile=os.path.join(data_dir, csvfile)
+    bfile = os.path.join(model.path, 'settings/coll_settings.bmad')
+    tools.bmad_from_csv(csvfile, model.epics, outfile=bfile)
+    model.cmd('read lattice '+bfile)      
 
     
 def load_corrector_settings(model, csvfile='classic/cor_mapping_classic.csv'):

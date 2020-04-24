@@ -146,34 +146,9 @@ def write_tao_BC_and_LEM_lines(filePath='LEM_settings.tao', epics=None, verbose=
 
         
         
-def bmad_collimator_lines(epics):
-    """
-    Sets the CE11 collimator
-    """
-    coll1 = Collimator(name='COLL:LI21:235', epics=epics)
-    coll2 = Collimator(name='COLL:LI21:236', epics=epics)
-    lines = []
-    lines.append('CE11[x1_limit] = ' + str(-coll1.lvpos*1e-3))
-    lines.append('CE11[x2_limit] = ' + str(coll2.lvpos*1e-3))
-                 
     return lines        
-def write_bmad_collimator_lines(filePath='collimator_settings.bmad', epics=None, verbose=False):
-    """
-    Writes collimator settings
-    """
-    lines = bmad_collimator_lines(epics)
-    with open(filePath, 'w') as f:
-        for l in lines:
-            f.write(l+'\n')
-    if verbose:
-        print('Written:', filePath)
 
-        
-        
-        
-
-        
-        
+                
         
 def bmad_from_csv(csvfile, epics, outfile=None):
     """
