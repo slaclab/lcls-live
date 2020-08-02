@@ -1,0 +1,4 @@
+device_name,attribute,unit,bmad_ele_name,bmad_factor,bmad_attribute,example_value
+QUAD:LI21:211,BDES,kG,QM11,-0.925925926,b1_gradient,0
+QUAD:LI21:221,BDES,kG,CQ11,-0.925925926,b1_gradient,0
+QUAD:LI21:243,BDES,kG,SQ13,-0.625,b1_gradient,0
