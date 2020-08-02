@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import requests
+import pandas as pd
 
 
 
@@ -41,6 +42,13 @@ def lcls_archiver_history(pvname, start='2018-08-11T10:40:00.000-07:00', end='20
     
     https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
     
+    Returns tuple: 
+        secs, vals
+    where secs is the UNIX timestamp, seconds since January 1, 1970, and vals are the values at those times.
+    
+    Seconds can be converted to a datetime object using:
+    import datetime
+    datetime.datetime.utcfromtimestamp(secs[0])
     
     """
     url="http://lcls-archapp.slac.stanford.edu/retrieval/data/getData.json?"
@@ -55,3 +63,22 @@ def lcls_archiver_history(pvname, start='2018-08-11T10:40:00.000-07:00', end='20
     secs = [x['secs'] for x in data[0]['data']]
     vals = [x['val'] for x in data[0]['data']]
     return secs, vals
+
+
+def lcls_archiver_history_dataframe(pvname, **kwargs):
+    """
+    Same as lcls_archiver_history, but returns a dataframe with the index as the time. 
+    """
+
+    secs, vals = lcls_archiver_history(pvname, **kwargs)
+    
+    # Get time series
+    ser = pd.to_datetime(pd.Series(secs), unit='s' )
+    df = pd.DataFrame({'time':ser, pvname:vals})
+    df = df.set_index('time')
+    
+    return df
+
+
+    
+    
