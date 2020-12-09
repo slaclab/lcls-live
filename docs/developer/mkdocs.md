@@ -6,10 +6,12 @@ These docs are created using mkdocs:
 
 ## Setup
 
+Install mkdocs and its various plugins using `conda` and `pip`:
+
 ```bash
 conda install mkdocs pygments mkdocs-material
 
-pip install 
+pip install mkdocs-minify-plugin
 ```
 
 ## Deploy to GitHub pages

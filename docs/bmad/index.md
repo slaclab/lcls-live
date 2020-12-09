@@ -1,6 +1,6 @@
 # Bmad and Tao Overview
 
-Bmad 
+Bmad is used to model electron beam dynamics in thethe LCLS accelerators from the injectors through the undulators, and to the beam dumps. 
 
 ## Bmad Homepage
 
