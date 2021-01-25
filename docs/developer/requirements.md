@@ -1,7 +1,7 @@
 
 
 
-# Requirements for Model Services (live models)
+# Requirements for Models and Model Services (live models)
 
 Physics-based `models` are intended to provide physical predictions of beam-related quantities. We have am immediate need for injector and beamline `model services` that continuously read from a common EPICS network and serve some of these quantiies as PVs on the same network.  
 
@@ -10,23 +10,50 @@ Physics-based `models` are intended to provide physical predictions of beam-rela
 The following are `minimal` requirements.
 
 
+---
+# Models
 
-# Model Source
 
-Models shall be collected in git repositories hosted at https://github.com/slaclab/
+Models are collected in git repositories hosted at https://github.com/slaclab/
 
 Baseline physics models are collected in the `lcls-lattice` git repository. The main source is hosted at:
 https://github.com/slaclab/lcls-lattice
 with the `$LCLS_LATTICE` enviromnental variable defined on local systems to point to a checked out version.
 
 
+## lcls-cu-inj
+- source: `$LCLS_LATTICE/impact/models/cu_inj`
+- documentation: TODO
+- dependencies: 
+    - Impact-T executable
 
-# lcls-cu-inj-live 
+## lcls-cu-inj-surrogate
+
+- source: https://github.com/slaclab/lcls-cu-inj-surrogate
+- documentation: at source
+- dependencies: 
+    - Python 
+        - tensorflow
+
+## lcls-beamlines
+- source: `$LCLS_LATTICE/bmad/models/cu_hxr`, `cu_sxr`
+- documentation: TODO
+- dependencies: Bmad distribution (executables and libraries)
+
+
+
+
+---
+# Model Services
+
+## lcls-cu-inj-live 
     
 - source: https://github.com/slaclab/lcls-cu-inj-live
 
+- documentation: https://github.com/slaclab/lcls-cu-inj-live/blob/main/README.md
+
 - dependencies:
-   - model: https://github.com/slaclab/lcls-cu-inj-surrogate
+   - model: lcls-cu-inj-surrogate
    - software:
        - Python
            - tensorflow
@@ -40,34 +67,30 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
 
 - EPICS outputs:
     - beam sigma matrix at screens:
-        - YAGO2
+        - YAG02
         - OTR2
     - beam phase space projections at the same screens
 
 
-# lcls-cu-beamline
+## lcls-beamlines
+- source: https://github.com/slaclab/lcls_live_model
+- documentation: TODO
+- dependencies: 
+    - lcls-beamlines models
+    - Python
+        - pyepics
 
-source: 
-
-model: `$LCLS_LATTICE/bmad/models/cu_hxr/` (Bmad/Tao)
-
-EPICS inputs: 
+        
+- EPICS inputs: 
+    - Initial Twiss
     - Klystron level phases and amplitudes
     - Linac overall phases
     - quadrupole strengths
     - bunch compressor settings
- 
-EPICS outputs:
+
+- EPICS outputs:
     - Twiss parameters at all elements
 
-
-
-## cu_hxr
-
-
-
-## cu_sxr
-    Similar to cu_hxr
 
 
 

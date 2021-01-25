@@ -11,7 +11,7 @@ All lattice files are hosted on GitHub at https://github.com/slaclab/lcls-lattic
 This is mirrored at SLAC in `/afs`. To update the mirror:
 
 ```bash
-cd /afs/slac/g/cd/swe/git/repos/model/lcls-lattice.git
+cd /afs/slac/g/cd/swe/git/repos/model/lattice/lcls-lattice.git
 git remote update
 # (enter credentials)
 ```
