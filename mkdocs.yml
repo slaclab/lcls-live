@@ -8,6 +8,7 @@ nav:
   - Developer: 
     - developer/index.md
     - Procedures: developer/procedures.md
+    - Requirements: developer/requirements.md
     - mkdocs: developer/mkdocs.md
     - Roadmap: developer/roadmap.md    
   
