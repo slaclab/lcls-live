@@ -3,11 +3,18 @@
 
 # Requirements for Models and Model Services (live models)
 
-Physics-based `models` are intended to provide physical predictions of beam-related quantities. We have am immediate need for injector and beamline `model services` that continuously read from a common EPICS network and serve some of these quantiies as PVs on the same network.  
+Physics-based `models` are intended to provide physical predictions of beam-related quantities. We have an immediate need for injector and beamline `model services` that continuously read from a common EPICS network and serve some of these quantiies as PVs on the same network.  
 
 
 
 The following are `minimal` requirements.
+
+
+
+---
+# Computing
+
+- All models and model services should be able to runon the production, devel, and SDF environments. 
 
 
 ---
@@ -30,6 +37,7 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
 ## lcls-cu-inj-surrogate
 
 - source: https://github.com/slaclab/lcls-cu-inj-surrogate
+- description: Pre-trained neural network surrogage model for the lcls-cu-inj model. 
 - documentation: at source
 - dependencies: 
     - Python 
@@ -82,7 +90,7 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
 
         
 - EPICS inputs: 
-    - Initial Twiss
+    - Initial Twiss (TODO)
     - Klystron level phases and amplitudes
     - Linac overall phases
     - quadrupole strengths
