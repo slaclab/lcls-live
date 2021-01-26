@@ -3,7 +3,7 @@
 
 # Requirements for Models and Model Services (live models)
 
-Physics-based `models` are intended to provide physical predictions of beam-related quantities. We have an immediate need for injector and beamline `model services` that continuously read from a common EPICS network and serve some of these quantiies as PVs on the same network.  
+Physics-based `models` are intended to provide physical predictions of beam-related quantities. We have an immediate need for injector and beamline `model services` that continuously read from a common EPICS network and serve some of these quantities as PVs on the same network.  
 
 
 
@@ -14,7 +14,7 @@ The following are `minimal` requirements.
 ---
 # Computing
 
-- All models and model services should be able to runon the production, devel, and SDF environments. 
+- All models and model services should be able to run on the production, devel, and SDF environments. 
 
 
 ---
@@ -37,11 +37,15 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
 ## lcls-cu-inj-surrogate
 
 - source: https://github.com/slaclab/lcls-cu-inj-surrogate
+- developers:
+    - Auralee Edelen
 - description: Pre-trained neural network surrogage model for the lcls-cu-inj model. 
 - documentation: at source
 - dependencies: 
     - Python 
         - tensorflow
+
+    
 
 ## lcls-beamlines
 - source: `$LCLS_LATTICE/bmad/models/cu_hxr`, `cu_sxr`
@@ -57,6 +61,10 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
 ## lcls-cu-inj-live 
     
 - source: https://github.com/slaclab/lcls-cu-inj-live
+- Developers:
+    - Jaqueline Garrahan
+    - Hugo Slepicka 
+
 
 - documentation: https://github.com/slaclab/lcls-cu-inj-live/blob/main/README.md
 
@@ -67,6 +75,7 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
            - tensorflow
            - lume-model
            - lume-epics
+           
 
 - EPICS inputs: 
     - laser parameters
@@ -82,6 +91,11 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
 
 ## lcls-beamlines
 - source: https://github.com/slaclab/lcls_live_model
+- developers:
+    - Matt Gibbs
+    - Christopher Mayes
+    - Hugo Slepicka
+    
 - documentation: TODO
 - dependencies: 
     - lcls-beamlines models
@@ -98,6 +112,25 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
 
 - EPICS outputs:
     - Twiss parameters at all elements
+
+
+
+# Intantiated Models
+
+
+## cu-inj-surrogate
+on DMZ
+
+retraining using SDF
+
+
+
+
+
+## lcls-beamlines:sxr, hxr
+on DMZ
+
+
 
 
 
