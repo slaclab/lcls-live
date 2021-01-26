@@ -378,8 +378,13 @@
                 
                 
                 <h1 id="requirements-for-models-and-model-services-live-models">Requirements for Models and Model Services (live models)</h1>
-<p>Physics-based <code>models</code> are intended to provide physical predictions of beam-related quantities. We have am immediate need for injector and beamline <code>model services</code> that continuously read from a common EPICS network and serve some of these quantiies as PVs on the same network.  </p>
+<p>Physics-based <code>models</code> are intended to provide physical predictions of beam-related quantities. We have an immediate need for injector and beamline <code>model services</code> that continuously read from a common EPICS network and serve some of these quantities as PVs on the same network.  </p>
 <p>The following are <code>minimal</code> requirements.</p>
+<hr />
+<h1 id="computing">Computing</h1>
+<ul>
+<li>All models and model services should be able to run on the production, devel, and SDF environments. </li>
+</ul>
 <hr />
 <h1 id="models">Models</h1>
 <p>Models are collected in git repositories hosted at https://github.com/slaclab/</p>
@@ -398,6 +403,11 @@ with the <code>$LCLS_LATTICE</code> enviromnental variable defined on local syst
 <h2 id="lcls-cu-inj-surrogate">lcls-cu-inj-surrogate</h2>
 <ul>
 <li>source: https://github.com/slaclab/lcls-cu-inj-surrogate</li>
+<li>developers:<ul>
+<li>Auralee Edelen</li>
+</ul>
+</li>
+<li>description: Pre-trained neural network surrogage model for the lcls-cu-inj model. </li>
 <li>documentation: at source</li>
 <li>dependencies: <ul>
 <li>Python <ul>
@@ -417,8 +427,13 @@ with the <code>$LCLS_LATTICE</code> enviromnental variable defined on local syst
 <h1 id="model-services">Model Services</h1>
 <h2 id="lcls-cu-inj-live">lcls-cu-inj-live</h2>
 <ul>
+<li>source: https://github.com/slaclab/lcls-cu-inj-live</li>
 <li>
-<p>source: https://github.com/slaclab/lcls-cu-inj-live</p>
+<p>Developers:</p>
+<ul>
+<li>Jaqueline Garrahan</li>
+<li>Hugo Slepicka </li>
+</ul>
 </li>
 <li>
 <p>documentation: https://github.com/slaclab/lcls-cu-inj-live/blob/main/README.md</p>
@@ -461,7 +476,17 @@ with the <code>$LCLS_LATTICE</code> enviromnental variable defined on local syst
 <h2 id="lcls-beamlines_1">lcls-beamlines</h2>
 <ul>
 <li>source: https://github.com/slaclab/lcls_live_model</li>
-<li>documentation: TODO</li>
+<li>
+<p>developers:</p>
+<ul>
+<li>Matt Gibbs</li>
+<li>Christopher Mayes</li>
+<li>Hugo Slepicka</li>
+</ul>
+</li>
+<li>
+<p>documentation: TODO</p>
+</li>
 <li>
 <p>dependencies: </p>
 <ul>
@@ -475,7 +500,7 @@ with the <code>$LCLS_LATTICE</code> enviromnental variable defined on local syst
 <li>
 <p>EPICS inputs: </p>
 <ul>
-<li>Initial Twiss</li>
+<li>Initial Twiss (TODO)</li>
 <li>Klystron level phases and amplitudes</li>
 <li>Linac overall phases</li>
 <li>quadrupole strengths</li>
@@ -489,6 +514,12 @@ with the <code>$LCLS_LATTICE</code> enviromnental variable defined on local syst
 </ul>
 </li>
 </ul>
+<h1 id="intantiated-models">Intantiated Models</h1>
+<h2 id="cu-inj-surrogate">cu-inj-surrogate</h2>
+<p>on DMZ</p>
+<p>retraining using SDF</p>
+<h2 id="lcls-beamlinessxr-hxr">lcls-beamlines:sxr, hxr</h2>
+<p>on DMZ</p>
                 
               
               
