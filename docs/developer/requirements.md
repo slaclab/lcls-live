@@ -115,17 +115,13 @@ with the `$LCLS_LATTICE` enviromnental variable defined on local systems to poin
 
 
 
-# Intantiated Models
+# Deployment
 
 
 ## cu-inj-surrogate
 on DMZ
 
 retraining using SDF
-
-
-
-
 
 ## lcls-beamlines:sxr, hxr
 on DMZ
