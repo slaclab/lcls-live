@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from lcls_live.tools import NpEncoder
+
 import numpy as np
 import json
 import os
@@ -54,7 +56,7 @@ class epics_proxy(object):
         else:
             fname = filename
         with open(fname, 'w') as f:
-            json.dump(self.pvdata, f, cls=NumpyEncoder, ensure_ascii=True, indent='  ')   
+            json.dump(self.pvdata, f, cls=NpEncoder, ensure_ascii=True, indent='  ')   
         self.vprint('Saved', fname)
 
 
@@ -88,6 +90,12 @@ class epics_proxy(object):
     def caget_many(self, pvnames):
         return [self.caget(n) for n in pvnames]
 
+    def PV(self, pvname, **kwargs):
+        self.vprint(f'PV for {pvname}')
+        m = PV_proxy(pvname, self.pvdata, epics=self.epics, **kwargs)
+        self.monitor[pvname] = m
+        return m
+    
     def vprint(self, *args, **kwargs):
         # Verbose print
         if self.verbose:
@@ -120,21 +128,46 @@ class epics_proxy(object):
         return s        
         
         
+
+class PV_proxy:
+    """
+    Proxy class for the epics.PV object.
+    
+    Implements:
+        .get
+        .put
+        .add_callback
+    """
+    
+    def __init__(self, pvname, pvdata, epics=None, **kwargs):
         
+        if epics:
+            self.PV = epics.PV(pvname, **kwargs)
+        else:
+            self.PV = None
         
+        self.pvname = pvname
+        self.epics=epics
+        self.pvdata = pvdata
+        self.callbacks = []
         
-# For dumping numpy arrays, from:
-# https://stackoverflow.com/questions/26646362/numpy-array-is-not-json-serializable
-class NumpyEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        return json.JSONEncoder.default(self, obj)        
+    def get(self, **kwargs):
+        if self.PV:
+            value = self.PV.get(**kwargs)
+            self.pvdata[self.pvname] = value
+        return self.pvdata[self.pvname]
         
+    def put(self, value, **kwargs):
+        if self.PV:
+            self.PV.put(value, **kwargs)         
+        self.pvdata[self.pvname] = value       
         
-        
-        
-        
+    def add_callback(self, *args, **kwargs):
+        if self.PV:
+            self.PV.add_callback(*args, **kwargs)
+        else:
+            pass
+            # TODO
         
 
 def linac_line(name, energy, phase_deg, fudge=None):
@@ -225,3 +258,8 @@ def lcls_classic_info(epics):
     lines.append(hline)
     
     return lines        
+
+
+
+
+        
