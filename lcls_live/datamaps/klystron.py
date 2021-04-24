@@ -4,7 +4,7 @@ import numpy as np
 
 
 
-@dataclasses.dataclass(frozen=True)
+@dataclasses.dataclass(frozen=True, order=False)
 class KlystronDataMap:
     """
     
