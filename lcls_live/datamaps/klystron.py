@@ -4,7 +4,7 @@ import numpy as np
 
 
 
-@dataclasses.dataclass(frozen=True, order=False)
+@dataclasses.dataclass
 class KlystronDataMap:
     """
     
@@ -112,12 +112,35 @@ class KlystronDataMap:
     def as_bmad(self, pvdata):
         
         dat = self.evaluate(pvdata)
-        out = {}
-        out[f'{self.bmad_name}[ENLD_MeV]'] = dat['enld']
-        out[f'{self.bmad_name}[phase_deg]'] = dat['phase']
-        out[f'{self.bmad_name}[in_use]'] =  1 if dat['in_use'] else 0
+        #out = {}
+        #out[f'{self.bmad_name}[ENLD_MeV]'] = dat['enld']
+        #out[f'{self.bmad_name}[phase_deg]'] = dat['phase']
+        #out[f'{self.bmad_name}[in_use]'] =  1 if dat['in_use'] else 0
+        
+        enld = dat['enld']
+        phase = dat['phase']
+        in_use =  1 if dat['in_use'] else 0
+        
+        out = [
+            f'{self.bmad_name}[ENLD_MeV] = {enld}',
+            f'{self.bmad_name}[phase_deg] = {phase}',
+            f'{self.bmad_name}[in_use] = {in_use}']        
         
         return out
+    
+    def as_tao(self, pvdata):
+        dat = self.evaluate(pvdata)
+        
+        enld = dat['enld']
+        phase = dat['phase']
+        in_use =  1 if dat['in_use'] else 0
+        
+        out = [
+            f'set ele {self.bmad_name} ENLD_MeV = {enld}',
+            f'set ele {self.bmad_name} phase_deg = {phase}',
+            f'set ele {self.bmad_name} in_use = {in_use}']
+        
+        return out    
     
     def asdict(self):
         return dataclasses.asdict(self)
