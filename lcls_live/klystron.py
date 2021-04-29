@@ -68,14 +68,7 @@ class Klystron(Device):
         return "{0}:BEAMCODE{1}_TCTL".format(self.name, beamcode)  
     
     def typicalBeamcode(self):
-        if self.sector > 20:
-            return 1
-        if self.sector == 20 and self.station >= 5:
-            return 1
-        if self.sector >= 2:
-            return 10
-        if self.sector < 2:
-            return 11 
+        return typical_beam_code(self.sector, self.station)
 
     def correct_swrd(self):
         #Horrible hack to ignore the bit for 'low RF power' on LCLS front-end klystrons.
@@ -148,7 +141,18 @@ class Klystron(Device):
             s += '\n   Approximate energy gain = '+str(self.enld) + '*cos('+str(self.phase)+'*pi/180) = '+ str(de)+' MeV'
                 
         return s
-           
+    
+def typical_beam_code(sector, station):
+    if sector > 20:
+        return 1
+    if sector == 20 and station >= 5:
+        return 1
+    if sector >= 2:
+        return 10
+    if sector < 2:
+        return 11         
+        
+        
            
 def klystron_sector_station(name):
     """
@@ -374,13 +378,15 @@ def lcls_complement():
 
 
 # List of all LCLS klystrons by sector, station    
-existing_LCLS_klystrons_sector_station = [
-    # L1
-    (21, 1), 
-    # L1X
-    (21, 2),
+existing_LCLS_klystrons_sector_station = (
+                                                  # GUN, L0A, L0B
+                                                 (20, 6), (20, 7), (20, 8),
+    
+    # L1S    L1X
+    (21, 1), (21, 2),
+    
     # L2
-    (21, 3), (21, 4), (21, 5), (21, 6), (21, 7), (21, 8), 
+                      (21, 3), (21, 4), (21, 5), (21, 6), (21, 7), (21, 8), 
     (22, 1), (22, 2), (22, 3), (22, 4), (22, 5), (22, 6), (22, 7), (22, 8), 
     (23, 1), (23, 2), (23, 3), (23, 4), (23, 5), (23, 6), (23, 7), (23, 8),
     (24, 1), (24, 2), (24, 3), (24, 4), (24, 5), (24, 6),
@@ -390,7 +396,7 @@ existing_LCLS_klystrons_sector_station = [
     (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (27, 7), (27, 8), 
     (28, 1), (28, 2), (28, 3), (28, 4), (28, 5), (28, 6), (28, 7), (28, 8), 
     (29, 1), (29, 2), (29, 3), (29, 4), (29, 5), (29, 6), (29, 7), (29, 8), 
-    (30, 1), (30, 2), (30, 3), (30, 4), (30, 5), (30, 6), (30, 7), (30, 8)]
+    (30, 1), (30, 2), (30, 3), (30, 4), (30, 5), (30, 6), (30, 7), (30, 8))
 
 # Convert these to device names
 existing_LCLS_klystron_names = [klystron_name(x[0], x[1]) for x in existing_LCLS_klystrons_sector_station]
