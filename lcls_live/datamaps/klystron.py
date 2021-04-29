@@ -1,7 +1,8 @@
 from lcls_live.klystron import all_fault_strings, unusable_faults, typical_beam_code,  existing_LCLS_klystrons_sector_station
 import dataclasses
 import numpy as np
-
+import json
+import os
 
 
 @dataclasses.dataclass
@@ -26,10 +27,27 @@ class KlystronDataMap:
                 phase in deg
             in_use : bool
                 
-                
-        
-    
     as_bmad(pvdata)
+        Returns
+        -------
+        list of str:
+            Bmad lattice strings to set values extracted from pvdata
+            
+    as_tao(pvdata)
+        Returns
+        -------
+        list of str:
+            Tao command strings  
+            
+    to_json(file=None)
+        Returns
+        -------
+            JSON string, or writes to file if given. 
+    
+    @classmethod
+    from_json(s):
+        Returns a new KlystronDataMap from a JSON string or file
+        
     
     
     """
@@ -48,7 +66,7 @@ class KlystronDataMap:
         
     @property
     def bmad_name(self):
-        return f'O_{self.name}'
+        return f'{self.name}'
         
     @property
     def has_fault_pvnames(self):
@@ -145,12 +163,38 @@ class KlystronDataMap:
     def asdict(self):
         return dataclasses.asdict(self)
     
+    
+    @classmethod
+    def from_json(cls, s):
+        """
+        Creates a new TablularDataMap from a JSON string
+        """
+        if os.path.exists(s):
+            d = json.load(open(s))
+        else:
+            d = json.loads(s)
+
+        return cls(**d)    
+    
+    def to_json(self, file=None):
+        """
+        Returns a JSON string
+        """
+        d = self.asdict()
+        s = json.dumps(d)
+        
+        if file:
+            with open(file, 'w') as f:
+                f.write(s)
+        else:
+            return s    
+    
         
     
 def klystron_pvinfo(sector, station):
     """
     Customized function for creating the data to instantiate a KlystronDataMap 
-    for a klystrob at s given sector, station. 
+    for a klystron at s given sector, station. 
     
     
     Parameters
@@ -207,21 +251,28 @@ def klystron_pvinfo(sector, station):
     elif ss == (21, 1):
         description += ' for L1S'
         base = 'ACCL:LI21:1'  
-        enld = '{base}:L1S_AAVG'   
-        phase = '{base}:L1S_PAVG'      
+        # enld = '{base}:L1S_AAVG'  Not in the archiver
+        enld = 'ACCL:LI21:1:L1S_S_AV'
+        #phase = '{base}:L1S_PAVG' # Not in the archiver
+        phase = 'ACCL:LI21:1:L1S_S_PV'        
     elif ss == (21, 2):
         description += ' for L1X'
         base = 'ACCL:LI21:180'            
-        enld = '{base}:L1X_AAVG'   
-        phase = '{base}:L1X_PAVG'     
+        #enld = '{base}:L1X_AAVG'   # Not in the archiver
+        enld = 'ACCL:LI21:180:L1X_S_AV'
+        #phase = '{base}:L1X_PAVG'  # Not in the archiver 
+        phase = 'ACCL:LI21:180:L1X_S_PV'        
     elif sector == 24 and station in (1, 2, 3):
         description += ' for special feedback'
         base =  f'KLYS:LI{sector}:{station}1'     # Normal base
-        phase = f'ACCL:LI24:{station}00:KLY_PDES' #Yes, we traditionally use the PDES PV for the phase readback.
-    elif sector in [29, 30]:
-        description += ' for special feedback'
-        base =  f'KLYS:LI{sector}:{station}1'     # Normal base
-        phase = f'ACCL:LI{sector}:0:KLY_PDES'  
+        phase = f'ACCL:LI24:{station}00:KLY_PDES' # Readback
+        has_fault_pvs = True
+        has_beamcode = True        
+    # Feedback is in the subboosters for sectors 29, 30
+    #elif sector in [29, 30]:
+    #    description += ' for special feedback'
+    #    base =  f'KLYS:LI{sector}:{station}1'     # Normal base
+    #    phase = f'ACCL:LI{sector}:0:KLY_PDES'  
            
     else:
         # Normal Klystron
@@ -261,3 +312,46 @@ def klystron_fault_pvnames(base):
 def klystron_is_usable(swrd=0, stat=0, hdsc=0, dsta=0):
     fault_strings = all_fault_strings(swrd=swrd, stat=stat, hdsc=hdsc, dsta=dsta)
     return set(fault_strings).isdisjoint(unusable_faults)    
+
+
+
+
+
+SUBBOOSTER_SECTORS = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+
+def subbooster_pvinfo(sector):
+    """
+    Returns basic PV information about a subbooster in a given sector
+    
+    Parameters
+    ----------
+    sector : int
+        sector in  [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    
+    Returns
+    -------
+    dict with:
+        name : str
+        description : str
+        phase_pvname : str
+        
+    """
+    
+    name = f'SBST_{sector}'
+    
+    if sector in [21, 22, 23, 24, 25, 26, 27, 28]:
+        description = 'Normal subbooster'
+        phase_pvname = f'SBST:LI{sector}:1:PHAS'
+    
+    elif sector in [29, 30]:
+        phase_pvname = f'ACCL:LI{sector}:0:KLY_PDES'
+        description = 'Special feedback subbooster'
+        
+    else:
+        raise ValueError(f'No subboosters for sector {sector}')
+
+    dat = dict(name=name,
+               phase_pvname=phase_pvname,
+              desciption=description)
+    
+    return dat

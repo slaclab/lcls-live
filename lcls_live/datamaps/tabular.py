@@ -2,6 +2,7 @@ import dataclasses
 import pandas as pd
 import numpy as np
 import json
+import os
 
 @dataclasses.dataclass
 class TabularDataMap:
@@ -47,14 +48,14 @@ class TabularDataMap:
     # Columns to extract data from
     pvname : str 
     element : str 
-    attribute: str 
+    attribute: str = ''
     factor : str = ''
     offset : str = ''
         
     # Special formats
     bmad_format : str = '{element}[{attribute}] = {value}'
     tao_format  : str = 'set ele {element} {attribute} = {value}'
-
+        
     @property
     def pvlist(self):
         return self.data[self.pvname].tolist()
@@ -66,8 +67,15 @@ class TabularDataMap:
         vals = self.data[self.pvname].apply(pvdata.get)
         
         # Only set valid_val values
-        valid_val = ~vals.isnull()
+        valid_val = ~vals.isnull()        
         
+        elements = self.data[self.element]
+        
+        if self.attribute:
+            attributes = self.data[self.attribute]        
+        else:
+            attributes = np.full(len(vals), '')
+    
         if self.factor:
             factors =  self.data[self.factor].fillna(1)
         else:
@@ -77,9 +85,7 @@ class TabularDataMap:
             offsets = self.data[self.offset].fillna(0)
         else:
             offsets = np.zeros(len(vals))
-            
-        elements = self.data[self.element]
-        attributes = self.data[self.attribute]
+
         
         return elements, attributes, vals, factors, offsets, valid_val
         
@@ -147,6 +153,9 @@ class TabularDataMap:
         """
         Creates a new TablularDataMap from a JSON string
         """
-        d = json.loads(s)
+        if os.path.exists(s):
+            d = json.load(open(s))
+        else:
+            d = json.loads(s)
         data = pd.read_json(d.pop('data'))
         return cls(data=data, **d)
