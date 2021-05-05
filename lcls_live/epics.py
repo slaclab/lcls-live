@@ -45,7 +45,9 @@ class epics_proxy(object):
             data = f.read()
         newdat = json.loads(data)               
         self.pvdata.update(newdat)
+
         self.vprint('Loaded', fname, 'with', len(list(newdat)), 'PVs')
+
 
     def save(self, filename=None):
         """
@@ -60,7 +62,6 @@ class epics_proxy(object):
         self.vprint('Saved', fname)
 
 
- 
     @property
     def all_monitors_connected(self):
         return all([self.monitor[m].wait_for_connection() for m in self.monitor])
@@ -88,7 +89,17 @@ class epics_proxy(object):
         return self.pvdata[pvname]            
 
     def caget_many(self, pvnames):
-        return [self.caget(n) for n in pvnames]
+        if self.epics:
+            pvdata = self.epics.caget_many(pvnames)
+            if any([pv is None for pv in pvdata]):
+                self.vprint("Unable to load caget_many. Trying individual caget with optional cache...")
+                return [self.caget(n) for n in pvnames]
+                
+            else:
+                return self.epics.caget_many(pvnames)
+
+        else:
+            return [self.caget(n) for n in pvnames]
 
     def PV(self, pvname, **kwargs):
         self.vprint(f'PV for {pvname}')
@@ -233,11 +244,12 @@ def lcls_classic_info(epics):
     fudge1 =  get('ACCL:LI21:1:FUDGE')
     
 
-    
+
     # L2
     phase2 = get('SIOC:SYS0:ML00:CALC204')
     energy2 = get('SIOC:SYS0:ML00:AO489')*1e12 # BC2 energy
     fudge2 = get('ACCL:LI22:1:FUDGE')
+
     # L3
     phase3 = get('SIOC:SYS0:ML00:AO499')
     energy3 = get('SIOC:SYS0:ML00:AO500')*1e12
@@ -257,9 +269,5 @@ def lcls_classic_info(epics):
     
     lines.append(hline)
     
-    return lines        
+    return lines
 
-
-
-
-        
