@@ -1,4 +1,4 @@
-minify
 mkdocs
 mkdocstrings
 mkdocs-material
+mkdocs-minify-plugin
