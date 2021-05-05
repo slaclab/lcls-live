@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [[ -z "$CA_NAME_SERVER_PORT" ]]; then
+  echo "\$CA_NAME_SERVER_PORT is not set."
+fi
+
+if [[ -z "$LCLS_PROD_HOST" ]]; then
+  echo "\$LCLS_PROD_HOST is not set."
+fi
+
+
+if [[ (-z "$CA_NAME_SERVER_PORT") || (-z "$LCLS_PROD_HOST") ]]; then
+  exit 0
+fi
+
+ssh -fN -L $CA_NAME_SERVER_PORT:$LCLS_PROD_HOST

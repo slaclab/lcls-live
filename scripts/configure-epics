@@ -9,7 +9,7 @@ if [[ -z "$LCLS_PROD_HOST" ]]; then
 fi
 
 if [[ -z "$SLAC_MACHINE" ]]; then
-  echo "\$LCLS_PROD_HOST is not set."
+  echo "\$SLAC_MACHINE is not set."
 fi
 
 
