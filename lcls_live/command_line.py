@@ -53,7 +53,7 @@ def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
     return tao_cmds
     
 
-def get_tao_from_archiver(datamaps: list, config: dict, use_proxy=True):
+def get_tao_from_archiver(datamaps: list, config: dict):
     """ Retrieve variable data using archiver and generate tao commands. 
 
     Args:
@@ -65,7 +65,7 @@ def get_tao_from_archiver(datamaps: list, config: dict, use_proxy=True):
 
     """
 
-    if use_proxy:
+    if os.environ.get("SLAC_ARCHIVER_HOST"):
         os.environ["http_proxy"] = "socks5h://localhost:8080"
         os.environ["HTTPS_PROXY"] = "socks5h://localhost:8080"
         os.environ["ALL_PROXY"] = "socks5h://localhost:8080"
