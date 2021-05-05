@@ -18,11 +18,6 @@ parser.add_argument("source", type=str, choices=("archiver", "epics"), help="'ar
 parser.add_argument("config_file", type=str, help="Configuration yaml file.")
 parser.add_argument("filename", type=str, help="Command output filename.")
 
-os.environ["http_proxy"] = "socks5h://localhost:808"
-os.environ["HTTPS_PROXY"] = "socks5h://localhost:8080"
-os.environ["ALL_PROXY"] = "socks5h://localhost:8080"
-
-
 def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
     """ Retrieve variable data using epics proxy and generate tao commands.
 
