@@ -12,7 +12,7 @@ def get_datamaps(config_name: str):
         config_name (str): Choice of beamline to generate datamaps for (currently cu_hxr, cu_sxr)
     """
 
-    with open(os.path.join(data_dir, 'master.json'), "r") as f:
+    with open(os.path.join(data_dir, 'datamaps_master.json'), "r") as f:
         dms = json.load(f)
 
     # select configs for given line
