@@ -29,7 +29,8 @@ def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
         List of Tao commands
 
     """
-    os.environ["EPICS_CA_NAME_SERVERS"] = f"localhost:{os.environ['CA_NAME_SERVER_PORT']}"
+    if os.environ.get("CA_NAME_SERVER_PORT"):
+        os.environ["EPICS_CA_NAME_SERVERS"] = f"localhost:{os.environ['CA_NAME_SERVER_PORT']}"
 
     epics_source =  __import__(config["epics_proxy"]["epics"])
     epics_interface = epics_proxy(epics=epics_source, filename=config["epics_proxy"]["filename"], verbose=True)
