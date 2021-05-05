@@ -38,7 +38,7 @@ archiver:
   isotime: '2021-04-21T08:10:25.000000-07:00'
 ```
 
-Beyond the configuration, the environment must be properly configured to access the resources. 
+A template for this file is included in `examples/files`, but won't be of particular use unless updated for your own configuration. The environment must also be properly configured to access the resources. 
 
 ### Epics proxy environment
 
