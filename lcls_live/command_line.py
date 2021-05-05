@@ -13,8 +13,8 @@ from typing import List
 
 
 parser = argparse.ArgumentParser(description="Fetch PV data for Tao.")
-parser.add_argument("model", type=str, choices=["cu_hxr, cu_sxr"], help="Model to use. Currently cu_hxr or cu_sxr.")
-parser.add_argument("source", type=str, choices=["archiver", "epics"], help="'archiver' or 'epics' source.")
+parser.add_argument("model", type=str, choices=("cu_hxr, cu_sxr"), help="Model to use. Currently cu_hxr or cu_sxr.")
+parser.add_argument("source", type=str, choices=("archiver", "epics"), help="'archiver' or 'epics' source.")
 parser.add_argument("config_file", type=str, help="Configuration yaml file.")
 parser.add_argument("filename", type=str, help="Command output filename.")
 
@@ -31,7 +31,7 @@ def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
 
     """
     epics_source =  __import__(config["epics_proxy"]["epics"])
-    epics_interface = epics_proxy(epics=epics_source, filename=config["epics_proxy"]["filename"])
+    epics_interface = epics_proxy(epics=epics_source, filename=config["epics_proxy"]["filename"], verbose=True)
 
     tao_cmds = []
     for dm in datamaps:
@@ -101,11 +101,9 @@ def main() -> None:
 
     with open(config_file, "r") as f:
         config = yaml.safe_load(f)
-        main(config, source, filename, model)
-
 
     dms = []
-    datamaps = get_datamaps(config["datamaps"])
+    datamaps = get_datamaps(model)
 
     if source == "epics":
         tao_cmds = get_tao_from_epics(datamaps, config)

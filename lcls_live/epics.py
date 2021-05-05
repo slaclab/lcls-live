@@ -41,8 +41,14 @@ class epics_proxy(object):
             fname = self.filename
         else:
             fname = filename
+
         with open(fname, 'r') as f:
             data = f.read()
+
+        if not data:
+            self.vrpint(f"Unable to read data from file {fname}")
+
+
         newdat = json.loads(data)               
         self.pvdata.update(newdat)
 
@@ -92,7 +98,7 @@ class epics_proxy(object):
         if self.epics:
             pvdata = self.epics.caget_many(pvnames)
             if any([pv is None for pv in pvdata]):
-                self.vprint("Unable to load caget_many. Trying individual caget with optional cache...")
+                self.vprint("Unable to execute caget_many. Trying individual caget with optional cache...")
                 return [self.caget(n) for n in pvnames]
                 
             else:
