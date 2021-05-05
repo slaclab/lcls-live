@@ -30,5 +30,5 @@ setup(
     'console_scripts': [
         'get-lcls-live=lcls_live.command_line:main'],
     },
-    scripts = ["scripts/configure-epics", "scripts/configure-archiver", "scripts/configure-epics-public"]
+    scripts = ["scripts/configure-epics-remote", "scripts/configure-archiver-remote"]
 )
