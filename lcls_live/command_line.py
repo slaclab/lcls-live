@@ -13,10 +13,14 @@ from typing import List
 
 
 parser = argparse.ArgumentParser(description="Fetch PV data for Tao.")
-parser.add_argument("model", type=str, choices=("cu_hxr, cu_sxr"), help="Model to use. Currently cu_hxr or cu_sxr.")
+parser.add_argument("model", type=str, choices=("cu_hxr", "cu_sxr"), help="Model to use. Currently cu_hxr or cu_sxr.")
 parser.add_argument("source", type=str, choices=("archiver", "epics"), help="'archiver' or 'epics' source.")
 parser.add_argument("config_file", type=str, help="Configuration yaml file.")
 parser.add_argument("filename", type=str, help="Command output filename.")
+
+os.environ["http_proxy"] = "socks5h://localhost:808"
+os.environ["HTTPS_PROXY"] = "socks5h://localhost:8080"
+os.environ["ALL_PROXY"] = "socks5h://localhost:8080"
 
 
 def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
@@ -30,21 +34,26 @@ def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
         List of Tao commands
 
     """
+    os.environ["EPICS_CA_NAME_SERVERS"] = f"localhost:{os.environ['CA_NAME_SERVER_PORT']}"
+
     epics_source =  __import__(config["epics_proxy"]["epics"])
     epics_interface = epics_proxy(epics=epics_source, filename=config["epics_proxy"]["filename"], verbose=True)
 
     tao_cmds = []
+
+    all_pvs = []
     for dm in datamaps:
-        pvs = dm.pvlist
-        pvdata = epics_interface.caget_many(pvs)
-        pvdata={pvs[i]: pvdata[i] for i in range(len(pvs))} 
-    
+        all_pvs += dm.pvlist
+
+    pvdata = epics_interface.caget_many(all_pvs)
+
+    for dm in datamaps:
         tao_cmds += dm.as_tao(pvdata)
 
     return tao_cmds
     
 
-def get_tao_from_archiver(datamaps: list, config: dict):
+def get_tao_from_archiver(datamaps: list, config: dict, use_proxy=True):
     """ Retrieve variable data using archiver and generate tao commands. 
 
     Args:
@@ -56,22 +65,28 @@ def get_tao_from_archiver(datamaps: list, config: dict):
 
     """
 
+    if use_proxy:
+        os.environ["http_proxy"] = "socks5h://localhost:8080"
+        os.environ["HTTPS_PROXY"] = "socks5h://localhost:8080"
+        os.environ["ALL_PROXY"] = "socks5h://localhost:8080"
+
+
     # check appropriate variables have been set
-    if not os.environ.get("http_proxy"):
-        print(f"Missing $http_proxy environment variable. Please configure archiver.")
-        sys.exit()
+    #if not os.environ.get("http_proxy"):
+    #    print(f"Missing $http_proxy environment variable. Please configure archiver.")
+    #    sys.exit()
 
-    if not os.environ.get("HTTPS_PROXY"):
-        print(f"Missing $HTTPS_PROXY environment variable. Please configure archiver.")
-        sys.exit()
+    #if not os.environ.get("HTTPS_PROXY"):
+    #    print(f"Missing $HTTPS_PROXY environment variable. Please configure archiver.")
+    #    sys.exit()
 
-    if not os.environ.get("ALL_PROXY"):
-        print(f"Missing $ALL_PROXY environment variable. Please configure archiver.")
-        sys.exit()
+    #if not os.environ.get("ALL_PROXY"):
+    #    print(f"Missing $ALL_PROXY environment variable. Please configure archiver.")
+    #    sys.exit()
 
-    if not config["archiver"].get("isotime"):
-        print("Must define isotime in configuration file.")
-        sys.exit()
+    #if not config["archiver"].get("isotime"):
+    #    print("Must define isotime in configuration file.")
+    #    sys.exit()
 
     tao_cmds = []
 
@@ -115,3 +130,6 @@ def main() -> None:
     with open(filename, "w") as f:
         for cmd in tao_cmds:
             f.write(f"{cmd}\n")
+
+if __name__ == "__main__":
+    main()
