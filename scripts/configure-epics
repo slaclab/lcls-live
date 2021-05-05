@@ -17,6 +17,4 @@ if [[ (-z "$CA_NAME_SERVER_PORT") || (-z "$LCLS_PROD_HOST") || (-z "$SLAC_MACHIN
   exit 0
 fi
 
-
-export EPICS_CA_NAME_SERVERS=localhost:$CA_NAME_SERVER_PORT
 ssh -fN -L $CA_NAME_SERVER_PORT:$LCLS_PROD_HOST $SLAC_MACHINE

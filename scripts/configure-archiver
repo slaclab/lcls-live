@@ -4,17 +4,13 @@ if [[ -z "$SLAC_USERNAME" ]]; then
   echo "\$SLAC_USERNAME is not set."
 fi
 
-if [[ -z "$ARCHIVER_HOST" ]]; then
+if [[ -z "$SLAC_ARCHIVER_HOST" ]]; then
   echo "\$ARCHIVER_HOST is not set."
 fi
 
 
-if [[ (-z "$SLAC_USERNAME") || (-z "$ARCHIVER_HOST") ]]; then
+if [[ (-z "$SLAC_USERNAME") || (-z "$SLAC_ARCHIVER_HOST") ]]; then
   exit 0
 fi
 
-export http_proxy='socks5h://localhost:8080'
-export HTTPS_PROXY='socks5h://localhost:8080'
-export ALL_PROXY='socks5h://localhost:8080'
-
-ssh -D 8080 $SLAC_USERNAME@$ARCHIVER_HOST
+ssh -D 8080 $SLAC_USERNAME@$SLAC_ARCHIVER_HOST
