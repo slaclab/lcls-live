@@ -45,17 +45,17 @@ This script may be run inside of Tao by calling:
 ``` $ spawn get-lcls-live {cu_xhr or cu_sxr} {epics or archiver} {configuration filename} {output filename}```
 
 
-### Epics proxy environment
+### Epics remote environment
 
-Access to production process variables requires setting of the `$CA_NAME_SERVER_PORT`, `$LCLS_PROD_HOST`, and `$SLAC_MACHINE`. The utility script `configure-epics` is installed with `lcls-live`. The script will perform forward local connections to the `$CA_NAME_SERVER_PORT` to the `$LCLS_PROD_HOST` via a double hop ssh and will required entry of your SLAC password. The process will run in the background and will require manual kill, identifying the pid with `ps aux |grep ssh`.
+Access to production process variables requires setting of the `$CA_NAME_SERVER_PORT`, `$LCLS_PROD_HOST`, and `$SLAC_MACHINE`. The utility script `configure-epics-remote` is installed with `lcls-live`. The script will perform forward local connections to the `$CA_NAME_SERVER_PORT` to the `$LCLS_PROD_HOST` via a double hop ssh and will required entry of your SLAC password. The process will run in the background and will require manual kill, identifying the pid with `ps aux |grep ssh`.
 
-```$ configure-epics```
+```$ configure-epics-remote```
 
-### Archiver environment
+### Remote archiver environment
 
-The archiver requires an ssh tunnel, which can be configured using the `configure-archiver` script installed with lcls-live. This should be executed in a separate shell from the Tao command and the process allowed to continue for the duration of archiver use. The script requires setting the `$ARCHIVER_HOST` and `$SLAC_USERNAME` environment variables. 
+The remote archiver requires an ssh tunnel, which can be configured using the `configure-archiver-remote` script installed with lcls-live. This should be executed in a separate shell from the Tao command and the process allowed to continue for the duration of archiver use. The script requires setting the `$SLAC_ARCHIVER_HOST` and `$SLAC_USERNAME` environment variables. 
 
-```$ configure-archiver```
+```$ configure-archiver-remote```
 
 
 ## Datamaps 
