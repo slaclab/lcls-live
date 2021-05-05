@@ -1,0 +1,6 @@
+epics_proxy:
+  epics: epics
+  filename: lcls-live/examples/data/PVDATA-2021-04-21T08:10:25.000000-07:00.json
+
+archiver:
+  isotime: '2021-04-21T08:10:25.000000-07:00'
