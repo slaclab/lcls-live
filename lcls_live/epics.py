@@ -9,6 +9,17 @@ import sys
 
 from math import pi, sqrt, cos, sin
 
+def check_value_none(value):
+
+    if isinstance(value, (np.ndarray)):
+        return not any(value)
+
+    else:
+        return value is None
+
+    
+
+
 
 class epics_proxy(object):
     """
@@ -86,10 +97,10 @@ class epics_proxy(object):
     def caput(self, pvname, value):
         self.pvdata[pvname] = value
     
-    def caget(self, pvname):
+    def caget(self, pvname, use_epics=True):
         if pvname not in self.pvdata:
             self.vprint('Error: pv not cached:', pvname)   
-            if self.epics:
+            if self.epics and use_epics:
                 self.vprint('Loading from epics')
                 self.pvdata[pvname] = self.epics.caget(pvname)
         return self.pvdata[pvname]            
@@ -98,11 +109,17 @@ class epics_proxy(object):
         if self.epics:
             pvdata = self.epics.caget_many(pvnames)
             if any([pv is None for pv in pvdata]):
-                self.vprint("Unable to execute caget_many. Trying individual caget with optional cache...")
-                return [self.caget(n) for n in pvnames]
+
+                null_indices = [i for i,v in enumerate(pvdata) if check_value_none(v)]
+
+                for item in null_indices:
+
+                    self.vprint(f"Unable to collect {pvnames[item]} with caget_many. Trying individual caget with optional cache...")
+
+                    pvdata[item] = self.caget(pvnames[item], use_epics=False)
+
+            return {pvnames[i]: pvdata[i] for i in range(len(pvnames))}
                 
-            else:
-                return self.epics.caget_many(pvnames)
 
         else:
             return [self.caget(n) for n in pvnames]
