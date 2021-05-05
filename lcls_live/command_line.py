@@ -13,8 +13,8 @@ from typing import List
 
 
 parser = argparse.ArgumentParser(description="Fetch PV data for Tao.")
-parser.add_argument("beamline", type=str, choices=("cu_hxr, cu_sxr"))
-parser.add_argument("source", type=str, choices=("archiver", "epics"), help="'archiver' or 'epics' source.")
+parser.add_argument("model", type=str, choices=["cu_hxr, cu_sxr"], help="Model to use. Currently cu_hxr or cu_sxr.")
+parser.add_argument("source", type=str, choices=["archiver", "epics"], help="'archiver' or 'epics' source.")
 parser.add_argument("config_file", type=str, help="Configuration yaml file.")
 parser.add_argument("filename", type=str, help="Command output filename.")
 
@@ -88,16 +88,22 @@ def get_tao_from_archiver(datamaps: list, config: dict):
 
 
 
-def main(config: dict, source: str, filename: str, beamline: str) -> None:
+def main() -> None:
     """ Main function responsible for executing mapping and building configuration file.
 
-    Args:
-        config (dict): Dictionary generated from configuration file.
-        source (str): Choice of 'epics' or 'archiver' for pulling data
-        filename (str): Filename to write tao commands
-        beamline (str): Choice of beamline to run
-
     """
+    args = parser.parse_args()
+
+    source = args.source
+    config_file = args.config_file
+    filename = args.filename
+    model = args.model
+
+    with open(config_file, "r") as f:
+        config = yaml.safe_load(f)
+        main(config, source, filename, model)
+
+
     dms = []
     datamaps = get_datamaps(config["datamaps"])
 
@@ -111,17 +117,3 @@ def main(config: dict, source: str, filename: str, beamline: str) -> None:
     with open(filename, "w") as f:
         for cmd in tao_cmds:
             f.write(f"{cmd}\n")
-
-
-        
-if __name__ == "__main__":
-    args = parser.parse_args()
-
-    source = args.source
-    config_file = args.config_file
-    filename = args.filename
-    beamline = args.beamline
-
-    with open(config_file, "r") as f:
-        config = yaml.safe_load(f)
-        main(config, source, filename, beamline)
