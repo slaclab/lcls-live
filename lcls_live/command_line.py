@@ -16,7 +16,7 @@ import epics
 parser = argparse.ArgumentParser(description="Fetch PV data for Tao.")
 parser.add_argument("--beampath", dest="beampath", type=str, choices=("cu_hxr", "cu_sxr"), help="Model to use. Currently cu_hxr or cu_sxr.", required=True)
 parser.add_argument("--source", dest="source", type=str, choices=("archiver", "epics"), help="'archiver' or 'epics' source.", default="epics")
-parser.add_argument("--tao", dest="tao", action="store_true", default=True, help="Generate tao commands.")
+parser.add_argument("--tao", dest="tao", action="store_true", default=False, help="Generate tao commands.")
 parser.add_argument("--bmad", dest="bmad", action="store_true", default=False, help="Generate bmad commands.")
 parser.add_argument("--isotime", dest="isotime", type=str, help="Isotime for use with archiver.")
 
@@ -106,7 +106,10 @@ def main() -> None:
     if source == "archiver" and isotime is None:
         parser.error("archiver requires isotime.")
 
-    if source == bmad and tao:
+    if not bmad:
+        tao = True
+
+    if bmad and tao:
         parser.error("Only one of tao or bmad may be specified.")
 
 
