@@ -23,31 +23,14 @@ See examples
 
 `lcls-live` is packaged with a command line tool for generating tao commands from live or archived EPICS process variables. This command may be executed using epics:  
 
-``` $ get-lcls-live-tao-commands --tao --beampath cu_hxr > cmd.tao```
+``` $ get-lcls-live --tao --beampath cu_hxr --source epics > cmd.tao```
 
 And with archiver:
 
-``` $ get-lcls-live-tao-commands --tao --beampath cu_hxr --source archiver --isotime '2021-04-21T08:10:25.000000-07:00' > cmd.tao```
+``` $ get-lcls-live --tao --beampath cu_hxr --source archiver --isotime '2021-04-21T08:10:25.000000-07:00' > cmd.tao```
 
 
-In order to execute this tool, the configuration file must be properly formatted for the given source (epics or archiver). The archiver requires an isotime entry. The epics tool requires the package definition of epics to be used by the abstracted interface at lcls_live.epics.epics_proxy or the definition of a json file snapshot of pv values. When used in conjunction, the json file will be used as a fallback when epics is unable to reach a variable.
-
-An example configuration is given below:
-
-```yaml
-epics_proxy:
-  epics: epics
-  filename: /Users/jgarra/sandbox/lcls-live/examples/data/PVDATA-2021-04-21T08:10:25.000000-07:00.json
-
-archiver:
-  isotime: '2021-04-21T08:10:25.000000-07:00'
-```
-
-A template for this file is included in `examples/files`, but won't be of particular use unless updated for your own configuration. The environment must also be properly configured to access the resources. 
-
-This script may be run inside of Tao by calling:  
-
-``` $ spawn get-lcls-live {cu_xhr or cu_sxr} {epics or archiver} {configuration filename} {output filename}```
+At present the tool accomodates `--tao` or `--bmad` options for generating commands, `--beampath cu_hxr` or `--beampath cu_sxr`, `--source archiver` or `--source epics`.
 
 
 ### Epics remote environment
@@ -67,11 +50,3 @@ The remote archiver requires an ssh tunnel, which can be configured using the `c
 
 A utility notebook for generating datamaps is provided in `examples/LCLS_datamaps.ipynb`. This constructs relevant datamaps using the `pytao` Tao interface and requires setting the `$LCLS_LATTICE` and `$ACC_ROOT_DIR` 
 
-
-
-## Using archiver
-
-## Using 
-
-
-get-lcls-live cu_hxr archiver examples/files/config.yaml cmd.txt
