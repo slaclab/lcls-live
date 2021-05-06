@@ -21,12 +21,12 @@ parser.add_argument("--bmad", dest="bmad", action="store_true", default=False, h
 parser.add_argument("--isotime", dest="isotime", type=str, help="Isotime for use with archiver.")
 
 
-def get_tao_from_epics(datamaps: list, tao: bool, bmad: bool) -> List[str]:
+def get_tao_from_epics(datamaps: list, cmd_type: str) -> List[str]:
     """ Retrieve variable data using epics proxy and generate tao commands.
 
     Args:
         datamaps (list): List of datamaps to be used. 
-        config (dict): Dictionary generated from configuration file.
+        cmd_type (str): String indicating bmad or tao
 
     Returns:
         List of Tao commands
@@ -46,21 +46,22 @@ def get_tao_from_epics(datamaps: list, tao: bool, bmad: bool) -> List[str]:
     pvdata = epics_interface.caget_many(all_pvs)
 
     for dm in datamaps:
-        if tao:
+        if cmd_type == "tao":
             cmds += dm.as_tao(pvdata)
         
-        elif bmad:
+        elif cmd_type == "bmad":
             cmds += dm.as_bmad(pvdata)
 
     return cmds
     
 
-def get_tao_from_archiver(datamaps: list, isotime:str, tao: bool, bmad: bool):
+def get_tao_from_archiver(datamaps: list, isotime:str, cmd_type: str):
     """ Retrieve variable data using archiver and generate tao commands. 
 
     Args:
         datamaps (list): List of datamaps to be used. 
         config (dict): Dictionary generated from configuration file.
+        cmd_type (str): string indicating tao or bmad
 
     Returns:
         List of Tao commands
@@ -82,11 +83,32 @@ def get_tao_from_archiver(datamaps: list, isotime:str, tao: bool, bmad: bool):
     pvdata = lcls_archiver_restore(all_pvs, isotime)
 
     for dm in datamaps:
-        if tao:
+        if cmd_type == "tao":
             cmds += dm.as_tao(pvdata)
         
-        elif bmad:
+        elif cmd_type == "bmad":
             cmds += dm.as_bmad(pvdata)
+
+    return cmds
+
+
+def get_cmds(source: str, beampath: str, cmd_type: str, isotime: str=None):
+    """ Function for generating commands.
+
+    Args:
+        source (str): archiver or epics
+        beampath (str): Model beampath
+        isotime (str): Isotime stringpath
+        cmd_type (str): tao or bmad
+    """
+    dms = []
+    datamaps = get_datamaps(beampath)
+
+    if source == "epics":
+        cmds = get_tao_from_epics(datamaps, cmd_type)
+
+    elif source == "archiver":
+        cmds = get_tao_from_archiver(datamaps, isotime, cmd_type)
 
     return cmds
 
@@ -103,26 +125,21 @@ def main() -> None:
     tao =args.tao
     bmad = args.bmad
 
+    cmd_type = "tao"
     if source == "archiver" and isotime is None:
         parser.error("archiver requires isotime.")
 
     if not bmad:
         tao = True
+    else:
+        cmd_type = "bmad"
 
     if bmad and tao:
         parser.error("Only one of tao or bmad may be specified.")
 
+    cmds = get_cmds(source, beampath, cmd_type, isotime)
 
-    dms = []
-    datamaps = get_datamaps(beampath)
-
-    if source == "epics":
-        tao_cmds = get_tao_from_epics(datamaps, tao, bmad)
-
-    elif source == "archiver":
-        tao_cmds = get_tao_from_archiver(datamaps, isotime, tao, bmad)
-
-    for cmd in tao_cmds:
+    for cmd in cmds:
         print(cmd)
 
 
