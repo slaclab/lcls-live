@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [[ -z "$SLAC_USERNAME" ]]; then
+  echo "\$SLAC_USERNAME is not set."
+fi
+
+if [[ -z "$SLAC_ARCHIVER_HOST" ]]; then
+  echo "\$ARCHIVER_HOST is not set."
+fi
+
+
+if [[ (-z "$SLAC_USERNAME") || (-z "$SLAC_ARCHIVER_HOST") ]]; then
+  exit 0
+fi
+
+ssh -D 8080 $SLAC_USERNAME@$SLAC_ARCHIVER_HOST

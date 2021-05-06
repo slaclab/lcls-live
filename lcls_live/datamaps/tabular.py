@@ -147,6 +147,16 @@ class TabularDataMap:
                 f.write(s)
         else:
             return s
+
+    def asdict(self):
+        d = {}
+        for k, v in self.__dict__.items():
+            if k == 'data':
+                d[k] = v.to_json()
+            else:
+                d[k] = v
+        
+        return d
     
     @classmethod
     def from_json(cls, s):

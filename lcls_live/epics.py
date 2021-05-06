@@ -9,6 +9,17 @@ import sys
 
 from math import pi, sqrt, cos, sin
 
+def check_value_none(value):
+
+    if isinstance(value, (np.ndarray)):
+        return not any(value)
+
+    else:
+        return value is None
+
+    
+
+
 
 class epics_proxy(object):
     """
@@ -41,11 +52,19 @@ class epics_proxy(object):
             fname = self.filename
         else:
             fname = filename
+
         with open(fname, 'r') as f:
             data = f.read()
+
+        if not data:
+            self.vrpint(f"Unable to read data from file {fname}")
+
+
         newdat = json.loads(data)               
         self.pvdata.update(newdat)
+
         self.vprint('Loaded', fname, 'with', len(list(newdat)), 'PVs')
+
 
     def save(self, filename=None):
         """
@@ -60,7 +79,6 @@ class epics_proxy(object):
         self.vprint('Saved', fname)
 
 
- 
     @property
     def all_monitors_connected(self):
         return all([self.monitor[m].wait_for_connection() for m in self.monitor])
@@ -79,16 +97,32 @@ class epics_proxy(object):
     def caput(self, pvname, value):
         self.pvdata[pvname] = value
     
-    def caget(self, pvname):
+    def caget(self, pvname, use_epics=True):
         if pvname not in self.pvdata:
             self.vprint('Error: pv not cached:', pvname)   
-            if self.epics:
+            if self.epics and use_epics:
                 self.vprint('Loading from epics')
                 self.pvdata[pvname] = self.epics.caget(pvname)
         return self.pvdata[pvname]            
 
     def caget_many(self, pvnames):
-        return [self.caget(n) for n in pvnames]
+        if self.epics:
+            pvdata = self.epics.caget_many(pvnames)
+            if any([pv is None for pv in pvdata]):
+
+                null_indices = [i for i,v in enumerate(pvdata) if check_value_none(v)]
+
+                for item in null_indices:
+
+                    self.vprint(f"Unable to collect {pvnames[item]} with caget_many. Trying individual caget with optional cache...")
+
+                    pvdata[item] = self.caget(pvnames[item], use_epics=False)
+
+            return {pvnames[i]: pvdata[i] for i in range(len(pvnames))}
+                
+
+        else:
+            return [self.caget(n) for n in pvnames]
 
     def PV(self, pvname, **kwargs):
         self.vprint(f'PV for {pvname}')
@@ -233,11 +267,12 @@ def lcls_classic_info(epics):
     fudge1 =  get('ACCL:LI21:1:FUDGE')
     
 
-    
+
     # L2
     phase2 = get('SIOC:SYS0:ML00:CALC204')
     energy2 = get('SIOC:SYS0:ML00:AO489')*1e12 # BC2 energy
     fudge2 = get('ACCL:LI22:1:FUDGE')
+
     # L3
     phase3 = get('SIOC:SYS0:ML00:AO499')
     energy3 = get('SIOC:SYS0:ML00:AO500')*1e12
@@ -257,9 +292,5 @@ def lcls_classic_info(epics):
     
     lines.append(hline)
     
-    return lines        
+    return lines
 
-
-
-
-        

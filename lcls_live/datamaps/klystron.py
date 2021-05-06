@@ -112,9 +112,9 @@ class KlystronDataMap:
             is_usable = klystron_is_usable(swrd=swrd, stat=stat, hdsc=hdsc, dsta=dsta)
     
         # Combine these to form
+        # TODO: Raise exception
         in_use = is_accelerating and is_usable
     
-        #
         phase = pvdata[self.phase_pvname]
         if phase is None or np.isnan(phase):
             phase = 0
@@ -181,12 +181,12 @@ class KlystronDataMap:
         Returns a JSON string
         """
         d = self.asdict()
-        s = json.dumps(d)
         
         if file:
             with open(file, 'w') as f:
-                f.write(s)
+                json.dump(d, f)
         else:
+            s = json.dumps(d)
             return s    
     
         
