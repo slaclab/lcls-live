@@ -28,7 +28,7 @@ setup(
     python_requires='>=3.6',
     entry_points={
     'console_scripts': [
-        'get-lcls-live=lcls_live.command_line:main'],
+        'get-lcls-live-tao-commands=lcls_live.command_line:main'],
     },
     scripts = ["scripts/configure-epics-remote", "scripts/configure-archiver-remote"]
 )

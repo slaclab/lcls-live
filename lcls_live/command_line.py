@@ -10,15 +10,18 @@ import sys
 import imp
 import importlib
 from typing import List
+import epics
 
 
 parser = argparse.ArgumentParser(description="Fetch PV data for Tao.")
-parser.add_argument("model", type=str, choices=("cu_hxr", "cu_sxr"), help="Model to use. Currently cu_hxr or cu_sxr.")
-parser.add_argument("source", type=str, choices=("archiver", "epics"), help="'archiver' or 'epics' source.")
-parser.add_argument("config_file", type=str, help="Configuration yaml file.")
-parser.add_argument("filename", type=str, help="Command output filename.")
+parser.add_argument("--beampath", dest="beampath", type=str, choices=("cu_hxr", "cu_sxr"), help="Model to use. Currently cu_hxr or cu_sxr.", required=True)
+parser.add_argument("--source", dest="source", type=str, choices=("archiver", "epics"), help="'archiver' or 'epics' source.", default="epics")
+parser.add_argument("--tao", dest="tao", action="store_true", default=True, help="Generate tao commands.")
+parser.add_argument("--bmad", dest="bmad", action="store_true", default=False, help="Generate bmad commands.")
+parser.add_argument("--isotime", dest="isotime", type=str, help="Isotime for use with archiver.")
 
-def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
+
+def get_tao_from_epics(datamaps: list, tao: bool, bmad: bool) -> List[str]:
     """ Retrieve variable data using epics proxy and generate tao commands.
 
     Args:
@@ -32,10 +35,9 @@ def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
     if os.environ.get("CA_NAME_SERVER_PORT"):
         os.environ["EPICS_CA_NAME_SERVERS"] = f"localhost:{os.environ['CA_NAME_SERVER_PORT']}"
 
-    epics_source =  __import__(config["epics_proxy"]["epics"])
-    epics_interface = epics_proxy(epics=epics_source, filename=config["epics_proxy"]["filename"], verbose=True)
+    epics_interface = epics_proxy(epics=epics)
 
-    tao_cmds = []
+    cmds = []
 
     all_pvs = []
     for dm in datamaps:
@@ -44,12 +46,16 @@ def get_tao_from_epics(datamaps: list, config: dict) -> List[str]:
     pvdata = epics_interface.caget_many(all_pvs)
 
     for dm in datamaps:
-        tao_cmds += dm.as_tao(pvdata)
+        if tao:
+            cmds += dm.as_tao(pvdata)
+        
+        elif bmad:
+            cmds += dm.as_bmad(pvdata)
 
-    return tao_cmds
+    return cmds
     
 
-def get_tao_from_archiver(datamaps: list, config: dict):
+def get_tao_from_archiver(datamaps: list, isotime:str, tao: bool, bmad: bool):
     """ Retrieve variable data using archiver and generate tao commands. 
 
     Args:
@@ -67,35 +73,22 @@ def get_tao_from_archiver(datamaps: list, config: dict):
         os.environ["ALL_PROXY"] = "socks5h://localhost:8080"
 
 
-    # check appropriate variables have been set
-    #if not os.environ.get("http_proxy"):
-    #    print(f"Missing $http_proxy environment variable. Please configure archiver.")
-    #    sys.exit()
-
-    #if not os.environ.get("HTTPS_PROXY"):
-    #    print(f"Missing $HTTPS_PROXY environment variable. Please configure archiver.")
-    #    sys.exit()
-
-    #if not os.environ.get("ALL_PROXY"):
-    #    print(f"Missing $ALL_PROXY environment variable. Please configure archiver.")
-    #    sys.exit()
-
-    #if not config["archiver"].get("isotime"):
-    #    print("Must define isotime in configuration file.")
-    #    sys.exit()
-
-    tao_cmds = []
+    cmds = []
 
     all_pvs = []
     for dm in datamaps:
         all_pvs += dm.pvlist
 
-    pvdata = lcls_archiver_restore(all_pvs, config["archiver"]["isotime"])
+    pvdata = lcls_archiver_restore(all_pvs, isotime)
 
     for dm in datamaps:
-        tao_cmds += dm.as_tao(pvdata)
+        if tao:
+            cmds += dm.as_tao(pvdata)
+        
+        elif bmad:
+            cmds += dm.as_bmad(pvdata)
 
-    return tao_cmds
+    return cmds
 
 
 
@@ -104,28 +97,31 @@ def main() -> None:
 
     """
     args = parser.parse_args()
-
     source = args.source
-    config_file = args.config_file
-    filename = args.filename
-    model = args.model
+    beampath = args.beampath
+    isotime = args.isotime
+    tao =args.tao
+    bmad = args.bmad
 
-    with open(config_file, "r") as f:
-        config = yaml.safe_load(f)
+    if source == "archiver" and isotime is None:
+        parser.error("archiver requires isotime.")
+
+    if source == bmad and tao:
+        parser.error("Only one of tao or bmad may be specified.")
+
 
     dms = []
-    datamaps = get_datamaps(model)
+    datamaps = get_datamaps(beampath)
 
     if source == "epics":
-        tao_cmds = get_tao_from_epics(datamaps, config)
+        tao_cmds = get_tao_from_epics(datamaps, tao, bmad)
 
     elif source == "archiver":
-        tao_cmds = get_tao_from_archiver(datamaps, config)
+        tao_cmds = get_tao_from_archiver(datamaps, isotime, tao, bmad)
 
+    for cmd in tao_cmds:
+        print(cmd)
 
-    with open(filename, "w") as f:
-        for cmd in tao_cmds:
-            f.write(f"{cmd}\n")
 
 if __name__ == "__main__":
     main()

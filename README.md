@@ -21,9 +21,14 @@ See examples
 
 ## Tao tooling
 
-`lcls-live` is packaged with a command line tool for generating tao commands from live or archived EPICS process variables. This command may be executed:  
+`lcls-live` is packaged with a command line tool for generating tao commands from live or archived EPICS process variables. This command may be executed using epics:  
 
-``` $ get-lcls-live {cu_xhr or cu_sxr} {epics or archiver} {configuration filename} {output filename}```
+``` $ get-lcls-live-tao-commands --tao --beampath cu_hxr > cmd.tao```
+
+And with archiver:
+
+``` $ get-lcls-live-tao-commands --tao --beampath cu_hxr --source archiver --isotime '2021-04-21T08:10:25.000000-07:00' > cmd.tao```
+
 
 In order to execute this tool, the configuration file must be properly formatted for the given source (epics or archiver). The archiver requires an isotime entry. The epics tool requires the package definition of epics to be used by the abstracted interface at lcls_live.epics.epics_proxy or the definition of a json file snapshot of pv values. When used in conjunction, the json file will be used as a fallback when epics is unable to reach a variable.
 
