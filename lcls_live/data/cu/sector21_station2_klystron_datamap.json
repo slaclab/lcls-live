@@ -1,0 +1,1 @@
+{"name": "K21_2", "sector": 21, "station": 2, "description": "Klystron in sector 21, station 2 for L1X", "enld_pvname": "ACCL:LI21:180:L1X_S_AV", "phase_pvname": "ACCL:LI21:180:L1X_S_PV", "accelerate_pvname": "", "swrd_pvname": "", "stat_pvname": "", "hdsc_pvname": "", "dsta_pvname": ""}
