@@ -1,0 +1,1 @@
+{"name": "K21_4", "sector": 21, "station": 4, "description": "Klystron in sector 21, station 4", "enld_pvname": "KLYS:LI21:41:ENLD", "phase_pvname": "KLYS:LI21:41:PHAS", "accelerate_pvname": "KLYS:LI21:41:BEAMCODE1_STAT", "swrd_pvname": "KLYS:LI21:41:SWRD", "stat_pvname": "KLYS:LI21:41:STAT", "hdsc_pvname": "KLYS:LI21:41:HDSC", "dsta_pvname": "KLYS:LI21:41:DSTA"}

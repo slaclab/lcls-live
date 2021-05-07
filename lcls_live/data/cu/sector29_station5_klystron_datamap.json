@@ -1,0 +1,1 @@
+{"name": "K29_5", "sector": 29, "station": 5, "description": "Klystron in sector 29, station 5", "enld_pvname": "KLYS:LI29:51:ENLD", "phase_pvname": "KLYS:LI29:51:PHAS", "accelerate_pvname": "KLYS:LI29:51:BEAMCODE1_STAT", "swrd_pvname": "KLYS:LI29:51:SWRD", "stat_pvname": "KLYS:LI29:51:STAT", "hdsc_pvname": "KLYS:LI29:51:HDSC", "dsta_pvname": "KLYS:LI29:51:DSTA"}

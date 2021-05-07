@@ -1,0 +1,1 @@
+{"name": "K20_8", "sector": 20, "station": 8, "description": "Klystron in sector 20, station 8 for L0B", "enld_pvname": "ACCL:IN20:400:L0B_AAVG", "phase_pvname": "ACCL:IN20:400:L0B_PAVG", "accelerate_pvname": "", "swrd_pvname": "", "stat_pvname": "", "hdsc_pvname": "", "dsta_pvname": ""}
