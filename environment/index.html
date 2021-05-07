@@ -14,7 +14,7 @@
     
     
       
-        <title>Bmad - LCLS-Live</title>
+        <title>User Environment - LCLS-Live</title>
       
     
     
@@ -59,7 +59,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bmad-and-tao-overview" class="md-skip">
+        <a href="#user-environment" class="md-skip">
           Skip to content
         </a>
       
@@ -89,7 +89,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Bmad
+              User Environment
             
           </span>
         </div>
@@ -197,12 +197,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       <label class="md-nav__link" for="__nav_3">
         Environment
@@ -218,11 +220,72 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../environment/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          User Environment
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         User Environment
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lcls-production" class="md-nav__link">
+    LCLS Production
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slac-public" class="md-nav__link">
+    SLAC Public
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slac-sdf" class="md-nav__link">
+    SLAC SDF
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laptop" class="md-nav__link">
+    Laptop
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -281,51 +344,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Bmad
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../bmad/" class="md-nav__link">
         Bmad
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#bmad-homepage" class="md-nav__link">
-    Bmad Homepage
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -476,8 +499,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bmad-homepage" class="md-nav__link">
-    Bmad Homepage
+  <a href="#lcls-production" class="md-nav__link">
+    LCLS Production
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slac-public" class="md-nav__link">
+    SLAC Public
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slac-sdf" class="md-nav__link">
+    SLAC SDF
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laptop" class="md-nav__link">
+    Laptop
   </a>
   
 </li>
@@ -495,13 +539,47 @@
               
                 
                 
-                <h1 id="bmad-and-tao-overview">Bmad and Tao Overview</h1>
-<p>Bmad is used to model electron beam dynamics in thethe LCLS accelerators from the injectors through the undulators, and to the beam dumps. </p>
-<h2 id="bmad-homepage">Bmad Homepage</h2>
-<p><a href="https://www.classe.cornell.edu/bmad/">Bmad Homepage</a></p>
-<p><a href="https://www.classe.cornell.edu/bmad/manual.html">Bmad Manual</a></p>
-<p><a href="https://www.classe.cornell.edu/bmad/tao.html">Tao Manual</a></p>
-<p>Issues and Bug Reports should be entered on the <a href="https://github.com/DavidSagan/Bmad/issues">Bmad GitHub</a></p>
+                <h1 id="user-environment">User Environment</h1>
+<ul>
+<li>A compiled Bmad distribution, and enabled </li>
+<li>
+<p>Python 3.7 or greater environment with:</p>
+<ul>
+<li><code>pyepics</code></li>
+<li><code>pytao</code></li>
+</ul>
+</li>
+<li>
+<p><code>$LCLS_LATTICE</code> environmental variable pointing to the LCLS-Lattice files</p>
+</li>
+<li>EPICS installation (for live PVs)</li>
+<li>Archiver access (for archived PVs)</li>
+</ul>
+<h2 id="lcls-production">LCLS Production</h2>
+<p>Enable Bmad and and LCLS-Lattice:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">source</span> /usr/local/lcls/package/bmad_distributions/enable
+</code></pre></div>
+
+<h2 id="slac-public">SLAC Public</h2>
+<p>This is for public linux machines such as:</p>
+<ul>
+<li><code>centos7.slac.stanford.edu</code></li>
+</ul>
+<p>Enable Bmad and and LCLS-Lattice:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">source</span> /u/ad/cmayes/nfs/bmad_distributions/enable
+</code></pre></div>
+
+<h2 id="slac-sdf">SLAC SDF</h2>
+<p>This is for SDF machines such as:</p>
+<ul>
+<li><code>sdf.slac.stanford.edu</code></li>
+</ul>
+<p>Enable Bmad and and LCLS-Lattice:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">source</span> /gpfs/slac/staas/fs1/g/g.beamphysics/cmayes/bmad_distributions/enable_sdf
+</code></pre></div>
+
+<h2 id="laptop">Laptop</h2>
+<p>Install Bmad according to the official <a href="https://wiki.classe.cornell.edu/ACC/ACL/OffsiteDoc">Instructions</a></p>
                 
               
               
@@ -520,7 +598,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../live/get-lcls-live/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../getting-started/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -529,19 +607,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Tao tooling
+              Getting Started
             </div>
           </div>
         </a>
       
       
-        <a href="../developer/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../live/get-lcls-live/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              SLAC Developer setup
+              Tao tooling
             </div>
           </div>
           <div class="md-footer__button md-icon">
