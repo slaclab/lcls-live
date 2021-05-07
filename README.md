@@ -1,6 +1,10 @@
-# lcls-live
+# LCLS-Live
 
-Tools for setting up the LCLS live model.
+Tools for setting up the LCLS live models. 
+
+## Documentation
+
+https://slaclab.github.io/lcls-live/
 
 ## EPICS proxy
 
@@ -14,10 +18,6 @@ val = epics.caget('some_pv_name')
 
 vals = epics.caget_many(['pv', 'name', 'list'])
 ```
-
-## LCLS devices
-
-See examples
 
 ## Tao tooling
 
