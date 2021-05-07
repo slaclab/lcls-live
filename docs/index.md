@@ -7,7 +7,7 @@ Live models are computer simulation programs that continuously execute with inpu
 
 
 
-![Screenshot](/img/lcls_complex.png)
+![Screenshot](img/lcls_complex.png)
 
 
 
@@ -16,11 +16,11 @@ Live models are computer simulation programs that continuously execute with inpu
 
 ### cu_hxr
 
-![cu_hxr](/img/tao_cu_hxr_design.png)
+![cu_hxr](img/tao_cu_hxr_design.png)
 
 ### cu_sxr
 
-![cu_sxr](/img/tao_cu_hxr_design.png)
+![cu_sxr](img/tao_cu_hxr_design.png)
 
 The input files for various simulation software are collected in the [LCLS-Lattice](https://github.com/slaclab/lcls-lattice) repository (login required).
  
