@@ -3,12 +3,24 @@
 The LCLS accelerator complex consists of multiple electron sources and multiple beam paths.
 Live models are computer simulation programs that continuously execute with inputs taken from the machine, and serve physics predictions of the beam behavior.
 
+[**LCLS-Live**](http://github.com/slaclab/lcls-live) is a Python package with related tools and data to help in translating machine settings to simulation models. Currently it is heavly biased towards Bmad models of the accelerators. In the future we will extent it through the X-ray beamlines. 
 
+
+
+![Screenshot](/img/lcls_complex.png)
 
 
 
 
 ## Design models
+
+### cu_hxr
+
+![cu_hxr](/img/tao_cu_hxr_design.png)
+
+### cu_sxr
+
+![cu_sxr](/img/tao_cu_hxr_design.png)
 
 The input files for various simulation software are collected in the [LCLS-Lattice](https://github.com/slaclab/lcls-lattice) repository (login required).
  
@@ -19,7 +31,7 @@ The input files for various simulation software are collected in the [LCLS-Latti
 - [LUME-Impact](https://github.com/ChristopherMayes/lume-impact) for running [Impact-T](https://github.com/impact-lbl/IMPACT-T) from Python.
 - [tensorflow](https://www.tensorflow.org/) for neural network-based machine learning (ML) surrogate models. 
 
-## Current Live Models
+## Live Models
 - [Live Bmad accelerator models](https://github.com/slaclab/lcls_live_model)
   
     - `cu_hxr`
@@ -32,6 +44,12 @@ The input files for various simulation software are collected in the [LCLS-Latti
     - `cu_inj` currently streaming to [YouTube](https://www.youtube.com/watch?v=Cg4TU8ZUfzk)  ![YouTube](https://img.youtube.com/vi/Cg4TU8ZUfzk/0.jpg) 
     
     This is an ML model trained on Impact-T simulations of the `cu_inj` beam path. 
+
+- [Live cu_inj Impact-T model](https://github.com/ChristopherMayes/lume-impact-live-demo)
+
+
+[YouTube](https://www.youtube.com/watch?v=P6HYfpV6xXM) ![YouTube](https://img.youtube.com/vi/P6HYfpV6xXM/0.jpg) 
+
 
 ## Computing requirements
 
