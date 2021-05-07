@@ -1,29 +1,10 @@
-# LCLS-Live
-
-Tools for setting up the LCLS live models. 
-
-## Documentation
-
-https://slaclab.github.io/lcls-live/
-
-## EPICS proxy
-
-This is to facilitate caching of EPICS values and offline usage. Basic usage:
-
-```python
-from LCLS.epics import epics_proxy
-epics = epics_proxy('data/epics_cache.json')
-
-val = epics.caget('some_pv_name')
-
-vals = epics.caget_many(['pv', 'name', 'list'])
-```
-
-## Tao tooling
+# Tao tooling
 
 `lcls-live` is packaged with a command line tool for generating tao commands from live or archived EPICS process variables. This command may be executed using epics:  
 
-``` $ get-lcls-live --tao --beampath cu_hxr --source epics > cmd.tao```
+```bash
+get-lcls-live --tao --beampath cu_hxr --source epics > cmd.tao
+```
 
 And with archiver:
 
@@ -49,4 +30,3 @@ The remote archiver requires an ssh tunnel, which can be configured using the `c
 ## Datamaps 
 
 A utility notebook for generating datamaps is provided in `examples/LCLS_datamaps.ipynb`. This constructs relevant datamaps using the `pytao` Tao interface and requires setting the `$LCLS_LATTICE` and `$ACC_ROOT_DIR` 
-

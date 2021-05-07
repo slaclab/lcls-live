@@ -2,21 +2,27 @@
 
 nav:
   - index.md
-  - Overview:
-    - overview/index.md
+  
+  - Getting Started: getting-started.md
+  
+  - Environment:
+    - environment/index.md
+    
+  - Live data:
+    - live/get-lcls-live.md
+    
+  - Bmad: bmad/index.md
   
   - Developer: 
     - developer/index.md
     - Procedures: developer/procedures.md
     - Requirements: developer/requirements.md
     - mkdocs: developer/mkdocs.md
-    - Roadmap: developer/roadmap.md    
-  
-  - Bmad:
-    - Overview: bmad/index.md
+    - Roadmap: developer/roadmap.md      
   
   - other/index.md
   
+  - Help: help.md
   
   
 site_name: LCLS-Live
