@@ -17,6 +17,7 @@ def run_LCLSTao(settings=None,
                 input_file=None,
                 ploton=False,
                 epics_json=None,
+                so_lib='', 
                 verbose=False
                ):
     """
@@ -33,6 +34,7 @@ def run_LCLSTao(settings=None,
                      input_file=input_file,
                      ploton=ploton,
                      epics=epics,
+                     so_lib=so_lib,
                      verbose=verbose)
     
     if settings:
@@ -50,6 +52,7 @@ def evaluate_LCLSTao(settings,
                 input_file=None,
                 ploton=False,
                 epics_json=None,
+                so_lib='', 
                 verbose=False,
                 beam_archive_path=None,
                 expressions=['lat::orbit.x[end]']
@@ -70,6 +73,7 @@ def evaluate_LCLSTao(settings,
                 input_file=input_file,
                 ploton=ploton,
                 epics_json=epics_json,    
+                so_lib=so_lib,
                 verbose= verbose
     )
     
