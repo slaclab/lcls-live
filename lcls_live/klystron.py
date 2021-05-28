@@ -402,9 +402,9 @@ existing_LCLS_klystrons_sector_station = (
 existing_LCLS_klystron_names = [klystron_name(x[0], x[1]) for x in existing_LCLS_klystrons_sector_station]
 
 # Function to create list of objects
-def existing_LCLS_klystrons(epics):
+def existing_LCLS_klystrons(epics, skip=3): # skip GUN, L0A, L0B
     
-    klist = [Klystron(name=devicename, epics=epics) for devicename in existing_LCLS_klystron_names]
+    klist = [Klystron(name=devicename, epics=epics) for devicename in existing_LCLS_klystron_names[skip:]]
     return klist
 
 
