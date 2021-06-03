@@ -1,0 +1,1 @@
+{"name": "K23_6", "sector": 23, "station": 6, "description": "Klystron in sector 23, station 6", "enld_pvname": "KLYS:LI23:61:ENLD", "phase_pvname": "KLYS:LI23:61:PHAS", "accelerate_pvname": "KLYS:LI23:61:BEAMCODE2_STAT", "swrd_pvname": "KLYS:LI23:61:SWRD", "stat_pvname": "KLYS:LI23:61:STAT", "hdsc_pvname": "KLYS:LI23:61:HDSC", "dsta_pvname": "KLYS:LI23:61:DSTA"}
