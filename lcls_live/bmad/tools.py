@@ -98,8 +98,8 @@ def tao_BC_and_LEM_lines(epics):
     
     # Charge in LTU
     q_after_horn_cutting = epics.caget('SIOC:SYS0:ML00:CALC252')*1e-12 # pC -> C
-    bc1_offset=epics.caget( 'BMLN:LI21:235:MOTR')*1e-3
-    bc2_offset=epics.caget( 'BMLN:LI24:805:MOTR')*1e-3
+    bc1_offset=epics.caget('BMLN:LI21:235:MOTR')*1e-3
+    bc2_offset=epics.caget('BMLN:LI24:805:MOTR')*1e-3
     
     bc1_current=epics.caget('SIOC:SYS0:ML00:AO485')
     bc2_current=epics.caget('SIOC:SYS0:ML00:AO195')

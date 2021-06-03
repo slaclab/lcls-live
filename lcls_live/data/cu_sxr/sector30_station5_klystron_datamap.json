@@ -1,0 +1,1 @@
+{"name": "K30_5", "sector": 30, "station": 5, "description": "Klystron in sector 30, station 5", "enld_pvname": "KLYS:LI30:51:ENLD", "phase_pvname": "KLYS:LI30:51:PHAS", "accelerate_pvname": "KLYS:LI30:51:BEAMCODE2_STAT", "swrd_pvname": "KLYS:LI30:51:SWRD", "stat_pvname": "KLYS:LI30:51:STAT", "hdsc_pvname": "KLYS:LI30:51:HDSC", "dsta_pvname": "KLYS:LI30:51:DSTA"}

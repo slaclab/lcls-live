@@ -1,0 +1,1 @@
+{"name": "K28_1", "sector": 28, "station": 1, "description": "Klystron in sector 28, station 1", "enld_pvname": "KLYS:LI28:11:ENLD", "phase_pvname": "KLYS:LI28:11:PHAS", "accelerate_pvname": "KLYS:LI28:11:BEAMCODE2_STAT", "swrd_pvname": "KLYS:LI28:11:SWRD", "stat_pvname": "KLYS:LI28:11:STAT", "hdsc_pvname": "KLYS:LI28:11:HDSC", "dsta_pvname": "KLYS:LI28:11:DSTA"}

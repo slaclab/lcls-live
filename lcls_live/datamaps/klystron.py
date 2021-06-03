@@ -1,4 +1,4 @@
-from lcls_live.klystron import all_fault_strings, unusable_faults, typical_beam_code,  existing_LCLS_klystrons_sector_station
+from lcls_live.klystron import all_fault_strings, unusable_faults, existing_LCLS_klystrons_sector_station
 import dataclasses
 import numpy as np
 import json
@@ -191,7 +191,7 @@ class KlystronDataMap:
     
         
     
-def klystron_pvinfo(sector, station):
+def klystron_pvinfo(sector, station, beamcode=1):
     """
     Customized function for creating the data to instantiate a KlystronDataMap 
     for a klystron at s given sector, station. 
@@ -281,6 +281,10 @@ def klystron_pvinfo(sector, station):
         has_fault_pvs = True
         has_beamcode = True
         
+    # Broken Klystron. Was a test-bed for a mothballed project to upgrade the electronics for the klystrons.    
+    if ss == (26, 3):
+        has_beamcode = False
+        
         
     info = {}
     info['name'] = name
@@ -292,7 +296,6 @@ def klystron_pvinfo(sector, station):
     
     # For is_accelerating
     if has_beamcode:
-        beamcode = typical_beam_code(sector, station)    
         info['accelerate_pvname'] = f'{base}:BEAMCODE{beamcode}_STAT'
     
     if has_fault_pvs:
@@ -310,6 +313,15 @@ def klystron_fault_pvnames(base):
     
     
 def klystron_is_usable(swrd=0, stat=0, hdsc=0, dsta=0):
+    if swrd is None: 
+        return False
+    if stat is None:
+        return False
+    if hdsc is None:
+        return False
+    if dsta is None:
+        return False
+    
     fault_strings = all_fault_strings(swrd=swrd, stat=stat, hdsc=hdsc, dsta=dsta)
     return set(fault_strings).isdisjoint(unusable_faults)    
 
