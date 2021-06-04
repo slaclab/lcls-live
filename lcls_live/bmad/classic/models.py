@@ -1,10 +1,10 @@
 from pytao import TaoModel
 
-from ..archiver import lcls_archiver_restore
-from ..klystron import existing_LCLS_klystrons
-from ..bmad import tools
-from ..epics import lcls_classic_info
-from .. import data_dir
+from lcls_live.archiver import lcls_archiver_restore
+from lcls_live.klystron import existing_LCLS_klystrons
+from lcls_live.bmad.classic import tools
+from lcls_live.epics import lcls_classic_info
+from lcls_live import data_dir
 #from math import pi, cos, sqrt
 from time import time
 import os
