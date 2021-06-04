@@ -20,6 +20,9 @@ nav:
     - mkdocs: developer/mkdocs.md
     - Roadmap: developer/roadmap.md      
   
+  - Examples:
+    - examples/archiver_example.ipynb
+  
   - other/index.md
   
   - Help: help.md
@@ -29,11 +32,15 @@ site_name: LCLS-Live
 
 theme:
   name: 'material'
+  custom_dir: overrides
   
   
 markdown_extensions:
   - codehilite  
+
   
 plugins:
-    - search
-    - minify
+  - search
+  - minify
+  - mkdocs-jupyter:
+      include_source: True
