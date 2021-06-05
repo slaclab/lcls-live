@@ -1,1 +1,1 @@
-from .models import LCLSTaoModel
+from .classic.models import LCLSTaoModel

@@ -1,5 +1,5 @@
 
-from . import LCLSTaoModel
+from lcls_live.bmad import LCLSTaoModel
 from lcls_live.epics import epics_proxy
 from lcls_live.tools import fingerprint
 
