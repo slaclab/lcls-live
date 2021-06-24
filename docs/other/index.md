@@ -6,9 +6,9 @@
 
 ## PyDM
 
-[Tutorial](https://www.slac.stanford.edu/grp/ad/docs/python/pydm-tutorial/)
+[Tutorial](https://slaclab.github.io/pydm-tutorial/)
 
-[Documentation](https://www.slac.stanford.edu/grp/ad/docs/python/pydm/)
+[Documentation](https://slaclab.github.io/pydm/)
 
 
 ## Matlab
