@@ -47,7 +47,7 @@ These read magnet and klystron PV at a rate of about 1 Hz, and serve transfer ma
  - `cu_inj` currently streaming to <a href="https://www.youtube.com/watch?v=jEFoHcctZMc" target="_blank">YouTube</a> ![YouTube](https://img.youtube.com/vi/jEFoHcctZMc/0.jpg) 
 
 
-###[Live cu_inj surrogate model](https://github.com/slaclab/lcls-cu-inj-live)
+### [Live cu_inj surrogate model](https://github.com/slaclab/lcls-cu-inj-live)
     
    
     
