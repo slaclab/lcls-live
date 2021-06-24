@@ -44,14 +44,14 @@ These read magnet and klystron PV at a rate of about 1 Hz, and serve transfer ma
 
 
 
- - `cu_inj` currently streaming to <a href="https://www.youtube.com/watch?v=P6HYfpV6xXM" target="_blank">YouTube</a> ![YouTube](https://img.youtube.com/vi/P6HYfpV6xXM/0.jpg) 
+ - `cu_inj` currently streaming to <a href="https://www.youtube.com/watch?v=jEFoHcctZMc" target="_blank">YouTube</a> ![YouTube](https://img.youtube.com/vi/jEFoHcctZMc/0.jpg) 
 
 
 ###[Live cu_inj surrogate model](https://github.com/slaclab/lcls-cu-inj-live)
     
    
     
-- `cu_inj` surrogate currently streaming to <a href="https://www.youtube.com/watch?v=BR-vFm_Gin4" target="_blank">YouTube</a>   ![YouTube](https://img.youtube.com/vi/BR-vFm_Gin4/0.jpg) 
+- `cu_inj` surrogate currently streaming to <a href="https://www.youtube.com/watch?v=1f42uRNfx18" target="_blank">YouTube</a>   ![YouTube](https://img.youtube.com/vi/1f42uRNfx18/0.jpg) 
     
     This is an ML model trained on Impact-T simulations of the `cu_inj` beam path. 
 
