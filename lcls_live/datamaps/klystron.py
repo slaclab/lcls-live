@@ -322,6 +322,11 @@ def klystron_is_usable(swrd=0, stat=0, hdsc=0, dsta=0):
     if dsta is None:
         return False
     
+    swrd = int(swrd)
+    stat = int(stat)
+    hdsc = int(hdsc)
+    dsta = list(map(int, dsta))
+    
     fault_strings = all_fault_strings(swrd=swrd, stat=stat, hdsc=hdsc, dsta=dsta)
     return set(fault_strings).isdisjoint(unusable_faults)    
 
