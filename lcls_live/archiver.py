@@ -22,6 +22,11 @@ def lcls_archiver_restore(pvlist, isotime='2018-08-11T10:40:00.000-07:00', verbo
     
     data = pvlist
     r = requests.post(url, headers=headers, json=data)
+    
+    if not r.ok:
+        raise RuntimeError(f"Archiver request failed. Response was: {r.status_code} - {r.reason}")
+    
+    
     res = r.json()
     d = {}
     for k in pvlist:
