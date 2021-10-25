@@ -83,7 +83,7 @@ def get_tao_from_archiver(datamaps: list, isotime:str, cmd_type: str):
 
     pvdata = lcls_archiver_restore(all_pvs, isotime)
 
-    for namme, dm in datamaps.items():
+    for _, dm in datamaps.items():
         if cmd_type == "tao":
             cmds += dm.as_tao(pvdata)
         
