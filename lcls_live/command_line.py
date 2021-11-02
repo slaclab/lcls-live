@@ -9,7 +9,7 @@ import yaml
 import sys
 import imp
 import importlib
-from typing import List
+from typing import List, Optional
 import epics
 
 
@@ -69,6 +69,7 @@ def get_tao_from_archiver(datamaps: list, isotime:str, cmd_type: str):
     """
 
     if os.environ.get("SLAC_ARCHIVER_HOST"):
+
         os.environ["http_proxy"] = "socks5h://localhost:8080"
         os.environ["HTTPS_PROXY"] = "socks5h://localhost:8080"
         os.environ["ALL_PROXY"] = "socks5h://localhost:8080"
@@ -82,7 +83,7 @@ def get_tao_from_archiver(datamaps: list, isotime:str, cmd_type: str):
 
     pvdata = lcls_archiver_restore(all_pvs, isotime)
 
-    for dm in datamaps:
+    for _, dm in datamaps.items():
         if cmd_type == "tao":
             cmds += dm.as_tao(pvdata)
         
@@ -92,7 +93,7 @@ def get_tao_from_archiver(datamaps: list, isotime:str, cmd_type: str):
     return cmds
 
 
-def get_cmds(source: str, beampath: str, cmd_type: str, isotime: str=None):
+def get_cmds(source: str, beampath: str, cmd_type: str, isotime: str=None, denylist: Optional[List[str]]=[]):
     """ Function for generating commands.
 
     Args:
@@ -100,15 +101,19 @@ def get_cmds(source: str, beampath: str, cmd_type: str, isotime: str=None):
         beampath (str): Model beampath
         isotime (str): Isotime stringpath
         cmd_type (str): tao or bmad
+        denylist (list): list of datamap names to exclude.
     """
     dms = []
-    datamaps = get_datamaps(beampath)
+    dm_dict = get_datamaps(beampath)
+    for name in dm_dict:
+        if name not in denylist:
+            dms.append(dm_dict[name])
 
     if source == "epics":
-        cmds = get_tao_from_epics(datamaps, cmd_type)
+        cmds = get_tao_from_epics(dms, cmd_type)
 
     elif source == "archiver":
-        cmds = get_tao_from_archiver(datamaps, isotime, cmd_type)
+        cmds = get_tao_from_archiver(dms, isotime, cmd_type)
 
     return cmds
 

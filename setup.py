@@ -1,4 +1,6 @@
 """Setup module for lcls_live"""
+import versioneer
+
 
 from setuptools import setup, find_packages
 from os import path, environ
@@ -12,7 +14,8 @@ with open(path.join(cur_dir, 'requirements.txt'), 'r') as f:
 
 setup(
     name='lcls-live',
-    version = 'v0.1.1',
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     packages=find_packages(),  
     package_dir={'lcls_live':'lcls_live'},
     author='Christopher Mayes',
