@@ -1,1 +1,1 @@
-from .classic.models import LCLSTaoModel
+from lcls_live.bmad.classic.models import LCLSTaoModel

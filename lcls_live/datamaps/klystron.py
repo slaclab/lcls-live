@@ -225,11 +225,10 @@ def klystron_pvinfo(sector, station, beamcode=1):
     name = f'K{sector}_{station}'
     phase = '{base}:PHAS'        
     enld =  '{base}:ENLD'      
-    description = f'Klystron in sector {sector}, station {station}'
+    description = f'Klystron in sector {sector}, station {station}, beamcode {beamcode}'
     
     ss = (sector, station)
     
-
     has_beamcode = False
     has_fault_pvs = False
     
@@ -266,9 +265,13 @@ def klystron_pvinfo(sector, station, beamcode=1):
         description += ' for special feedback'
         base =  f'KLYS:LI{sector}:{station}1'     # Normal base
         phase = f'ACCL:LI24:{station}00:KLY_PDES' # Readback
+        if beamcode == 2:
+            phase += ':SETDATA_1' # Suggested by FJD
+            
         has_fault_pvs = True
         has_beamcode = True        
-    # Feedback is in the subboosters for sectors 29, 30
+        
+    # Do not do anything special for 29, 30. Feedback is in the subboosters for sectors 29, 30
     #elif sector in [29, 30]:
     #    description += ' for special feedback'
     #    base =  f'KLYS:LI{sector}:{station}1'     # Normal base
@@ -336,7 +339,7 @@ def klystron_is_usable(swrd=0, stat=0, hdsc=0, dsta=0):
 
 SUBBOOSTER_SECTORS = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
-def subbooster_pvinfo(sector):
+def subbooster_pvinfo(sector, beamcode):
     """
     Returns basic PV information about a subbooster in a given sector
     
@@ -344,6 +347,10 @@ def subbooster_pvinfo(sector):
     ----------
     sector : int
         sector in  [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    
+    beamcode : int in [1, 2]
+        beam code, == 1 for HXR
+                   == 2 for SXR
     
     Returns
     -------
@@ -362,7 +369,11 @@ def subbooster_pvinfo(sector):
     
     elif sector in [29, 30]:
         phase_pvname = f'ACCL:LI{sector}:0:KLY_PDES'
-        description = 'Special feedback subbooster'
+        
+        if beamcode == 2:
+            phase_pvname += ':SETDATA_1'
+        
+        description = f'Special feedback subbooster, beamcode {beamcode}'
         
     else:
         raise ValueError(f'No subboosters for sector {sector}')
