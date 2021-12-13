@@ -274,8 +274,7 @@ def klystron_pvinfo(sector, station, beamcode=1):
         base =  f'KLYS:LI{sector}:{station}1'     # Normal base
         phase = f'ACCL:LI24:{station}00:KLY_PDES' # Readback
         # Add beamcode suffix
-        phase += f':SETDATA_{beamcode}'
-
+        phase += f':GETDATA_{beamcode}' 
         has_fault_pvs = True
         has_beamcode = True        
         
