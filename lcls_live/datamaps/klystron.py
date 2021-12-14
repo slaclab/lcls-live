@@ -232,6 +232,10 @@ def klystron_pvinfo(sector, station, beamcode=1):
     has_beamcode = False
     has_fault_pvs = False
     
+    # Datastore suffix 0, 1 for beamcodes 1, 2
+    DS = f'_DS{beamcode-1}'
+    
+    
     if ss == (20, 6):
         description += ' for the GUN'
         base = 'GUN:IN20:1' 
@@ -240,34 +244,37 @@ def klystron_pvinfo(sector, station, beamcode=1):
     elif ss == (20, 7):
         description += ' for L0A'
         base = 'ACCL:IN20:300'    
-        enld = '{base}:L0A_AAVG'   
-        phase = '{base}:L0A_PAVG'         
+        enld = '{base}:L0A_AACT'+DS  
+        phase = '{base}:L0A_PACT'+DS  
     elif ss == (20, 8):
         description += ' for L0B'
         base = 'ACCL:IN20:400'    
-        enld = '{base}:L0B_AAVG'   
-        phase = '{base}:L0B_PAVG'                
+        enld = '{base}:L0B_AACT'+DS  
+        phase = '{base}:L0B_PACT'+DS                
     elif ss == (21, 1):
         description += ' for L1S'
         base = 'ACCL:LI21:1'  
         # enld = '{base}:L1S_AAVG'  Not in the archiver
-        enld = 'ACCL:LI21:1:L1S_S_AV'
+        #enld = 'ACCL:LI21:1:L1S_S_AV'
+        enld = 'ACCL:LI21:1:L1S_AACT'+DS
         #phase = '{base}:L1S_PAVG' # Not in the archiver
-        phase = 'ACCL:LI21:1:L1S_S_PV'        
+        #phase = 'ACCL:LI21:1:L1S_S_PV'    
+        phase = 'ACCL:LI21:1:L1S_PACT'+DS    
     elif ss == (21, 2):
         description += ' for L1X'
         base = 'ACCL:LI21:180'            
         #enld = '{base}:L1X_AAVG'   # Not in the archiver
-        enld = 'ACCL:LI21:180:L1X_S_AV'
+        #enld = 'ACCL:LI21:180:L1X_S_AV'
+        enld = 'ACCL:LI21:180:L1X_AACT'+DS
         #phase = '{base}:L1X_PAVG'  # Not in the archiver 
-        phase = 'ACCL:LI21:180:L1X_S_PV'        
+        #phase = 'ACCL:LI21:180:L1X_S_PV'      
+        phase = 'ACCL:LI21:180:L1X_PACT'+DS
     elif sector == 24 and station in (1, 2, 3):
         description += ' for special feedback'
         base =  f'KLYS:LI{sector}:{station}1'     # Normal base
         phase = f'ACCL:LI24:{station}00:KLY_PDES' # Readback
-        if beamcode == 2:
-            phase += ':SETDATA_1' # Suggested by FJD
-            
+        # Add beamcode suffix
+        phase += f':GETDATA_{beamcode}' 
         has_fault_pvs = True
         has_beamcode = True        
         
