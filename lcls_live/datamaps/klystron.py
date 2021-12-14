@@ -225,13 +225,16 @@ def klystron_pvinfo(sector, station, beamcode=1):
     name = f'K{sector}_{station}'
     phase = '{base}:PHAS'        
     enld =  '{base}:ENLD'      
-    description = f'Klystron in sector {sector}, station {station}'
+    description = f'Klystron in sector {sector}, station {station}, beamcode {beamcode}'
     
     ss = (sector, station)
     
-
     has_beamcode = False
     has_fault_pvs = False
+    
+    # Datastore suffix 0, 1 for beamcodes 1, 2
+    DS = f'_DS{beamcode-1}'
+    
     
     if ss == (20, 6):
         description += ' for the GUN'
@@ -241,34 +244,41 @@ def klystron_pvinfo(sector, station, beamcode=1):
     elif ss == (20, 7):
         description += ' for L0A'
         base = 'ACCL:IN20:300'    
-        enld = '{base}:L0A_AAVG'   
-        phase = '{base}:L0A_PAVG'         
+        enld = '{base}:L0A_AACT'+DS  
+        phase = '{base}:L0A_PACT'+DS  
     elif ss == (20, 8):
         description += ' for L0B'
         base = 'ACCL:IN20:400'    
-        enld = '{base}:L0B_AAVG'   
-        phase = '{base}:L0B_PAVG'                
+        enld = '{base}:L0B_AACT'+DS  
+        phase = '{base}:L0B_PACT'+DS                
     elif ss == (21, 1):
         description += ' for L1S'
         base = 'ACCL:LI21:1'  
         # enld = '{base}:L1S_AAVG'  Not in the archiver
-        enld = 'ACCL:LI21:1:L1S_S_AV'
+        #enld = 'ACCL:LI21:1:L1S_S_AV'
+        enld = 'ACCL:LI21:1:L1S_AACT'+DS
         #phase = '{base}:L1S_PAVG' # Not in the archiver
-        phase = 'ACCL:LI21:1:L1S_S_PV'        
+        #phase = 'ACCL:LI21:1:L1S_S_PV'    
+        phase = 'ACCL:LI21:1:L1S_PACT'+DS    
     elif ss == (21, 2):
         description += ' for L1X'
         base = 'ACCL:LI21:180'            
         #enld = '{base}:L1X_AAVG'   # Not in the archiver
-        enld = 'ACCL:LI21:180:L1X_S_AV'
+        #enld = 'ACCL:LI21:180:L1X_S_AV'
+        enld = 'ACCL:LI21:180:L1X_AACT'+DS
         #phase = '{base}:L1X_PAVG'  # Not in the archiver 
-        phase = 'ACCL:LI21:180:L1X_S_PV'        
+        #phase = 'ACCL:LI21:180:L1X_S_PV'      
+        phase = 'ACCL:LI21:180:L1X_PACT'+DS
     elif sector == 24 and station in (1, 2, 3):
         description += ' for special feedback'
         base =  f'KLYS:LI{sector}:{station}1'     # Normal base
         phase = f'ACCL:LI24:{station}00:KLY_PDES' # Readback
+        # Add beamcode suffix
+        phase += f':GETDATA_{beamcode}' 
         has_fault_pvs = True
         has_beamcode = True        
-    # Feedback is in the subboosters for sectors 29, 30
+        
+    # Do not do anything special for 29, 30. Feedback is in the subboosters for sectors 29, 30
     #elif sector in [29, 30]:
     #    description += ' for special feedback'
     #    base =  f'KLYS:LI{sector}:{station}1'     # Normal base
@@ -336,7 +346,7 @@ def klystron_is_usable(swrd=0, stat=0, hdsc=0, dsta=0):
 
 SUBBOOSTER_SECTORS = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
-def subbooster_pvinfo(sector):
+def subbooster_pvinfo(sector, beamcode):
     """
     Returns basic PV information about a subbooster in a given sector
     
@@ -344,6 +354,10 @@ def subbooster_pvinfo(sector):
     ----------
     sector : int
         sector in  [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    
+    beamcode : int in [1, 2]
+        beam code, == 1 for HXR
+                   == 2 for SXR
     
     Returns
     -------
@@ -362,7 +376,11 @@ def subbooster_pvinfo(sector):
     
     elif sector in [29, 30]:
         phase_pvname = f'ACCL:LI{sector}:0:KLY_PDES'
-        description = 'Special feedback subbooster'
+        
+        if beamcode == 2:
+            phase_pvname += ':SETDATA_1'
+        
+        description = f'Special feedback subbooster, beamcode {beamcode}'
         
     else:
         raise ValueError(f'No subboosters for sector {sector}')
