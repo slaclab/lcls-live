@@ -38,8 +38,8 @@ def bsa_h5file(timestamp, beampath):
     Parameters
     ----------
     
-    timestamp: pd.DateTime or datetime.datetime
-        This must be localized (not naive time)
+    timestamp: datetime-like, str, int, float
+        This must be localized (not naive time).
     
     beampath : str
             one of ['cu_hxr', 'cu_sxr'] (case independent)
@@ -101,8 +101,8 @@ def extract_pvdata(h5file, timestamp, pvnames=None):
     h5file: str
         BSA HDF5 file with data that includes the timestamp
         
-    timestamp: pd.DateTime or similar
-        This must be localized (not naive time)
+    timestamp: datetime-like, str, int, float
+        This must be localized (not naive time).
     
     Returns
     -------
@@ -161,12 +161,10 @@ def bsa_snapshot(timestamp, beampath, pvnames=None):
     Extract as a snapshot (PV values) nearest a timestamp from a BSA HDF5 file.
     
     Parameters
-    ----------
-    h5file: str
-        BSA HDF5 file with data that includes the timestamp
+    ----------        
+    timestamp: datetime-like, str, int, float
+        This must be localized (not naive time).
         
-    timestamp: pd.DateTime or datetime.datetime
-        This must be localized (not naive time)
         
     pvnames : list or None
         List of PV names to extract. If None, all PVs in the source file will be extracted.
@@ -179,6 +177,11 @@ def bsa_snapshot(timestamp, beampath, pvnames=None):
             'pvdata' : dict of {pv name:pv value}
             'timestamp' : pd.Timestamp, including the nanosecond.
             'source' : Original HDF5 file that the data came from.
+           
+    Notes
+    -----
+    timestamp will be cast to a pd.Timestamp internally.
+    See: https://pandas.pydata.org/docs/reference/api/pandas.Timestamp.html
     
     Examples
     --------
