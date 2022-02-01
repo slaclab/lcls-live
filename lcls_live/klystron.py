@@ -392,11 +392,16 @@ existing_LCLS_klystrons_sector_station = (
     (24, 1), (24, 2), (24, 3), (24, 4), (24, 5), (24, 6),
     # L3
     (25, 1), (25, 2), (25, 3), (25, 4), (25, 5), (25, 6), (25, 7), (25, 8),
-    (26, 1), (26, 2), (26, 3), (26, 4), (26, 5), (26, 6), (26, 7), (26, 8),
+    (26, 1), (26, 2), 
+                    # (26, 3),  # Broken Klystron. Was a test-bed for a mothballed project to upgrade the electronics for the klystrons.    
+                                (26, 4), (26, 5), (26, 6), (26, 7), (26, 8),
     (27, 1), (27, 2), (27, 3), (27, 4), (27, 5), (27, 6), (27, 7), (27, 8), 
     (28, 1), (28, 2), (28, 3), (28, 4), (28, 5), (28, 6), (28, 7), (28, 8), 
     (29, 1), (29, 2), (29, 3), (29, 4), (29, 5), (29, 6), (29, 7), (29, 8), 
     (30, 1), (30, 2), (30, 3), (30, 4), (30, 5), (30, 6), (30, 7), (30, 8))
+
+
+
 
 # Convert these to device names
 existing_LCLS_klystron_names = [klystron_name(x[0], x[1]) for x in existing_LCLS_klystrons_sector_station]
