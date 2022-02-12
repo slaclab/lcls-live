@@ -169,3 +169,61 @@ class TabularDataMap:
             d = json.loads(s)
         data = pd.read_json(d.pop('data'))
         return cls(data=data, **d)
+    
+    
+def datamap_from_tao_data(tao, d2, d1, tao_factor = 1.0, pv_attribute=''):
+    """
+    Form a tabular datamap from a general Tao data array. 
+    
+    PV names are formed from the 'alias' field of the elements in Tao. 
+    
+    Parameters
+    ----------
+    tao : Tao object
+        Instantiated Tao object. 
+    
+    d2 : str
+        d2 data name
+    d1 : str
+        d1 data name
+        
+    tao_factor : float, optional
+        optional float
+        
+    pv_attribute : str
+        attribute suffix
+    
+    Returns
+    -------
+    dm : TabularDataMap
+    
+    Examples
+    --------
+    
+    To form a BPM datamap:
+        datamap_from_tao_data(tao, 'orbit', 'x', tao_factor=.001, pv_attribute=':X') 
+        
+    
+    
+    """
+    df = pd.DataFrame(tao.data_d_array(d2, d1))
+    df2 = pd.DataFrame()
+    df2['pvname'] = [ tao.ele_head(ele)['alias']+pv_attribute for ele in df['ele_name' ] ]
+    df2['tao_datum'] =  [f'{d2}.{d1}[{ix}]' for ix in df['ix_d1'] ]
+    df2['tao_factor'] = tao_factor
+    df2['bmad_name'] = df['ele_name']
+    
+    
+    dm = TabularDataMap(df2, pvname='pvname', element='tao_datum', factor='tao_factor',
+                       tao_format = 'set data {element}|meas  = {value}',
+                       bmad_format = '! No equivalent Bmad format for: set data {element}|meas  = {value}'
+                       )    
+    
+    return  dm    
+    
+    
+    
+    
+    
+    
+    
