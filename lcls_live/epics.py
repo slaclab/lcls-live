@@ -134,7 +134,7 @@ class epics_proxy(object):
             return [self.caget(n) for n in pvnames]
 
     def caget_dict(self, pvnames: List[str]) -> dict:
-    """ Retrieve pv values and return dict of pvname:value
+        """ Retrieve pv values and return dict of pvname:value
 
         Args:
             pvnames (List[str]): List of pvnames
