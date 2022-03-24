@@ -8,6 +8,7 @@ import os
 import sys
 
 from math import pi, sqrt, cos, sin
+from typing import List
 
 def check_value_none(value):
 
@@ -105,7 +106,15 @@ class epics_proxy(object):
                 self.pvdata[pvname] = self.epics.caget(pvname)
         return self.pvdata[pvname]            
 
-    def caget_many(self, pvnames):
+    def caget_many(self, pvnames: List[str]) -> list:
+        """ Retrieve pv values
+
+        Args:
+            pvnames (List[str]): List of pvnames
+
+        Returns:
+            List of pv values
+        """
         if self.epics:
             pvdata = self.epics.caget_many(pvnames)
             if any([pv is None for pv in pvdata]):
@@ -118,11 +127,25 @@ class epics_proxy(object):
 
                     pvdata[item] = self.caget(pvnames[item], use_epics=False)
 
-            return {pvnames[i]: pvdata[i] for i in range(len(pvnames))}
+            return pvdata
                 
 
         else:
             return [self.caget(n) for n in pvnames]
+
+    def caget_dict(self, pvnames: List[str]) -> dict:
+        """ Retrieve pv values and return dict of pvname:value
+
+        Args:
+            pvnames (List[str]): List of pvnames
+
+        Returns:
+            Mapping of pvname to returned value
+        """
+
+        return dict(zip(pvnames, self.caget_many(pvnames)))
+
+
 
     def PV(self, pvname, **kwargs):
         self.vprint(f'PV for {pvname}')
