@@ -53,6 +53,54 @@ def build_bpm_dm(tao, model):
     return dm_x
 
 
+#---------------------------
+# Cavities 
+# sc_ lines only
+
+def build_cavity_dm(tao):
+    """
+    Superconducting cavity phases and amplitudes datamap. 
+    
+    See:
+        https://confluence.slac.stanford.edu/display/LCLSControls/LCLS-II+LLRF+Naming+Conventions
+    """
+    
+    # Check that this is SC line
+    assert tao.branch1(ix_uni=1, ix_branch=0)['name'].startswith('SC_')
+    
+    # superconducting cavities only
+    eles = tao.lat_list('LCAVITY::CAV*', 'ele.name', flags='-array_out -no_slaves')
+    
+    device_names = [tao.ele_head(ele)['alias'] for ele in eles]
+    
+    # Phases
+    # Measured phase from cavity probe (degrees), averaged over LLRF waveform.
+    # Identical to CAV:PMEAN. Typically averaged over ~350 ms, 
+    # but this can vary depending on waveform settings.
+    df1 = pd.DataFrame()
+    df1['bmad_name'] = pd.Series(eles)
+    df1['pvname'] = [d+':PACTMEAN' for d in device_names]
+    df1['bmad_factor'] = 1/360 # deg -> rad/2pi
+    df1['bmad_attribute'] = 'phi0'
+    
+    # Amplitudes
+    # Measured amplitude from cavity probe (MV), 
+    # averaged over LLRF waveform. Identical to CAV:AMEAN. 
+    # Typically averaged over ~350 ms, but this can vary depending on waveform settings.
+    
+    df2 = pd.DataFrame()
+    df2['bmad_name'] = pd.Series(eles)
+    df2['pvname'] = [d+':AACTMEAN' for d in device_names]
+    df2['bmad_factor'] = 1e-6 # MV -> V
+    df2['bmad_attribute'] = 'voltage'    
+    
+    df = pd.concat([df1, df2], ignore_index=True, axis=0)
+
+    dm = TabularDataMap(df, pvname='pvname', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')    
+    
+    return dm
+
+
 
 #---------------------------
 # Correctors
