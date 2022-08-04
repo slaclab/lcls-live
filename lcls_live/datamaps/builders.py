@@ -97,7 +97,7 @@ def build_cavity_dm(tao):
     df2 = pd.DataFrame()
     df2['bmad_name'] = pd.Series(eles)
     df2['pvname'] = [d+':AACTMEAN' for d in device_names]
-    df2['bmad_factor'] = 1e-6 # MV -> V
+    df2['bmad_factor'] = 1e6 # MV -> V
     df2['bmad_attribute'] = 'voltage'    
     
     df = pd.concat([df1, df2], ignore_index=True, axis=0)
