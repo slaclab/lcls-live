@@ -35,6 +35,12 @@ def build_bpm_dm(tao, model):
         suffix = 'CUS1H' # 1 Hz
     elif model == 'cu_spec':
         suffix = '1H'
+    elif model == 'sc_hxr':
+        suffix = 'SCH1H'
+    elif model == 'sc_sxr':
+        suffix = 'SCS1H'
+    elif model == 'sc_bsyd' or model == 'sc_diag0':
+        suffix = ''
     else:
         suffix = '1H'
     
