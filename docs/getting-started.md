@@ -33,9 +33,3 @@ Use the [get-lcls-live](live/get-lcls-live.md) command line tool to extract PV d
 get-lcls-live --beampath cu_hxr --source epics --tao > cmds.tao
 ```
 
-
-
-## Examples
-
-Explore the [Jupyter Notebook Examples](https://github.com/slaclab/lcls-live/tree/master/examples)
-

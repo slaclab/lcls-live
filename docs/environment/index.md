@@ -13,38 +13,32 @@
 
 ## LCLS Production
 
-Enable Bmad and and LCLS-Lattice:
+Most LCLS users should use the standard Python environemt:
 ```bash
-source /usr/local/lcls/package/bmad_distributions/enable
+source $TOOLS/script/use_python3.sh
+``` 
+
+Developers should use the nightly environment:
+```bash
+source $TOOLS/script/use_python3_nightly.sh
+``` 
+
+These is described in [LCLS Python Environments](https://confluence.slac.stanford.edu/display/ppareg/LCLS+Python+Environments):lock: and includ the lattice files.
+
+
+## Local
+
+Local developers should clone the [LCLS-Live repository](https://github.com/slaclab/lcls-live) and create a conda environment from the `environment-dev.yml`:
+```bash
+conda env create -f environment-dev.yml
+conda activate lcls-live-dev
 ```
 
-## SLAC Public
+Lattice files are protected and must be install separately according to the instructions in [LCLS-Lattice-Data](https://github.com/slaclab/lcls-lattice-data) :lock:
 
-This is for public linux machines such as:
-
-- `centos7.slac.stanford.edu`
-
-Enable Bmad and and LCLS-Lattice:
+This documentation can be built with:
 ```bash
-source /u/ad/cmayes/nfs/bmad_distributions/enable
+mkdocs serve
 ```
-
-## SLAC SDF
-
-This is for SDF machines such as:
-
-- `sdf.slac.stanford.edu`
-
-Enable Bmad and and LCLS-Lattice:
-```bash
-source /gpfs/slac/staas/fs1/g/g.beamphysics/cmayes/bmad_distributions/enable_sdf
-```
-
-## Laptop
-
-Install Bmad according to the official [Instructions](https://wiki.classe.cornell.edu/ACC/ACL/OffsiteDoc)
-    
-
-
 
 
