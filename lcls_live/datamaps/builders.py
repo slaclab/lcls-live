@@ -313,6 +313,52 @@ def build_quad_dm(tao):
 
 
 #---------------------------
+# Solenoids
+    
+# Field integral conversion factors
+# PVs report the field integral in kg-m
+# Bmad models are scaled for the peak field
+SC_INJ_SOLENOID_FACTOR = {
+    'SOL1BKB': 0, # unknown
+    'SOL1B': 0.1/0.12896517423475376 , # kG-m to T:  \int B dL = B_max * 0.12896517423475376 m
+    'SOL2B': 0.1/0.12896517423475376 , # Same as SOL1B
+}
+    
+    
+def solenoid_pvinfo(tao, ele, model):
+    """
+    Returns dict of PV information for use in a DataMap
+    """
+    head = tao.ele_head(ele)
+    attrs = tao.ele_gen_attribs(ele)
+    device = head['alias']
+    
+    # Get field integral conversion factor
+    if model == 'sc_inj':
+        factor = SC_INJ_SOLENOID_FACTOR[ele]
+    else:
+        # hard-edge
+        L = attrs['L']
+        if L == 0:
+            factor = 0 # CANNOT DO ZERO LENGTH SOLENOID
+        else:
+            factor = 0.1/L  #\int BL in kG*m -> B_hard (T)
+    
+    d = {}
+    d['bmad_name'] = ele
+    d['pvname_rbv'] = device+':BACT'
+    d['pvname'] = device+':BDES'    
+    d['bmad_factor'] =factor
+    d['bmad_attribute'] = 'bs_field'
+    return d
+
+def build_solenoid_dm(tao, model):
+    names = tao.lat_list('solenoid::*', 'ele.name', flags='-no_slaves')
+    df = pd.DataFrame([solenoid_pvinfo(tao, ele, model) for ele in names])
+    dm = TabularDataMap(df, pvname='pvname_rbv', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')
+    return dm    
+
+#---------------------------
 # Subboosters
 
 def build_subbooster_dm(model):
