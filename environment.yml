@@ -10,11 +10,13 @@ dependencies:
   - pyepics
   - pyyaml
   - pytao
-  - bmad
+  #- bmad
   - openpmd-beamphysics  
   - ipywidgets
   - jupyterlab
   - pip
-# Developer
+  - https://github.com/slaclab/lcls-lattice-data/releases/download/2022.9.16/lcls-lattice-data-2022.9.16-0.tar.bz2
 #  - pip:
-#    - git+git://github.com/slaclab/lcls-live
+   # - git+https://github.com/slaclab/lcls-lattice-data  
+#    - git+git://github.com/slaclab/lcls-lattice-data  
+
