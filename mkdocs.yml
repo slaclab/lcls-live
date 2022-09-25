@@ -17,7 +17,7 @@ nav:
         - examples/bsa_snapshot.ipynb        
     - Live:
         - examples/bmad-live-cu-inj.ipynb
-        - examples/bmad-live-sc-inj.ipynb
+        - examples/bmad-live-sc-linac.ipynb
     - Offline:
         - examples/LCLS_beam_tracking.ipynb
         - examples/SXR_energy_profile.ipynb
@@ -26,14 +26,7 @@ nav:
         - examples/epics_proxy_example.ipynb    
     
   - Live data:
-    - live/get-lcls-live.md
-  
- # - Developer: 
- #   - developer/index.md
- #   # - Requirements: developer/requirements.md
- #   - Roadmap: developer/roadmap.md      
-  
-
+    - live/get-lcls-live.md 
   
   - other/index.md
   
