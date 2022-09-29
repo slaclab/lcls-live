@@ -43,10 +43,12 @@ theme:
   custom_dir: overrides   
   features:
     - navigation.top
+    - navigation.tabs
+    - navigation.indexes
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: white
+      primary: black
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
@@ -65,6 +67,8 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true   
   
 extra:
   generator: false
@@ -72,8 +76,8 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/slaclab/lcls-live
       name: LCLS-Live
-
   
+
 plugins:
     - search
       

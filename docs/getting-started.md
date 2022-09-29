@@ -4,7 +4,7 @@
 
 ## Bmad and Tao Tutorial
 
-If you are new to Bmad and Tao, please go to the official [Bmad website](https://www.classe.cornell.edu/bmad/) and follow the [Tutorial document](https://www.classe.cornell.edu/bmad/tutorial_bmad_tao.pdf) using the [Example files](https://www.classe.cornell.edu/bmad/tutorial_bmad_tao_files/).
+If you are new to Bmad and Tao, please go to the official [Bmad website](https://www.classe.cornell.edu/bmad/) and follow the [Tutorial document](https://www.classe.cornell.edu/bmad/tutorial_bmad_tao.pdf) using the [Example files](https://www.classe.cornell.edu/bmad/bmad-doc/tutorial_bmad_tao/lattice_files/).
 
 The tutorial is designed to be self-paced, with an introductory video presentation and chapter-specific channels in the [Bmad Slack Workspace](http://bmad-simulation.slack.com)
 
