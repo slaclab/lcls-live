@@ -1,5 +1,17 @@
 # Other resources
 
+## Bmad 
+Bmad is used to model electron beam dynamics in thethe LCLS accelerators from the injectors through the undulators, and to the beam dumps.
+
+[Bmad Homepage](https://www.classe.cornell.edu/bmad/)
+
+[Bmad Manual](https://www.classe.cornell.edu/bmad/manual.html)
+
+[Tao Manual](https://www.classe.cornell.edu/bmad/tao.html)
+
+Issues and Bug Reports should be entered on the [Bmad GitHub](https://github.com/DavidSagan/Bmad/issues)
+
+
 ## LUME
 
 [www.lume.science](https://www.lume.science)
@@ -26,11 +38,11 @@
 
 ## Device, element name and PV name references
 
-[Oracle](https://oraweb.slac.stanford.edu/apex/slacprod/f?p=116)
+[Oracle](https://oraweb.slac.stanford.edu/apex/slacprod/f?p=116):lock:
 
-[File](https://www.slac.stanford.edu/cgi-bin/cvsweb/optics/script/elementdevices.dat?cvstag=HEAD&content-type=text/x-cvsweb-markup&cvsroot=LCLS)
+[CVS](https://www.slac.stanford.edu/cgi-bin/cvsweb/optics/script/elementdevices.dat?cvstag=HEAD&content-type=text/x-cvsweb-markup&cvsroot=LCLS)
 
-Directory Service (see [1] for meme_names.m, and [2] for eget –s ds 
+Directory Service (?)
 
 [Beamline Boundaries](https://docs.slac.stanford.edu/sites/pub/Publications/Beamline%20Boundaries.pdf)
 
