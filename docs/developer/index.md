@@ -1,40 +1,27 @@
 # SLAC Developer setup
 
-## Bmad Production Environment
+## LCLS Production Environment
 
-The current version of the Bmad distribution can be enabled with:
-
+Developers on the LCLS production environment should use the nightly builds:
 ```bash
-source /usr/local/lcls/package/bmad_distributions/enable
+source $TOOLS/script/use_python3_devel.sh
 ``` 
+This is described in [LCLS Python Environments](https://confluence.slac.stanford.edu/display/ppareg/LCLS+Python+Environments):lock:. This includes the lattice files.
 
 
-### Python
 
-The standard Python 3.7 environment is enabled with:
+
+## Local
+
+Local developers should clone the [LCLS-Live repository](https://github.com/slaclab/lcls-live) and create a conda environment from the `environment-dev.yml`:
 ```bash
-source /usr/local/lcls/package/anaconda/envs/python3.7env/bin/activate
+conda env create -f environment-dev.yml
+conda activate lcls-live-dev
 ```
 
-Custom packages are maintained in `/usr/local/lcls/model/python`:
+Lattice files are protected and must be install separately according to the instructions in [LCLS-Lattice-Data](https://github.com/slaclab/lcls-lattice-data) :lock:
+
+This documentation can be built with:
 ```bash
-export PYTHONPATH=$PYTHONPATH:/usr/local/lcls/model/python
-```
-
-
-
-### Lattice files
-
-Lattice files are maintained in standard locations, and are referred to with these standard environmental variables:
-
-```bash
-export LCLS_LATTICE=/usr/local/lcls/model/lattice/lcls-lattice
-export LCLS_CLASSIC_LATTICE=/usr/local/lcls/model/lattice/lcls-classic-lattice
-```
-
-These files are updated with `git`:
-
-```bash
-cd /usr/local/lcls/model/lattice/lcls-lattice
-git pull -r
+mkdocs serve
 ```

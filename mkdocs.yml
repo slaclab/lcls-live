@@ -1,4 +1,6 @@
-
+site_name: LCLS-Live
+repo_url: https://github.com/slaclab/lcls-live
+repo_name: slaclab/LCLS-Live
 
 nav:
   - index.md
@@ -8,39 +10,90 @@ nav:
   - Environment:
     - environment/index.md
     
-  - Live data:
-    - live/get-lcls-live.md
-    
-  - Bmad: bmad/index.md
-  
-  - Developer: 
-    - developer/index.md
-    - Procedures: developer/procedures.md
-    - Requirements: developer/requirements.md
-    - mkdocs: developer/mkdocs.md
-    - Roadmap: developer/roadmap.md      
-  
   - Examples:
-    - examples/archiver_example.ipynb
+    - Archiver:
+        - examples/archiver_example.ipynb
+        - examples/archiver_restore_serve.ipynb
+        - examples/bsa_snapshot.ipynb        
+    - Live:
+        - examples/bmad-live-cu-inj.ipynb
+        - examples/bmad-live-sc-linac.ipynb
+    - Offline:
+        - examples/LCLS_beam_tracking.ipynb
+        - examples/SXR_energy_profile.ipynb
+    - Tools:
+        - examples/datamaps.ipynb    
+        - examples/epics_proxy_example.ipynb    
+    
+  - Live data:
+    - live/get-lcls-live.md 
   
   - other/index.md
   
   - Help: help.md
   
   
-site_name: LCLS-Live
+
 
 theme:
-  name: 'material'
-  custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/github
+  name: material
+  
+  custom_dir: overrides   
+  features:
+    - navigation.top
+    - navigation.tabs
+    - navigation.indexes
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
   
   
 markdown_extensions:
-  - codehilite  
-
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true   
   
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/slaclab/lcls-live
+      name: LCLS-Live
+  
+
 plugins:
-  - search
-  - minify
-  - mkdocs-jupyter:
-      include_source: True
+    - search
+      
+    - mkdocs-jupyter:
+        include_source: True
+          
+    - mkdocstrings:
+        default_handler: python
+        handlers:
+          python:
+            selection:
+              docstring_style: "numpy"
+              inherited_members: false
+              filters:
+                - "!^_"  # exclude all members starting with _
+                - "^__init__$"  # but always include __init__ modules and methods
+            rendering:
+              show_source: true
+              show_root_heading: true

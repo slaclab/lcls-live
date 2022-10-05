@@ -1,5 +1,5 @@
 # conda env create -f environment.yml
-name: lcls-live
+name: lcls-live-docs
 channels:
   - conda-forge
 dependencies:
@@ -14,7 +14,4 @@ dependencies:
   - openpmd-beamphysics  
   - ipywidgets
   - jupyterlab
-  - pip
-# Developer
-#  - pip:
-#    - git+git://github.com/slaclab/lcls-live
+

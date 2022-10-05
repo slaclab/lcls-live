@@ -39,7 +39,7 @@ def build_bpm_dm(tao, model):
         suffix = 'SCH1H'
     elif model == 'sc_sxr':
         suffix = 'SCS1H'
-    elif model == 'sc_bsyd' or model == 'sc_diag0':
+    elif model in ('sc_bsyd', 'sc_diag0', 'sc_inj'):
         suffix = ''
     else:
         suffix = '1H'
@@ -63,7 +63,7 @@ def build_bpm_dm(tao, model):
 # Cavities 
 # sc_ lines only
 
-def build_cavity_dm(tao):
+def build_cavity_dm(tao, model):
     """
     Superconducting cavity phases and amplitudes datamap. 
     
@@ -97,8 +97,17 @@ def build_cavity_dm(tao):
     df2 = pd.DataFrame()
     df2['bmad_name'] = pd.Series(eles)
     df2['pvname'] = [d+':AACTMEAN' for d in device_names]
-    df2['bmad_factor'] = 1e6 # MV -> V
-    df2['bmad_attribute'] = 'voltage'    
+    
+    if model == 'sc_inj':
+        # Voltage reported is the v=c voltage
+        # voltage = E_max * 0.5370721151478917 m 
+        # The fieldmap is scaled to E_max = 1, and field_autoscale scales that.
+        # Analysis using $LCLS_LATTICE/bmad/fieldmaps/cavity9/cavity9_1300MHz_full.h5
+        df2['bmad_factor'] = 1e6 * 1/0.5370721151478917# MV -> V
+        df2['bmad_attribute'] = 'field_autoscale'    
+    else:
+        df2['bmad_factor'] = 1e6 # MV -> V
+        df2['bmad_attribute'] = 'voltage'    
     
     df = pd.concat([df1, df2], ignore_index=True, axis=0)
 
@@ -149,17 +158,27 @@ def build_energy_dm(model):
     ]
     
     
+    
+    
     ENERGY_MEAS_HXR = [ {
         'name': 'L3_HXR_energy',
-        'pvname': 'BEND:DMPH:400:EDES', # or EDES
+        'pvname': 'BEND:DMPH:400:EDES', 
         'tao_datum': 'L3.energy[2]',
         'factor': 1e9
         } ]
     
     ENERGY_MEAS_SXR = [ {
         'name': 'L3_SXR_energy',
-        'pvname': 'BEND:DMPS:400:EDES', # or EDES
+        'pvname': 'BEND:DMPS:400:EDES', 
         'tao_datum': 'L3.energy[2]',
+        'factor': 1e9
+        } ]    
+    
+    # sc 
+    ENERGY_MEAS_SC = [ {
+        'name': 'L0B_energy',
+        'pvname': 'BEND:HTR:480:BACT', 
+        'tao_datum': 'L0B.energy[1]',
         'factor': 1e9
         } ]    
     
@@ -167,6 +186,8 @@ def build_energy_dm(model):
         df = pd.DataFrame(ENERGY_MEAS0 + ENERGY_MEAS_HXR)
     elif model == 'cu_sxr':
          df = pd.DataFrame(ENERGY_MEAS0 + ENERGY_MEAS_SXR)
+    elif model.startswith('sc_'):
+        df = pd.DataFrame(ENERGY_MEAS_SC)
     else:
         raise ValueError(f'Unknown model: {model}')    
     
@@ -311,6 +332,52 @@ def build_quad_dm(tao):
     return dm
 
 
+
+#---------------------------
+# Solenoids
+    
+# Field integral conversion factors
+# PVs report the field integral in kg-m
+# Bmad models are scaled for the peak field
+SC_INJ_SOLENOID_FACTOR = {
+    'SOL1BKB': 0, # unknown
+    'SOL1B': 0.1/0.12896517423475376 , # kG-m to T:  \int B dL = B_max * 0.12896517423475376 m
+    'SOL2B': 0.1/0.12896517423475376 , # Same as SOL1B
+}
+    
+    
+def solenoid_pvinfo(tao, ele, model):
+    """
+    Returns dict of PV information for use in a DataMap
+    """
+    head = tao.ele_head(ele)
+    attrs = tao.ele_gen_attribs(ele)
+    device = head['alias']
+    
+    # Get field integral conversion factor
+    if model == 'sc_inj':
+        factor = SC_INJ_SOLENOID_FACTOR[ele]
+    else:
+        # hard-edge
+        L = attrs['L']
+        if L == 0:
+            factor = 0 # CANNOT DO ZERO LENGTH SOLENOID
+        else:
+            factor = 0.1/L  #\int BL in kG*m -> B_hard (T)
+    
+    d = {}
+    d['bmad_name'] = ele
+    d['pvname_rbv'] = device+':BACT'
+    d['pvname'] = device+':BDES'    
+    d['bmad_factor'] =factor
+    d['bmad_attribute'] = 'bs_field'
+    return d
+
+def build_solenoid_dm(tao, model):
+    names = tao.lat_list('solenoid::*', 'ele.name', flags='-no_slaves')
+    df = pd.DataFrame([solenoid_pvinfo(tao, ele, model) for ele in names])
+    dm = TabularDataMap(df, pvname='pvname_rbv', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')
+    return dm    
 
 #---------------------------
 # Subboosters
