@@ -77,6 +77,8 @@ extra:
       link: https://github.com/slaclab/lcls-live
       name: LCLS-Live
   
+extra_css:
+  - stylesheets/extra.css   
 
 plugins:
     - search
