@@ -332,6 +332,35 @@ def build_quad_dm(tao):
     return dm
 
 
+#---------------------------
+# Quad correctors
+
+def quad_corrector_pvinfo(tao, ele):
+    """
+    Returns dict of PV information for use in a DataMap
+    
+    These are for use with field_master = T,
+    so that `k1l` is interpreted as `gradient*L`
+    
+    """
+    head = tao.ele_head(ele)
+    attrs = tao.ele_gen_attribs(ele)
+    device = head['alias']
+    
+    d = {}
+    d['bmad_name'] = ele
+    d['pvname_rbv'] = device+':BACT'
+    d['pvname'] = device+':BDES'    
+    d['bmad_factor'] = -1/10 # kG -> T, with LCLS's (wrong) sign convention
+    d['bmad_attribute'] = 'k1l'
+    return d
+
+def build_sc_quad_corrector_dm(tao):
+    quad_names = ['SQ01B', 'CQ01B', 'SQ02B', 'CQ02B']
+    dfq = pd.DataFrame([quad_corrector_pvinfo(tao, ele) for ele in quad_names])
+    dm = TabularDataMap(dfq, pvname='pvname_rbv', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')
+    return dm
+
 
 #---------------------------
 # Solenoids
