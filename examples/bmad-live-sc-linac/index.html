@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.6">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
     
     
       
@@ -2040,19 +2040,21 @@ import os</div>
         </div>
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Pick a model and slice</span>
 
-<span class="n">MODEL</span> <span class="o">=</span> <span class="s1">&#39;sc_hxr&#39;</span> <span class="c1"># or sc_diag0 or sc_inj</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="s1">&#39;sc_diag0&#39;</span> <span class="c1"># or sc_diag0 or sc_inj</span>
 
 <span class="n">BEGELE</span> <span class="o">=</span> <span class="s1">&#39;BEGINNING&#39;</span>
 <span class="c1">#ENDELE = &#39;OTR0H04&#39;</span>
-<span class="n">ENDELE</span> <span class="o">=</span> <span class="s1">&#39;ENDCOL0&#39;</span>
+<span class="c1">#ENDELE = &#39;ENDCOL0&#39;</span>
+<span class="n">ENDELE</span> <span class="o">=</span> <span class="s1">&#39;END&#39;</span>
 </pre></div>
 <div id="cell-3" class="clipboard-copy-txt"># Pick a model and slice
 
-MODEL = 'sc_hxr' # or sc_diag0 or sc_inj
+MODEL = 'sc_diag0' # or sc_diag0 or sc_inj
 
 BEGELE = 'BEGINNING'
 #ENDELE = 'OTR0H04'
-ENDELE = 'ENDCOL0'</div>
+#ENDELE = 'ENDCOL0'
+ENDELE = 'END'</div>
     
         </div>
     </div>
@@ -2290,7 +2292,7 @@ DM0.keys()</div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>dict_keys([&#39;bpms&#39;, &#39;cavities&#39;, &#39;correctors&#39;, &#39;tao_energy_measurements&#39;, &#39;quad&#39;, &#39;solenoid&#39;])</pre>
+<pre>dict_keys([&#39;bpms&#39;, &#39;cavities&#39;, &#39;correctors&#39;, &#39;tao_energy_measurements&#39;, &#39;quad&#39;, &#39;quad_corrector&#39;, &#39;solenoid&#39;])</pre>
 </div>
 
 </div>
@@ -2335,7 +2337,7 @@ DM0.keys()</div>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">DM</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">filter_datamap</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">good_names</span><span class="p">)</span>
 
-<span class="n">DM</span><span class="p">[</span><span class="s1">&#39;bpms&#39;</span><span class="p">]</span>
+<span class="n">DM</span><span class="p">[</span><span class="s1">&#39;cavities&#39;</span><span class="p">]</span>
 </pre></div>
 <div id="cell-8" class="clipboard-copy-txt">good_names = set(df['name'])
 bad_eles = [] # any bad eles
@@ -2351,7 +2353,7 @@ for name, dm in DM0.items():
     else:
         DM[name] = filter_datamap(dm, good_names)
 
-DM['bpms']</div>
+DM['cavities']</div>
     
         </div>
     </div>
@@ -2375,20 +2377,45 @@ DM['bpms']</div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>TabularDataMap(data=                      pvname         tao_datum    tao_factor bmad_name
-0       BPMS:GUNB:314:XSCH1H        orbit.x[1]  1.000000e-03     BPM1B
-1       BPMS:GUNB:925:XSCH1H        orbit.x[2]  1.000000e-03     BPM2B
-2        BPMS:HTR:120:XSCH1H        orbit.x[3]  1.000000e-03   BPM0H01
-3        BPMS:HTR:320:XSCH1H        orbit.x[4]  1.000000e-03   BPM0H04
-4        BPMS:HTR:365:XSCH1H        orbit.x[5]  1.000000e-03   BPM0H05
-..                       ...               ...           ...       ...
-362  BPMS:COL0:640:TMITSCH1H  orbit.charge[21]  1.602177e-19   BPMC008
-363  BPMS:COL0:720:TMITSCH1H  orbit.charge[22]  1.602177e-19   BPMC009
-364  BPMS:COL0:800:TMITSCH1H  orbit.charge[23]  1.602177e-19   BPMC010
-365  BPMS:COL0:880:TMITSCH1H  orbit.charge[24]  1.602177e-19   BPMC011
-366  BPMS:COL0:940:TMITSCH1H  orbit.charge[25]  1.602177e-19   BPMC012
+<pre>TabularDataMap(data=   bmad_name              pvname_rbv              pvname     bmad_factor  \
+0    CAVL011  ACCL:L0B:0110:PACTMEAN  ACCL:L0B:0110:PDES        0.002778   
+1    CAVL012  ACCL:L0B:0120:PACTMEAN  ACCL:L0B:0120:PDES        0.002778   
+2    CAVL013  ACCL:L0B:0130:PACTMEAN  ACCL:L0B:0130:PDES        0.002778   
+3    CAVL014  ACCL:L0B:0140:PACTMEAN  ACCL:L0B:0140:PDES        0.002778   
+4    CAVL015  ACCL:L0B:0150:PACTMEAN  ACCL:L0B:0150:PDES        0.002778   
+5    CAVL016  ACCL:L0B:0160:PACTMEAN  ACCL:L0B:0160:PDES        0.002778   
+6    CAVL017  ACCL:L0B:0170:PACTMEAN  ACCL:L0B:0170:PDES        0.002778   
+7    CAVL018  ACCL:L0B:0180:PACTMEAN  ACCL:L0B:0180:PDES        0.002778   
+8      BUN1B  ACCL:GUNB:455:PACT_AVG  ACCL:GUNB:455:PDES        0.002778   
+9    CAVL011  ACCL:L0B:0110:AACTMEAN                None  1000000.000000   
+10   CAVL012  ACCL:L0B:0120:AACTMEAN                None  1000000.000000   
+11   CAVL013  ACCL:L0B:0130:AACTMEAN                None  1000000.000000   
+12   CAVL014  ACCL:L0B:0140:AACTMEAN                None  1000000.000000   
+13   CAVL015  ACCL:L0B:0150:AACTMEAN                None  1000000.000000   
+14   CAVL016  ACCL:L0B:0160:AACTMEAN                None  1000000.000000   
+15   CAVL017  ACCL:L0B:0170:AACTMEAN                None  1000000.000000   
+16   CAVL018  ACCL:L0B:0180:AACTMEAN                None  1000000.000000   
+17     BUN1B  ACCL:GUNB:455:AACT_AVG                None  1000000.000000   
 
-[75 rows x 4 columns], pvname=&#39;pvname&#39;, element=&#39;tao_datum&#39;, attribute=&#39;&#39;, factor=&#39;tao_factor&#39;, offset=&#39;&#39;, bmad_format=&#39;! No equivalent Bmad format for: set data {element}|meas  = {value}&#39;, tao_format=&#39;set data {element}|meas  = {value}&#39;)</pre>
+   bmad_attribute bmad_unit  
+0            phi0       2pi  
+1            phi0       2pi  
+2            phi0       2pi  
+3            phi0       2pi  
+4            phi0       2pi  
+5            phi0       2pi  
+6            phi0       2pi  
+7            phi0       2pi  
+8            phi0       2pi  
+9         voltage         V  
+10        voltage         V  
+11        voltage         V  
+12        voltage         V  
+13        voltage         V  
+14        voltage         V  
+15        voltage         V  
+16        voltage         V  
+17        voltage         V  , pvname=&#39;pvname_rbv&#39;, element=&#39;bmad_name&#39;, attribute=&#39;bmad_attribute&#39;, factor=&#39;bmad_factor&#39;, offset=&#39;&#39;, bmad_format=&#39;{element}[{attribute}] = {value}&#39;, tao_format=&#39;set ele {element} {attribute} = {value}&#39;)</pre>
 </div>
 
 </div>
@@ -2505,16 +2532,16 @@ PVLIST[0:10]</div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&#39;BPMS:COL0:240:YSCH1H&#39;,
- &#39;ACCL:L0B:0120:AACTMEAN&#39;,
- &#39;BPMS:COL0:880:XSCH1H&#39;,
- &#39;SOLN:GUNB:100:BACT&#39;,
- &#39;BPMS:COL0:260:XSCH1H&#39;,
- &#39;BPMS:HTR:830:TMITSCH1H&#39;,
- &#39;BPMS:GUNB:925:YSCH1H&#39;,
- &#39;QUAD:COL0:480:BACT&#39;,
- &#39;ACCL:L0B:0110:PACTMEAN&#39;,
- &#39;BPMS:COL0:320:XSCH1H&#39;]</pre>
+<pre>[&#39;BPMS:HTR:760:Y&#39;,
+ &#39;BPMS:HTR:830:Y&#39;,
+ &#39;BPMS:DIAG0:285:X&#39;,
+ &#39;BPMS:COL0:135:X&#39;,
+ &#39;BPMS:DIAG0:330:X&#39;,
+ &#39;QUAD:HTR:140:BACT&#39;,
+ &#39;BPMS:GUNB:314:TMIT&#39;,
+ &#39;BPMS:HTR:980:X&#39;,
+ &#39;BPMS:DIAG0:270:TMIT&#39;,
+ &#39;BPMS:DIAG0:520:TMIT&#39;]</pre>
 </div>
 
 </div>
@@ -2656,21 +2683,12 @@ BAD_DEVICES, BAD_NAMES   </div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Bad PV: BPMS:COL0:260:XSCH1H
-Bad PV: BPMS:COL0:720:XSCH1H
-Bad PV: BPMS:COL0:480:TMITSCH1H
-Bad PV: BPMS:COL0:720:YSCH1H
-Bad PV: BPMS:HTR:980:TMITSCH1H
-Bad PV: BPMS:COL0:800:TMITSCH1H
-Bad PV: BPMS:COL0:480:XSCH1H
-Bad PV: BPMS:COL0:800:YSCH1H
-Bad PV: BPMS:HTR:980:YSCH1H
-Bad PV: BPMS:COL0:260:TMITSCH1H
-Bad PV: BPMS:COL0:480:YSCH1H
-Bad PV: BPMS:COL0:720:TMITSCH1H
-Bad PV: BPMS:COL0:800:XSCH1H
-Bad PV: BPMS:HTR:980:XSCH1H
-Bad PV: BPMS:COL0:260:YSCH1H
+<pre>Bad PV: BPMS:DIAG0:330:X
+Bad PV: BPMS:HTR:980:X
+Bad PV: BPMS:DIAG0:330:Y
+Bad PV: BPMS:HTR:980:Y
+Bad PV: BPMS:HTR:980:TMIT
+Bad PV: BPMS:DIAG0:330:TMIT
 </pre>
 </div>
 </div>
@@ -2684,12 +2702,7 @@ Bad PV: BPMS:COL0:260:YSCH1H
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>({&#39;BPMS:COL0:260&#39;,
-  &#39;BPMS:COL0:480&#39;,
-  &#39;BPMS:COL0:720&#39;,
-  &#39;BPMS:COL0:800&#39;,
-  &#39;BPMS:HTR:980&#39;},
- [&#39;BPMC006&#39;, &#39;BPMC009&#39;, &#39;BPMHD04&#39;, &#39;BPMC010&#39;, &#39;BPMC002&#39;])</pre>
+<pre>({&#39;BPMS:DIAG0:330&#39;, &#39;BPMS:HTR:980&#39;}, [&#39;BPMHD04&#39;, &#39;BPMDG0RF&#39;])</pre>
 </div>
 
 </div>
@@ -3093,15 +3106,21 @@ def get_mats():
         </div>
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Master switches for element scaling</span>
 <span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set ele quad::* field_master = T&#39;</span><span class="p">)</span>
-<span class="c1">#tao.cmd(&#39;set ele lcavity::CAVL* autoscale_amplitude = T&#39;) # field_au</span>
+
+<span class="c1"># Turn off phase overlays </span>
+<span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set ele SC_L* is_on = F&#39;</span><span class="p">,</span> <span class="n">raises</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
 <span class="k">if</span> <span class="n">MODEL</span> <span class="o">==</span> <span class="s1">&#39;sc_inj&#39;</span><span class="p">:</span>
-    <span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set ele lcavity::CAVL* autoscale_phase = T&#39;</span><span class="p">)</span>
+    <span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set ele lcavity::* autoscale_phase = T&#39;</span><span class="p">)</span>
 </pre></div>
 <div id="cell-21" class="clipboard-copy-txt"># Master switches for element scaling
 tao.cmd('set ele quad::* field_master = T')
-#tao.cmd('set ele lcavity::CAVL* autoscale_amplitude = T') # field_au
+
+# Turn off phase overlays 
+tao.cmd('set ele SC_L* is_on = F', raises=False)
+
 if MODEL == 'sc_inj':
-    tao.cmd('set ele lcavity::CAVL* autoscale_phase = T')</div>
+    tao.cmd('set ele lcavity::* autoscale_phase = T')</div>
     
         </div>
     </div>
@@ -3227,8 +3246,8 @@ run1()</div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>CPU times: user 23.1 ms, sys: 1.71 ms, total: 24.8 ms
-Wall time: 25.6 ms
+<pre>CPU times: user 23.9 ms, sys: 2.26 ms, total: 26.2 ms
+Wall time: 29.8 ms
 </pre>
 </div>
 </div>
@@ -3293,15 +3312,220 @@ set_htr_twiss(tao)</div>
                 </div>
             </clipboard-copy>
         </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Check charge (pC)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tao</span><span class="o">.</span><span class="n">data_d_array</span><span class="p">(</span><span class="s1">&#39;orbit&#39;</span><span class="p">,</span> <span class="s1">&#39;charge&#39;</span><span class="p">))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;charge_live&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;meas_value&#39;</span><span class="p">]</span><span class="o">*</span><span class="mf">1e12</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;ele_name&#39;</span><span class="p">,</span> <span class="s1">&#39;charge_live&#39;</span><span class="p">]]</span>
+</pre></div>
+<div id="cell-25" class="clipboard-copy-txt"># Check charge (pC)
+df = pd.DataFrame(tao.data_d_array('orbit', 'charge'))
+df['charge_live'] =df['meas_value']*1e12
+df[['ele_name', 'charge_live']]</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ele_name</th>
+      <th>charge_live</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>BPM1B</td>
+      <td>78.840369</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>BPM2B</td>
+      <td>65.290631</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BPM0H01</td>
+      <td>63.795613</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BPM0H04</td>
+      <td>55.929705</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BPM0H05</td>
+      <td>65.769464</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>BPM0H08</td>
+      <td>63.446005</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>BPMH1</td>
+      <td>63.412162</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>BPMH2</td>
+      <td>23.395678</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>BPMHD01</td>
+      <td>5.000936</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>BPMHD02</td>
+      <td>2.479826</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>BPMHD03</td>
+      <td>1.802031</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>BPMHD04</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>BPMDG000</td>
+      <td>1.633812</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>BPMDG001</td>
+      <td>1.591310</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>BPMDG002</td>
+      <td>0.895909</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>BPMDG003</td>
+      <td>1.373474</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>BPMDG004</td>
+      <td>0.616444</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>BPMDG005</td>
+      <td>1.060640</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>BPMDG0RF</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>BPMDG008</td>
+      <td>0.354604</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>BPMDG009</td>
+      <td>0.356177</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>BPMDG011</td>
+      <td>0.467173</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>BPMDG012</td>
+      <td>0.717575</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-26">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="o">%%</span><span class="n">tao</span>
 <span class="n">use</span> <span class="n">dat</span> <span class="n">orbit</span><span class="o">.</span><span class="n">x</span>
 <span class="n">use</span> <span class="n">dat</span> <span class="n">orbit</span><span class="o">.</span><span class="n">y</span>
 <span class="n">sc</span> <span class="n">floor</span> <span class="o">-</span><span class="mi">5</span> <span class="mi">5</span>
+<span class="n">sc</span> <span class="n">top</span> <span class="mi">0</span> <span class="mi">80</span>
 </pre></div>
-<div id="cell-25" class="clipboard-copy-txt">%%tao
+<div id="cell-26" class="clipboard-copy-txt">%%tao
 use dat orbit.x
 use dat orbit.y
-sc floor -5 5</div>
+sc floor -5 5
+sc top 0 80
+</div>
     
         </div>
     </div>
@@ -3325,16 +3549,18 @@ sc floor -5 5</div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>-------------------------
 Tao&gt; use dat orbit.x
-  orbit.x[1:171]                                 Using: 1:11 13:14 16:18 20:21 24:25
-  orbit.y[1:171]                                 Using:
-  orbit.charge[1:171]                            Using:
+  orbit.x[1:23]                                  Using: 1:11 13:18 20:23
+  orbit.y[1:23]                                  Using:
+  orbit.charge[1:23]                             Using:
 -------------------------
 Tao&gt; use dat orbit.y
-  orbit.x[1:171]                                 Using: 1:11 13:14 16:18 20:21 24:25
-  orbit.y[1:171]                                 Using: 1:11 13:14 16:18 20:21 24:25
-  orbit.charge[1:171]                            Using:
+  orbit.x[1:23]                                  Using: 1:11 13:18 20:23
+  orbit.y[1:23]                                  Using: 1:11 13:18 20:23
+  orbit.charge[1:23]                             Using:
 -------------------------
 Tao&gt; sc floor -5 5
+-------------------------
+Tao&gt; sc top 0 80
 -------------------------
 Tao&gt; 
 </pre>
@@ -3368,7 +3594,7 @@ Tao&gt;
         
         <div class="CodeMirror cm-s-jupyter">
         <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-26">
+            <clipboard-copy for="cell-27">
             <div>
                 <span class="notice" hidden>Copied!</span>
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3382,7 +3608,7 @@ Tao&gt;
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">run1</span><span class="p">()</span>
 </pre></div>
-<div id="cell-26" class="clipboard-copy-txt"># Run forever
+<div id="cell-27" class="clipboard-copy-txt"># Run forever
 while True:
     run1()</div>
     
@@ -3481,10 +3707,10 @@ while True:
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tabs", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tabs", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.078830c0.min.js"></script>
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
       
     
   </body>
