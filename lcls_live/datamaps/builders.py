@@ -44,10 +44,19 @@ def build_bpm_dm(tao, model):
     else:
         suffix = '1H'
     
-    dm_x = datamap_from_tao_data(tao, 'orbit', 'x', tao_factor = .001, pv_attribute=':X'+suffix)
-    dm_y = datamap_from_tao_data(tao, 'orbit', 'y', tao_factor = .001, pv_attribute=':Y'+suffix)    
+    dm_x = datamap_from_tao_data(tao, 'orbit', 'x',
+                                 tao_factor = .001,
+                                 pv_attribute=':X'+suffix,
+                                 bmad_unit='m')
+    dm_y = datamap_from_tao_data(tao, 'orbit', 'y',
+                                 tao_factor = .001,
+                                 pv_attribute=':Y'+suffix,
+                                 bmad_unit='m')    
+    dm_charge = datamap_from_tao_data(tao, 'orbit', 'charge',
+                                      tao_factor = e_charge,
+                                      pv_attribute=':TMIT'+suffix,
+                                      bmad_unit = 'C')
     
-    dm_charge = datamap_from_tao_data(tao, 'orbit', 'charge', tao_factor = e_charge, pv_attribute=':TMIT'+suffix)
     
     #dm_x.data.append(dm_y.data, ignore_index = True)
     #dm_x.data.append(dm_charge.data, ignore_index = True)    
@@ -63,7 +72,113 @@ def build_bpm_dm(tao, model):
 # Cavities 
 # sc_ lines only
 
+
+
+def cavity_phase_pvinfo(tao, ele_name, model):
+    """
+    Returns dict of PV information for use in a DataMap
+    """
+    head = tao.ele_head(ele_name)
+    attrs = tao.ele_gen_attribs(ele_name)
+    device = head['alias']
+    
+    d = {}
+    d['bmad_name'] = ele_name
+    
+    # Special for buncher
+    if ele_name.startswith('BUN'):
+        d['pvname_rbv'] = device+':PACT_AVG'
+    else:
+        d['pvname_rbv'] = device+':PACTMEAN'
+        
+    d['pvname'] = device+':PDES'    
+    d['bmad_factor'] = 1/360 # deg -> rad/2pi
+    d['bmad_attribute'] = 'phi0'
+    d['bmad_unit'] = '2pi'
+    return d
+
+def cavity_amplitude_pvinfo(tao, ele_name, model):
+    """
+    Returns dict of PV information for use in a DataMap
+    
+    TODO: pvname for setting unknown
+    """
+    ele_name = ele_name.upper()
+        
+    head = tao.ele_head(ele_name)
+    attrs = tao.ele_gen_attribs(ele_name)
+    device = head['alias']
+    
+    d = {}
+    d['bmad_name'] = ele_name
+    
+    
+    # Special for buncher
+    if ele_name.startswith('BUN'):
+        suffix_rbv = ':AACT_AVG'
+    else:
+        suffix_rbv = ':AACTMEAN'
+    
+    if model == 'sc_inj':
+        # Voltage reported is the v=c voltage
+
+        # Buncher
+        if ele_name.startswith('BUN'):
+            # from v=c fieldmap integral
+            bmad_factor = 1e6 * 1/0.038464987091053844# MV -> V/m
+        # 1.3 GHz cavities
+        elif  ele_name.startswith('CAVL'):      
+            # voltage = E_max * 0.5370721151478917 m 
+            # The fieldmap is scaled to E_max = 1, and field_autoscale scales that.
+            # Analysis using $LCLS_LATTICE/bmad/fieldmaps/cavity9/cavity9_1300MHz_full.h5            
+            bmad_factor = 1e6 * 1/0.5370721151478917# MV -> V/m
+        else:
+            raise ValueError(f'sc_inj, unknown cavity {ele_name}')
+                             
+        d['bmad_attribute'] = 'field_autoscale'    
+        d['bmad_unit'] = 'V/m'
+    else:
+        bmad_factor = 1e6 # MV -> V
+        d['bmad_attribute'] = 'voltage'      
+        d['bmad_unit'] = 'V'        
+    
+    # d['pvname'] = ??? for setting
+    d['pvname_rbv'] = device+suffix_rbv
+    d['bmad_factor'] = bmad_factor
+                             
+    return d
+
+
 def build_cavity_dm(tao, model):
+    """
+    Superconducting cavity phases and amplitudes datamap. 
+    
+    See:
+        https://confluence.slac.stanford.edu/display/LCLSControls/LCLS-II+LLRF+Naming+Conventions
+        https://aosd.slac.stanford.edu/wiki/index.php/Abstraction_Layer_API
+        
+    """
+    
+    # Check that this is SC line
+    assert tao.branch1(ix_uni=1, ix_branch=0)['name'].startswith('SC_')
+    
+    # SRF cavities and the buncher
+    # TODO: TX* elements
+    eles1 = tao.lat_list('LCAVITY::CAV*', 'ele.name', flags='-array_out -no_slaves')
+    eles2 = tao.lat_list('LCAVITY::BUN*', 'ele.name', flags='-array_out -no_slaves')
+    eles = eles1 + eles2
+
+    df1 = pd.DataFrame([cavity_phase_pvinfo(tao, ele_name, model) for ele_name in eles])
+    df2 = pd.DataFrame([cavity_amplitude_pvinfo(tao, ele_name, model) for ele_name in eles])    
+    
+    df = pd.concat([df1, df2], ignore_index=True, axis=0)
+    
+    dm = TabularDataMap(df, pvname='pvname_rbv', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')
+    return dm    
+    
+    
+
+def old_build_cavity_dm(tao, model):
     """
     Superconducting cavity phases and amplitudes datamap. 
     
@@ -130,6 +245,7 @@ def build_corrector_dm(tao):
     df['pvname'] = [ tao.ele_head(ele)['alias']+':BACT' for ele in df['bmad_name' ] ]
     df['bmad_factor'] = -1/10 # kG*m -> T (with the correct sign)
     df['bmad_attribute'] = 'bl_kick'
+    df['bmad_unit'] = 'T*m'
 
     dm = TabularDataMap(df, pvname='pvname', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')    
     
@@ -156,9 +272,6 @@ def build_energy_dm(model):
         'factor': 1e9
         }
     ]
-    
-    
-    
     
     ENERGY_MEAS_HXR = [ {
         'name': 'L3_HXR_energy',
@@ -323,10 +436,16 @@ def quad_pvinfo(tao, ele):
     d['pvname'] = device+':BDES'    
     d['bmad_factor'] = -1/attrs['L']/10
     d['bmad_attribute'] = 'b1_gradient'
+    d['bmad_unit'] = 'T/m'
     return d
 
 def build_quad_dm(tao):
     quad_names = tao.lat_list('quad::*', 'ele.name', flags='-no_slaves')
+    
+    # This belongs in quad_correctors.
+    if 'CQ02B' in quad_names:
+        quad_names.remove('CQ02B')
+    
     dfq = pd.DataFrame([quad_pvinfo(tao, ele) for ele in quad_names])
     dm = TabularDataMap(dfq, pvname='pvname_rbv', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')
     return dm
@@ -347,17 +466,25 @@ def quad_corrector_pvinfo(tao, ele):
     attrs = tao.ele_gen_attribs(ele)
     device = head['alias']
     
+    key = head['key'].upper()
+    assert key == 'MULTIPOLE'
+    
     d = {}
     d['bmad_name'] = ele
     d['pvname_rbv'] = device+':BACT'
     d['pvname'] = device+':BDES'    
     d['bmad_factor'] = -1/10 # kG -> T, with LCLS's (wrong) sign convention
     d['bmad_attribute'] = 'k1l'
+    d['bmad_unit'] = 'T'
     return d
 
 def build_sc_quad_corrector_dm(tao):
-    quad_names = ['SQ01B', 'CQ01B', 'SQ02B', 'CQ02B']
-    dfq = pd.DataFrame([quad_corrector_pvinfo(tao, ele) for ele in quad_names])
+    # These are actually mutipole elements
+    quad_names = ['SQ01B', 'CQ01B', 'SQ02B'] 
+    #  is a quadrupole element
+    quad_info = [quad_corrector_pvinfo(tao, ele) for ele in quad_names] + [quad_pvinfo(tao, 'CQ02B')]
+    
+    dfq = pd.DataFrame(quad_info)
     dm = TabularDataMap(dfq, pvname='pvname_rbv', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')
     return dm
 
@@ -400,6 +527,7 @@ def solenoid_pvinfo(tao, ele, model):
     d['pvname'] = device+':BDES'    
     d['bmad_factor'] =factor
     d['bmad_attribute'] = 'bs_field'
+    d['bmad_unit'] = 'T'
     return d
 
 def build_solenoid_dm(tao, model):

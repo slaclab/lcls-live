@@ -171,7 +171,7 @@ class TabularDataMap:
         return cls(data=data, **d)
     
     
-def datamap_from_tao_data(tao, d2, d1, tao_factor = 1.0, pv_attribute=''):
+def datamap_from_tao_data(tao, d2, d1, tao_factor = 1.0, pv_attribute='', bmad_unit=None):
     """
     Form a tabular datamap from a general Tao data array. 
     
@@ -192,6 +192,9 @@ def datamap_from_tao_data(tao, d2, d1, tao_factor = 1.0, pv_attribute=''):
         
     pv_attribute : str
         attribute suffix
+        
+    bmad_unit : str, optional
+        If given, will set the 'bmad_unit' column in datamap.data
     
     Returns
     -------
@@ -212,6 +215,9 @@ def datamap_from_tao_data(tao, d2, d1, tao_factor = 1.0, pv_attribute=''):
     df2['tao_datum'] =  [f'{d2}.{d1}[{ix}]' for ix in df['ix_d1'] ]
     df2['tao_factor'] = tao_factor
     df2['bmad_name'] = df['ele_name']
+    if bmad_unit:
+        df2['bmad_unit'] = bmad_unit
+    
     
     
     dm = TabularDataMap(df2, pvname='pvname', element='tao_datum', factor='tao_factor',
