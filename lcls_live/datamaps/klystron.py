@@ -191,7 +191,7 @@ class KlystronDataMap:
     
         
     
-def klystron_pvinfo(sector, station, beamcode=1):
+def klystron_pvinfo(sector, station, beamcode=1, use_des=False):
     """
     Customized function for creating the data to instantiate a KlystronDataMap 
     for a klystron at s given sector, station. 
@@ -223,7 +223,10 @@ def klystron_pvinfo(sector, station, beamcode=1):
         
     # Defaults
     name = f'K{sector}_{station}'
-    phase = '{base}:PHAS'        
+    if use_des:
+        phase = '{base}:PDES'
+    else:
+        phase = '{base}:PHAS'        
     enld =  '{base}:ENLD'      
     description = f'Klystron in sector {sector}, station {station}, beamcode {beamcode}'
     
@@ -235,40 +238,51 @@ def klystron_pvinfo(sector, station, beamcode=1):
     # Datastore suffix 0, 1 for beamcodes 1, 2
     DS = f'_DS{beamcode-1}'
     
-    
     if ss == (20, 6):
         description += ' for the GUN'
         base = 'GUN:IN20:1' 
-        enld = '{base}:GN1_AAVG'   
-        phase = '{base}:GN1_PAVG'           
+        if use_des:
+            enld = '{base}:GN1_ADES'
+            phase= '{base}:GN1_PDES'
+        else:
+            enld = '{base}:GN1_AAVG'
+            phase = '{base}:GN1_PAVG'
     elif ss == (20, 7):
         description += ' for L0A'
-        base = 'ACCL:IN20:300'    
-        enld = '{base}:L0A_AACT'+DS  
-        phase = '{base}:L0A_PACT'+DS  
+        base = 'ACCL:IN20:300'
+        if use_des:
+            enld = '{base}:L0A_ADES'+DS
+            phase = '{base}:L0A_PDES'+DS
+        else:
+            enld = '{base}:L0A_AACT'+DS
+            phase = '{base}:L0A_PACT'+DS
     elif ss == (20, 8):
         description += ' for L0B'
-        base = 'ACCL:IN20:400'    
-        enld = '{base}:L0B_AACT'+DS  
-        phase = '{base}:L0B_PACT'+DS                
+        base = 'ACCL:IN20:400'
+        if use_des:
+            enld = '{base}:L0B_ADES'+DS  
+            phase = '{base}:L0B_PDES'+DS
+        else:
+            enld = '{base}:L0B_AACT'+DS  
+            phase = '{base}:L0B_PACT'+DS
     elif ss == (21, 1):
         description += ' for L1S'
-        base = 'ACCL:LI21:1'  
-        # enld = '{base}:L1S_AAVG'  Not in the archiver
-        #enld = 'ACCL:LI21:1:L1S_S_AV'
-        enld = 'ACCL:LI21:1:L1S_AACT'+DS
-        #phase = '{base}:L1S_PAVG' # Not in the archiver
-        #phase = 'ACCL:LI21:1:L1S_S_PV'    
-        phase = 'ACCL:LI21:1:L1S_PACT'+DS    
+        base = 'ACCL:LI21:1'
+        if use_des:
+            enld = 'ACCL:LI21:1:L1S_ADES'+DS
+            phase = 'ACCL:LI21:1:L1S_PDES'+DS
+        else:
+            enld = 'ACCL:LI21:1:L1S_AACT'+DS
+            phase = 'ACCL:LI21:1:L1S_PACT'+DS
     elif ss == (21, 2):
         description += ' for L1X'
-        base = 'ACCL:LI21:180'            
-        #enld = '{base}:L1X_AAVG'   # Not in the archiver
-        #enld = 'ACCL:LI21:180:L1X_S_AV'
-        enld = 'ACCL:LI21:180:L1X_AACT'+DS
-        #phase = '{base}:L1X_PAVG'  # Not in the archiver 
-        #phase = 'ACCL:LI21:180:L1X_S_PV'      
-        phase = 'ACCL:LI21:180:L1X_PACT'+DS
+        base = 'ACCL:LI21:180'
+        if use_des:           
+            enld = 'ACCL:LI21:180:L1X_ADES'+DS
+            phase = 'ACCL:LI21:180:L1X_PDES'+DS
+        else:
+            enld = 'ACCL:LI21:180:L1X_AACT'+DS
+            phase = 'ACCL:LI21:180:L1X_PACT'+DS
     elif sector == 24 and station in (1, 2, 3):
         description += ' for special feedback'
         base =  f'KLYS:LI{sector}:{station}1'     # Normal base
