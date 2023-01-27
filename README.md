@@ -48,5 +48,5 @@ The remote archiver requires an ssh tunnel, which can be configured using the `c
 
 ## Datamaps 
 
-A utility notebook for generating datamaps is provided in `examples/LCLS_datamaps.ipynb`. This constructs relevant datamaps using the `pytao` Tao interface and requires setting the `$LCLS_LATTICE` and `$ACC_ROOT_DIR` 
+A utility notebook for generating datamaps is provided in `developer/build_datamaps.ipynb`. This constructs relevant datamaps using the `pytao` Tao interface and requires setting the `$LCLS_LATTICE` and `$ACC_ROOT_DIR` 
 
