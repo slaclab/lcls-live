@@ -15,7 +15,8 @@ def get_datamaps(config_name: str):
     """ Utility function for building data maps given a configuration file.
 
     Args:
-        config_name (str): Choice of beamline to generate datamaps for (currently cu_hxr, cu_sxr)
+        config_name (str): Choice of beamline to generate datamaps for (currently 
+                           cu_hxr, cu_sxr, sc_inj, sc_diag0, sc_bsyd, sc_hxr, or sc_sxr)
         
     Returns:
         dict of name:datamap
