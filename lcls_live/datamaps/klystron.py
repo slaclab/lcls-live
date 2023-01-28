@@ -54,16 +54,18 @@ class KlystronDataMap:
     name: str
     sector: int
     station: int
-    description: str = ''
-    enld_pvname: str = ''
-    phase_pvname: str = ''
+    description: str
+    ampl_act_pvname: str
+    ampl_des_pvname: str
+    phase_act_pvname: str
+    phase_des_pvname: str
     accelerate_pvname: str = ''
     swrd_pvname: str = ''
     stat_pvname: str = ''
     hdsc_pvname: str = ''
     dsta_pvname: str = ''
-        
-        
+    use_des: bool = False
+    
     @property
     def bmad_name(self):
         return f'{self.name}'
@@ -78,7 +80,10 @@ class KlystronDataMap:
         """
         Returns a list of PV names needed for evaluation
         """
-        names = [self.enld_pvname, self.phase_pvname]
+        if self.use_des:
+            names = [self.ampl_des_pvname, self.phase_des_pvname]
+        else:
+            names = [self.ampl_act_pvname, self.phase_act_pvname]
         
         if self.accelerate_pvname:
             names += [self.accelerate_pvname]
@@ -93,8 +98,9 @@ class KlystronDataMap:
         """
         
         d = {}
-        
         is_accelerating = True
+        if self.sector == 26 and self.station == 3: #Always disable mothballed 26-3 klystron.
+            is_accelerating = False
         if self.accelerate_pvname != '':
             is_accelerating = (pvdata[self.accelerate_pvname] == 1)
         
@@ -114,14 +120,19 @@ class KlystronDataMap:
         # Combine these to form
         # TODO: Raise exception
         in_use = is_accelerating and is_usable
-    
-        phase = pvdata[self.phase_pvname]
+        if self.use_des:
+            phase = pvdata[self.phase_des_pvname]
+        else:
+            phase = pvdata[self.phase_act_pvname]
         if phase is None or np.isnan(phase):
             phase = 0
-            
-        enld = pvdata[self.enld_pvname]
+        
+        if self.use_des:
+            enld = pvdata[self.ampl_des_pvname]
+        else:
+            enld = pvdata[self.ampl_act_pvname]
         if enld is None or np.isnan(enld):
-            enld = 0        
+            enld = 0
         
         return dict(enld=enld, phase=phase, in_use=in_use)
         
@@ -165,7 +176,7 @@ class KlystronDataMap:
     
     
     @classmethod
-    def from_json(cls, s):
+    def from_json(cls, s, use_des=False):
         """
         Creates a new TablularDataMap from a JSON string
         """
@@ -173,7 +184,7 @@ class KlystronDataMap:
             d = json.load(open(s))
         else:
             d = json.loads(s)
-
+        d["use_des"] = use_des
         return cls(**d)    
     
     def to_json(self, file=None):
@@ -181,6 +192,7 @@ class KlystronDataMap:
         Returns a JSON string
         """
         d = self.asdict()
+        del d["use_des"] #Don't put the use_des property in the json file, it is ephemeral.
         
         if file:
             with open(file, 'w') as f:
@@ -191,7 +203,7 @@ class KlystronDataMap:
     
         
     
-def klystron_pvinfo(sector, station, beamcode=1, use_des=False):
+def klystron_pvinfo(sector, station, beamcode=1):
     """
     Customized function for creating the data to instantiate a KlystronDataMap 
     for a klystron at s given sector, station. 
@@ -209,8 +221,11 @@ def klystron_pvinfo(sector, station, beamcode=1, use_des=False):
         sector
         station
         description
-        enld_pvname
-        phase_pvname
+        ampl_act_pvname
+        ampl_des_pvname
+        phase_act_pvname
+        phase_des_pvname
+        accelerate_pvname
         
     and optionally:
         swrd_pvname
@@ -223,11 +238,10 @@ def klystron_pvinfo(sector, station, beamcode=1, use_des=False):
         
     # Defaults
     name = f'K{sector}_{station}'
-    if use_des:
-        phase = '{base}:PDES'
-    else:
-        phase = '{base}:PHAS'        
-    enld =  '{base}:ENLD'      
+    phase_des = '{base}:PDES'
+    phase_act = '{base}:PHAS'
+    ampl_act =  '{base}:ENLD'
+    ampl_des =  '{base}:ENLD'
     description = f'Klystron in sector {sector}, station {station}, beamcode {beamcode}'
     
     ss = (sector, station)
@@ -241,54 +255,48 @@ def klystron_pvinfo(sector, station, beamcode=1, use_des=False):
     if ss == (20, 6):
         description += ' for the GUN'
         base = 'GUN:IN20:1' 
-        if use_des:
-            enld = '{base}:GN1_ADES'
-            phase= '{base}:GN1_PDES'
-        else:
-            enld = '{base}:GN1_AAVG'
-            phase = '{base}:GN1_PAVG'
+        ampl_des = '{base}:GN1_ADES'
+        phase_des = '{base}:GN1_PDES'
+        ampl_act = '{base}:GN1_AAVG'
+        phase_act = '{base}:GN1_PAVG'
     elif ss == (20, 7):
         description += ' for L0A'
         base = 'ACCL:IN20:300'
-        if use_des:
-            enld = '{base}:L0A_ADES'+DS
-            phase = '{base}:L0A_PDES'+DS
-        else:
-            enld = '{base}:L0A_AACT'+DS
-            phase = '{base}:L0A_PACT'+DS
+        ampl_des = '{base}:L0A_ADES'+DS
+        phase_des = '{base}:L0A_PDES'+DS
+        ampl_act = '{base}:L0A_AACT'+DS
+        phase_act = '{base}:L0A_PACT'+DS
     elif ss == (20, 8):
         description += ' for L0B'
         base = 'ACCL:IN20:400'
-        if use_des:
-            enld = '{base}:L0B_ADES'+DS  
-            phase = '{base}:L0B_PDES'+DS
-        else:
-            enld = '{base}:L0B_AACT'+DS  
-            phase = '{base}:L0B_PACT'+DS
+        ampl_des = '{base}:L0B_ADES'+DS  
+        phase_des = '{base}:L0B_PDES'+DS
+        ampl_act = '{base}:L0B_AACT'+DS  
+        phase_act = '{base}:L0B_PACT'+DS
     elif ss == (21, 1):
         description += ' for L1S'
         base = 'ACCL:LI21:1'
-        if use_des:
-            enld = 'ACCL:LI21:1:L1S_ADES'+DS
-            phase = 'ACCL:LI21:1:L1S_PDES'+DS
-        else:
-            enld = 'ACCL:LI21:1:L1S_AACT'+DS
-            phase = 'ACCL:LI21:1:L1S_PACT'+DS
+        ampl_des = 'ACCL:LI21:1:L1S_ADES'+DS
+        phase_des = 'ACCL:LI21:1:L1S_PDES'+DS
+        ampl_act = 'ACCL:LI21:1:L1S_AACT'+DS
+        phase_act = 'ACCL:LI21:1:L1S_PACT'+DS
     elif ss == (21, 2):
         description += ' for L1X'
         base = 'ACCL:LI21:180'
-        if use_des:           
-            enld = 'ACCL:LI21:180:L1X_ADES'+DS
-            phase = 'ACCL:LI21:180:L1X_PDES'+DS
-        else:
-            enld = 'ACCL:LI21:180:L1X_AACT'+DS
-            phase = 'ACCL:LI21:180:L1X_PACT'+DS
+        ampl_des = 'ACCL:LI21:180:L1X_ADES'+DS
+        phase_des = 'ACCL:LI21:180:L1X_PDES'+DS
+        ampl_act = 'ACCL:LI21:180:L1X_AACT'+DS
+        phase_act = 'ACCL:LI21:180:L1X_PACT'+DS
     elif sector == 24 and station in (1, 2, 3):
         description += ' for special feedback'
         base =  f'KLYS:LI{sector}:{station}1'     # Normal base
-        phase = f'ACCL:LI24:{station}00:KLY_PDES' # Readback
+        phase_des = f'ACCL:LI24:{station}00:KLY_PDES' # Readback
+        phase_act = f'ACCL:LI24:{station}00:KLY_PDES' # No ACT PV available, always use DES
+
         # Add beamcode suffix
-        phase += f':SETDATA_{beamcode}' # GETDATA should be better, but missing in the archiver
+        phase_des += f':SETDATA_{beamcode}' # GETDATA should be better, but missing in the archiver
+        phase_act += f':SETDATA_{beamcode}' # GETDATA should be better, but missing in the archiver
+        
         has_fault_pvs = True
         has_beamcode = True        
         
@@ -308,15 +316,17 @@ def klystron_pvinfo(sector, station, beamcode=1, use_des=False):
     # Broken Klystron. Was a test-bed for a mothballed project to upgrade the electronics for the klystrons.    
     if ss == (26, 3):
         has_beamcode = False
-        
+        has_fault_pvs = False
         
     info = {}
     info['name'] = name
     info['sector'] = sector
     info['station'] = station
     info['description'] = description
-    info['enld_pvname']  = enld.format(base=base)
-    info['phase_pvname'] = phase.format(base=base)
+    info['ampl_act_pvname']  = ampl_act.format(base=base)
+    info['ampl_des_pvname']  = ampl_des.format(base=base)
+    info['phase_act_pvname'] = phase_act.format(base=base)
+    info['phase_des_pvname'] = phase_des.format(base=base)
     
     # For is_accelerating
     if has_beamcode:
@@ -378,7 +388,8 @@ def subbooster_pvinfo(sector, beamcode):
     dict with:
         name : str
         description : str
-        phase_pvname : str
+        phase_act_pvname : str
+        phase_des_pvname : str
         
     """
     
@@ -386,21 +397,22 @@ def subbooster_pvinfo(sector, beamcode):
     
     if sector in [21, 22, 23, 24, 25, 26, 27, 28]:
         description = 'Normal subbooster'
-        phase_pvname = f'SBST:LI{sector}:1:PHAS'
-    
+        phase_act_pvname = f'SBST:LI{sector}:1:PHAS'
+        phase_des_pvname = f'SBST:LI{sector}:1:PDES'
     elif sector in [29, 30]:
-        phase_pvname = f'ACCL:LI{sector}:0:KLY_PDES'
+        phase_act_pvname = f'ACCL:LI{sector}:0:KLY_PDES'
         
         if beamcode == 2:
-            phase_pvname += ':SETDATA_1'
-        
+            phase_act_pvname += ':SETDATA_1'
+        phase_des_pvname = phase_act_pvname
         description = f'Special feedback subbooster, beamcode {beamcode}'
         
     else:
         raise ValueError(f'No subboosters for sector {sector}')
 
     dat = dict(name=name,
-               phase_pvname=phase_pvname,
-              desciption=description)
+               phase_act_pvname=phase_act_pvname,
+               phase_des_pvname=phase_des_pvname,
+               desciption=description)
     
     return dat

@@ -51,6 +51,7 @@ class TabularDataMap:
     attribute: str = ''
     factor : str = ''
     offset : str = ''
+    use_des : bool = False
         
     # Special formats
     bmad_format : str = '{element}[{attribute}] = {value}'
