@@ -989,7 +989,7 @@
 <h2 id="setup">Setup</h2>
 <p>See <a href="../environment/">Enviromnent</a> for how to set up your environment on various systems.</p>
 <h2 id="tao-command-line">Tao command line</h2>
-<div class="highlight"><pre><span></span><code>tao -init <span class="nv">$LCLS_LATTICE</span>/bmad/models/cu_hxr/tao.init
+<div class="highlight"><pre><span></span><code>tao<span class="w"> </span>-init<span class="w"> </span><span class="nv">$LCLS_LATTICE</span>/bmad/models/cu_hxr/tao.init
 </code></pre></div>
 <h2 id="pytao">PyTao</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pytao</span> <span class="kn">import</span> <span class="n">Tao</span>
@@ -997,7 +997,7 @@
 </code></pre></div>
 <h2 id="live-or-archived-pv-data">Live or archived PV data</h2>
 <p>Use the <a href="../live/get-lcls-live/">get-lcls-live</a> command line tool to extract PV data from EPICS or the archiver, and form the appropriate tao commands:</p>
-<div class="highlight"><pre><span></span><code>get-lcls-live --beampath cu_hxr --source epics --tao &gt; cmds.tao
+<div class="highlight"><pre><span></span><code>get-lcls-live<span class="w"> </span>--beampath<span class="w"> </span>cu_hxr<span class="w"> </span>--source<span class="w"> </span>epics<span class="w"> </span>--tao<span class="w"> </span>&gt;<span class="w"> </span>cmds.tao
 </code></pre></div>
 
 
