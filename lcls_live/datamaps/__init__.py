@@ -33,7 +33,6 @@ def get_datamaps(config_name: str, use_des: Union[bool, list[str]] = False):
     config_dms = ALL_DATAMAPS[config_name]
     loaded_dms = {}
     for dm in config_dms:
-        print(dm["name"])
         if dm["class"] == "tabular":
             d = json.loads(dm["data"])
             data = pd.read_json(d.pop('data'))
