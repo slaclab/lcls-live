@@ -142,7 +142,7 @@ def cavity_amplitude_pvinfo(tao, ele_name, model):
         d['bmad_attribute'] = 'voltage'      
         d['bmad_unit'] = 'V'        
     
-    # d['pvname'] = ??? for setting
+    d['pvname'] = device+":ADES"
     d['pvname_rbv'] = device+suffix_rbv
     d['bmad_factor'] = bmad_factor
                              
@@ -242,12 +242,13 @@ def build_corrector_dm(tao):
 
     df = pd.DataFrame()
     df['bmad_name'] = pd.Series(eles)
-    df['pvname'] = [ tao.ele_head(ele)['alias']+':BACT' for ele in df['bmad_name' ] ]
+    df['pvname'] = [ tao.ele_head(ele)['alias']+':BDES' for ele in df['bmad_name' ] ]
+    df['pvname_rbv'] = [ tao.ele_head(ele)['alias']+':BACT' for ele in df['bmad_name' ] ]
     df['bmad_factor'] = -1/10 # kG*m -> T (with the correct sign)
     df['bmad_attribute'] = 'bl_kick'
     df['bmad_unit'] = 'T*m'
 
-    dm = TabularDataMap(df, pvname='pvname', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')    
+    dm = TabularDataMap(df, pvname='pvname_rbv', element='bmad_name', attribute = 'bmad_attribute', factor='bmad_factor')    
     
     return dm
 
@@ -553,7 +554,7 @@ def build_subbooster_dm(model):
     df = pd.DataFrame(subboosters)    
 
     # Make the DataMap object, identifying the columns to be used
-    dm = TabularDataMap(df, pvname='phase_pvname', element='bmad_name', attribute='bmad_attribute')
+    dm = TabularDataMap(df, pvname='phase_act_pvname', element='bmad_name', attribute='bmad_attribute')
     return dm
 
 
