@@ -554,7 +554,7 @@ def build_subbooster_dm(model):
     df = pd.DataFrame(subboosters)    
 
     # Make the DataMap object, identifying the columns to be used
-    dm = TabularDataMap(df, pvname='phase_act_pvname', element='bmad_name', attribute='bmad_attribute')
+    dm = TabularDataMap(df, pvname='pvname_rbv', element='bmad_name', attribute='bmad_attribute')
     return dm
 
 

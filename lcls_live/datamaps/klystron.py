@@ -388,8 +388,8 @@ def subbooster_pvinfo(sector, beamcode):
     dict with:
         name : str
         description : str
-        phase_act_pvname : str
-        phase_des_pvname : str
+        pvname_rbv : str
+        pvname : str
         
     """
     
@@ -411,8 +411,8 @@ def subbooster_pvinfo(sector, beamcode):
         raise ValueError(f'No subboosters for sector {sector}')
 
     dat = dict(name=name,
-               phase_act_pvname=phase_act_pvname,
-               phase_des_pvname=phase_des_pvname,
+               pvname_rbv=phase_act_pvname,
+               pvname=phase_des_pvname,
                desciption=description)
     
     return dat
