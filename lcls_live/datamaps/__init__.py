@@ -5,14 +5,14 @@ from lcls_live import data_dir
 import json
 import pandas as pd
 import os
-from typing import Union
+from typing import Union, List
 
 # Parse all 
 with open(os.path.join(data_dir, 'datamaps_master.json'), "r") as f:
      ALL_DATAMAPS = json.load(f)
 
 
-def get_datamaps(config_name: str, use_des: Union[bool, list[str]] = False):
+def get_datamaps(config_name: str, use_des: Union[bool, List[str]] = False):
     """ Utility function for building data maps given a configuration file.
 
     Args:
