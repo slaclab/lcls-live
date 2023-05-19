@@ -1,3 +1,5 @@
+urllib3<2
+pysocks
 pandas
 requests
 pyepics
