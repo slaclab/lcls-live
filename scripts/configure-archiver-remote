@@ -5,7 +5,7 @@ if [[ -z "$SLAC_USERNAME" ]]; then
 fi
 
 if [[ -z "$SLAC_ARCHIVER_HOST" ]]; then
-  echo "\$ARCHIVER_HOST is not set."
+  echo "\$SLAC_ARCHIVER_HOST is not set."
 fi
 
 
