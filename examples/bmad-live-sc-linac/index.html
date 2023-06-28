@@ -15,7 +15,7 @@
         <link rel="next" href="../LCLS_beam_tracking/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -1941,8 +1941,8 @@ Licensed under the Apache License, Version 2.0.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div id="cell-id=c8629902-88b6-4f74-9352-9ed5a8dcef83" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div id="cell-id=2133c8f3" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1962,19 +1962,13 @@ Licensed under the Apache License, Version 2.0.
                     </div>
                 </clipboard-copy>
             </div>
-            <div class="highlight-ipynb hl-python "><pre><span></span><span class="c1"># Useful for debugging</span>
-<span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
-<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
-
-<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="kn">import</span> <span class="nn">lcls_live</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="vm">__file__</span>
 </pre></div>
-<div id="cell-1" class="clipboard-copy-txt"># Useful for debugging
-%load_ext autoreload
-%autoreload 2
-
-%config InlineBackend.figure_format = 'retina'
-%matplotlib inline</div>
+<div id="cell-1" class="clipboard-copy-txt">import lcls_live
+import os
+os.__file__</div>
         
         </div>
     </div>
@@ -1982,9 +1976,32 @@ Licensed under the Apache License, Version 2.0.
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;/Users/mpe/miniconda3/envs/lcls-live-dev/lib/python3.8/os.py&#39;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div id="cell-id=e39b4706-f357-4ebc-9adc-55a33b376220" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=c8629902-88b6-4f74-9352-9ed5a8dcef83" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2004,6 +2021,48 @@ Licensed under the Apache License, Version 2.0.
                     </div>
                 </clipboard-copy>
             </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="c1"># Useful for debugging</span>
+<span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
+
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</pre></div>
+<div id="cell-2" class="clipboard-copy-txt"># Useful for debugging
+%load_ext autoreload
+%autoreload 2
+
+%config InlineBackend.figure_format = 'retina'
+%matplotlib inline</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=e39b4706-f357-4ebc-9adc-55a33b376220" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-3">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
             <div class="highlight-ipynb hl-python "><pre><span></span><span class="kn">from</span> <span class="nn">lcls_live.datamaps</span> <span class="kn">import</span> <span class="n">get_datamaps</span>
 <span class="kn">from</span> <span class="nn">lcls_live.archiver</span> <span class="kn">import</span> <span class="n">lcls_archiver_restore</span>
 
@@ -2014,7 +2073,7 @@ Licensed under the Apache License, Version 2.0.
 
 <span class="kn">import</span> <span class="nn">os</span>
 </pre></div>
-<div id="cell-2" class="clipboard-copy-txt">from lcls_live.datamaps import get_datamaps
+<div id="cell-3" class="clipboard-copy-txt">from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
 
 from lcls_live.tools import isotime
@@ -2037,12 +2096,12 @@ import os</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-3">
+                <clipboard-copy for="cell-4">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2054,16 +2113,16 @@ import os</div>
             </div>
             <div class="highlight-ipynb hl-python "><pre><span></span><span class="c1"># Pick a model and slice</span>
 
-<span class="n">MODEL</span> <span class="o">=</span> <span class="s1">&#39;sc_diag0&#39;</span> <span class="c1"># or sc_diag0 or sc_inj</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="s1">&#39;sc_bsyd&#39;</span> <span class="c1"># or sc_diag0 or sc_inj</span>
 
 <span class="n">BEGELE</span> <span class="o">=</span> <span class="s1">&#39;BEGINNING&#39;</span>
 <span class="c1">#ENDELE = &#39;OTR0H04&#39;</span>
 <span class="c1">#ENDELE = &#39;ENDCOL0&#39;</span>
 <span class="n">ENDELE</span> <span class="o">=</span> <span class="s1">&#39;END&#39;</span>
 </pre></div>
-<div id="cell-3" class="clipboard-copy-txt"># Pick a model and slice
+<div id="cell-4" class="clipboard-copy-txt"># Pick a model and slice
 
-MODEL = 'sc_diag0' # or sc_diag0 or sc_inj
+MODEL = 'sc_bsyd' # or sc_diag0 or sc_inj
 
 BEGELE = 'BEGINNING'
 #ENDELE = 'OTR0H04'
@@ -2094,12 +2153,12 @@ ENDELE = 'END'</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-4">
+                <clipboard-copy for="cell-5">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2112,7 +2171,7 @@ ENDELE = 'END'</div>
             <div class="highlight-ipynb hl-python "><pre><span></span><span class="kn">from</span> <span class="nn">pytao</span> <span class="kn">import</span> <span class="n">Tao</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
-<div id="cell-4" class="clipboard-copy-txt">from pytao import Tao
+<div id="cell-5" class="clipboard-copy-txt">from pytao import Tao
 import pandas as pd</div>
         
         </div>
@@ -2128,12 +2187,12 @@ import pandas as pd</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-5">
+                <clipboard-copy for="cell-6">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2168,7 +2227,7 @@ import pandas as pd</div>
 <span class="n">devices</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;alias&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
 <span class="c1">#devices[&#39;name alias s&#39;.split()]</span>
 </pre></div>
-<div id="cell-5" class="clipboard-copy-txt">tao = Tao(f'-init $LCLS_LATTICE/bmad/models/{MODEL}/tao.init  -slice  {BEGELE}:{ENDELE}')
+<div id="cell-6" class="clipboard-copy-txt">tao = Tao(f'-init $LCLS_LATTICE/bmad/models/{MODEL}/tao.init  -slice  {BEGELE}:{ENDELE}')
 tao.cmd('place floor bpm_orbit')
 tao.cmd('place middle energy')
 tao.cmd('sc floor -10 10')
@@ -2200,6 +2259,61 @@ devices = df[df['alias'] != '']
 </div>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div id="cell-id=9b8951e3" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-7">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;x_scale * 0 800&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;sho var&#39;</span><span class="p">))</span>
+</pre></div>
+<div id="cell-7" class="clipboard-copy-txt">tao.cmd('x_scale * 0 800')
+print(tao.cmd('sho var'))</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[&#39;       Name                                      Using for Optimization&#39;, &#39;    begtwiss[1:6]&#39;, &#39;    gradient_L0[1:8]&#39;, &#39;    phi0_L0[1:8]&#39;, &#39;    q_HTR[1:8]&#39;, &#39;    q_L1[1:5]&#39;, &#39;    q_L2[1:4]&#39;, &#39;    q_L3[1:4]&#39;, &#39;    linac_phase[1:4]&#39;, &#39;    q_COL1[1:4]&#39;, &#39;    q_EMIT2[1:4]&#39;, &#39;    bc1[1:1]&#39;, &#39;    bc2[1:1]&#39;, &#39;    xcor[1:93]&#39;, &#39;    ycor[1:93]&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
 </div>
 <div id="cell-id=0f16a169-96d7-42b4-85a9-edd2694a0d3d" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -2217,12 +2331,12 @@ devices = df[df['alias'] != '']
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-6">
+                <clipboard-copy for="cell-8">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2241,7 +2355,7 @@ devices = df[df['alias'] != '']
     <span class="n">dm2</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ix</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">dm2</span>
 </pre></div>
-<div id="cell-6" class="clipboard-copy-txt">from copy import deepcopy
+<div id="cell-8" class="clipboard-copy-txt">from copy import deepcopy
 def filter_datamap(dm, bmad_names):
     bnames = dm.data['bmad_name'] 
     bmad_names = set(bmad_names)
@@ -2263,12 +2377,12 @@ def filter_datamap(dm, bmad_names):
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-7">
+                <clipboard-copy for="cell-9">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2281,7 +2395,7 @@ def filter_datamap(dm, bmad_names):
             <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">DM0</span> <span class="o">=</span> <span class="n">get_datamaps</span><span class="p">(</span><span class="n">MODEL</span><span class="p">)</span>
 <span class="n">DM0</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
-<div id="cell-7" class="clipboard-copy-txt">DM0 = get_datamaps(MODEL)
+<div id="cell-9" class="clipboard-copy-txt">DM0 = get_datamaps(MODEL)
 DM0.keys()</div>
         
         </div>
@@ -2298,7 +2412,7 @@ DM0.keys()</div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
 
 
@@ -2314,18 +2428,18 @@ DM0.keys()</div>
 </div>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div id="cell-id=456e089d-38f1-4ec0-9b90-ff8478019b38" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=456e089d-38f1-4ec0-9b90-ff8478019b38" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-8">
+                <clipboard-copy for="cell-10">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2349,9 +2463,9 @@ DM0.keys()</div>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">DM</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">filter_datamap</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">good_names</span><span class="p">)</span>
 
-<span class="n">DM</span><span class="p">[</span><span class="s1">&#39;cavities&#39;</span><span class="p">]</span>
+<span class="n">DM</span><span class="p">[</span><span class="s1">&#39;cavities&#39;</span><span class="p">];</span>
 </pre></div>
-<div id="cell-8" class="clipboard-copy-txt">good_names = set(df['name'])
+<div id="cell-10" class="clipboard-copy-txt">good_names = set(df['name'])
 bad_eles = [] # any bad eles
 
 for ele in bad_eles:
@@ -2365,73 +2479,12 @@ for name, dm in DM0.items():
     else:
         DM[name] = filter_datamap(dm, good_names)
 
-DM['cavities']</div>
+DM['cavities'];</div>
         
         </div>
     </div>
 
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>TabularDataMap(data=   bmad_name              pvname_rbv              pvname     bmad_factor  \
-0    CAVL011  ACCL:L0B:0110:PACTMEAN  ACCL:L0B:0110:PDES        0.002778   
-1    CAVL012  ACCL:L0B:0120:PACTMEAN  ACCL:L0B:0120:PDES        0.002778   
-2    CAVL013  ACCL:L0B:0130:PACTMEAN  ACCL:L0B:0130:PDES        0.002778   
-3    CAVL014  ACCL:L0B:0140:PACTMEAN  ACCL:L0B:0140:PDES        0.002778   
-4    CAVL015  ACCL:L0B:0150:PACTMEAN  ACCL:L0B:0150:PDES        0.002778   
-5    CAVL016  ACCL:L0B:0160:PACTMEAN  ACCL:L0B:0160:PDES        0.002778   
-6    CAVL017  ACCL:L0B:0170:PACTMEAN  ACCL:L0B:0170:PDES        0.002778   
-7    CAVL018  ACCL:L0B:0180:PACTMEAN  ACCL:L0B:0180:PDES        0.002778   
-8      BUN1B  ACCL:GUNB:455:PACT_AVG  ACCL:GUNB:455:PDES        0.002778   
-9    CAVL011  ACCL:L0B:0110:AACTMEAN                None  1000000.000000   
-10   CAVL012  ACCL:L0B:0120:AACTMEAN                None  1000000.000000   
-11   CAVL013  ACCL:L0B:0130:AACTMEAN                None  1000000.000000   
-12   CAVL014  ACCL:L0B:0140:AACTMEAN                None  1000000.000000   
-13   CAVL015  ACCL:L0B:0150:AACTMEAN                None  1000000.000000   
-14   CAVL016  ACCL:L0B:0160:AACTMEAN                None  1000000.000000   
-15   CAVL017  ACCL:L0B:0170:AACTMEAN                None  1000000.000000   
-16   CAVL018  ACCL:L0B:0180:AACTMEAN                None  1000000.000000   
-17     BUN1B  ACCL:GUNB:455:AACT_AVG                None  1000000.000000   
-
-   bmad_attribute bmad_unit  
-0            phi0       2pi  
-1            phi0       2pi  
-2            phi0       2pi  
-3            phi0       2pi  
-4            phi0       2pi  
-5            phi0       2pi  
-6            phi0       2pi  
-7            phi0       2pi  
-8            phi0       2pi  
-9         voltage         V  
-10        voltage         V  
-11        voltage         V  
-12        voltage         V  
-13        voltage         V  
-14        voltage         V  
-15        voltage         V  
-16        voltage         V  
-17        voltage         V  , pvname=&#39;pvname_rbv&#39;, element=&#39;bmad_name&#39;, attribute=&#39;bmad_attribute&#39;, factor=&#39;bmad_factor&#39;, offset=&#39;&#39;, bmad_format=&#39;{element}[{attribute}] = {value}&#39;, tao_format=&#39;set ele {element} {attribute} = {value}&#39;)</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -2441,12 +2494,12 @@ DM['cavities']</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-9">
+                <clipboard-copy for="cell-11">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2464,7 +2517,7 @@ DM['cavities']</div>
     <span class="c1">#&#39;quad&#39;,</span>
 <span class="p">]</span>
 </pre></div>
-<div id="cell-9" class="clipboard-copy-txt"># datamaps to exclude
+<div id="cell-11" class="clipboard-copy-txt"># datamaps to exclude
 DENYLIST = [
     #'bpms',
    # 'cavities',
@@ -2485,12 +2538,12 @@ DENYLIST = [
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-10">
+                <clipboard-copy for="cell-12">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2510,7 +2563,7 @@ DENYLIST = [
 <span class="nb">len</span><span class="p">(</span><span class="n">PVLIST</span><span class="p">)</span>
 <span class="n">PVLIST</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
-<div id="cell-10" class="clipboard-copy-txt"># PVs needed
+<div id="cell-12" class="clipboard-copy-txt"># PVs needed
 PVLIST =  []
 for name, dm in DM.items():
     if name in DENYLIST:
@@ -2534,28 +2587,500 @@ PVLIST[0:10]</div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&#39;BPMS:HTR:760:Y&#39;,
- &#39;BPMS:HTR:830:Y&#39;,
- &#39;BPMS:DIAG0:285:X&#39;,
- &#39;BPMS:COL0:135:X&#39;,
- &#39;BPMS:DIAG0:330:X&#39;,
- &#39;QUAD:HTR:140:BACT&#39;,
- &#39;BPMS:GUNB:314:TMIT&#39;,
- &#39;BPMS:HTR:980:X&#39;,
- &#39;BPMS:DIAG0:270:TMIT&#39;,
- &#39;BPMS:DIAG0:520:TMIT&#39;]</pre>
+<pre>[&#39;BPMS:EMIT2:150:X&#39;,
+ &#39;ACCL:L2B:0630:AACTMEAN&#39;,
+ &#39;ACCL:L2B:0770:AACTMEAN&#39;,
+ &#39;BPMS:HTR:760:X&#39;,
+ &#39;ACCL:L3B:3530:PACTMEAN&#39;,
+ &#39;ACCL:L2B:1250:PACTMEAN&#39;,
+ &#39;ACCL:L2B:1470:PACTMEAN&#39;,
+ &#39;ACCL:L1B:H220:PACTMEAN&#39;,
+ &#39;ACCL:L3B:2080:AACTMEAN&#39;,
+ &#39;ACCL:L3B:1970:AACTMEAN&#39;]</pre>
 </div>
 
 </div>
 
 </div>
 
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div id="cell-id=62a4379d" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-13">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;http_proxy&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;socks5h://localhost:8080&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HTTPS_PROXY&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;socks5h://localhost:8080&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;ALL_PROXY&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;socks5h://localhost:8080&#39;</span>
+
+<span class="n">PVDATA</span><span class="o">=</span><span class="n">lcls_archiver_restore</span><span class="p">(</span><span class="n">PVLIST</span><span class="p">,</span> <span class="s1">&#39;2023-06-08T23:09:50.000000-07:00&#39;</span><span class="p">)</span>
+</pre></div>
+<div id="cell-13" class="clipboard-copy-txt">os.environ['http_proxy']='socks5h://localhost:8080'
+os.environ['HTTPS_PROXY']='socks5h://localhost:8080'
+os.environ['ALL_PROXY']='socks5h://localhost:8080'
+
+PVDATA=lcls_archiver_restore(PVLIST, '2023-06-08T23:09:50.000000-07:00')</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Requesting: http://lcls-archapp.slac.stanford.edu/retrieval/data/getDataAtTime?at=2023-06-08T23:09:50.000000-07:00&amp;includeProxies=true
+Warning: Missing PV: BPMS:EMIT2:150:X
+Warning: Missing PV: BPMS:HTR:760:X
+Warning: Missing PV: BPMS:DOG:740:X
+Warning: Missing PV: BPMS:SPD:955:TMIT
+Warning: Missing PV: BPMS:DOG:575:Y
+Warning: Missing PV: BPMS:BPN16:400:Y
+Warning: Missing PV: BPMS:COL1:120:Y
+Warning: Missing PV: BPMS:DOG:120:TMIT
+Warning: Missing PV: BPMS:EXT:748:X
+Warning: Missing PV: BPMS:BPN24:400:Y
+Warning: Missing PV: BPMS:SLTD:895:Y
+Warning: Missing PV: BPMS:DOG:355:TMIT
+Warning: Missing PV: BPMS:DOG:280:X
+Warning: Missing PV: BPMS:BPN22:400:TMIT
+Warning: Missing PV: BPMS:L3B:1783:Y
+Warning: Missing PV: BPMS:BPN26:400:TMIT
+Warning: Missing PV: BPMS:L2B:1383:X
+Warning: Missing PV: BPMS:L2B:1183:Y
+Warning: Missing PV: BPMS:BPN13:400:Y
+Warning: Missing PV: BPMS:L3B:1883:TMIT
+Warning: Missing PV: BPMS:BC1B:125:Y
+Warning: Missing PV: BPMS:L3B:3383:Y
+Warning: Missing PV: BPMS:DOG:230:Y
+Warning: Missing PV: BPMS:BPN26:400:X
+Warning: Missing PV: BPMS:L3B:2483:Y
+Warning: Missing PV: BPMS:DOG:250:TMIT
+Warning: Missing PV: BPMS:COL0:400:Y
+Warning: Missing PV: BPMS:L3B:2283:Y
+Warning: Missing PV: BPMS:SLTD:625:Y
+Warning: Missing PV: BPMS:COL1:800:Y
+Warning: Missing PV: BPMS:L3B:2383:X
+Warning: Missing PV: BPMS:BPN27:400:TMIT
+Warning: Missing PV: BPMS:HTR:540:X
+Warning: Missing PV: BPMS:BPN15:400:X
+Warning: Missing PV: BPMS:BPN15:400:Y
+Warning: Missing PV: ACCL:GUNB:455:AACT_AVG
+Warning: Missing PV: BPMS:BPN17:400:Y
+Warning: Missing PV: BPMS:L2B:0883:TMIT
+Warning: Missing PV: BPMS:COL0:940:X
+Warning: Missing PV: BPMS:L1B:0283:X
+Warning: Missing PV: BPMS:DOG:335:X
+Warning: Missing PV: BPMS:BPN19:400:X
+Warning: Missing PV: BPMS:BC2B:530:Y
+Warning: Missing PV: BPMS:HTR:960:X
+Warning: Missing PV: BPMS:DOG:200:X
+Warning: Missing PV: BPMS:DOG:740:TMIT
+Warning: Missing PV: BPMS:COL0:800:X
+Warning: Missing PV: BPMS:L3B:2083:X
+Warning: Missing PV: BPMS:L3B:2883:TMIT
+Warning: Missing PV: BPMS:L0B:0183:X
+Warning: Missing PV: BPMS:BPN28:400:X
+Warning: Missing PV: BPMS:L3B:2183:TMIT
+Warning: Missing PV: BPMS:BPN14:400:TMIT
+Warning: Missing PV: BPMS:L2B:0483:X
+Warning: Missing PV: BPMS:BPN23:400:TMIT
+Warning: Missing PV: BPMS:EMIT2:900:TMIT
+Warning: Missing PV: BPMS:HTR:980:X
+Warning: Missing PV: BPMS:DOG:150:X
+Warning: Missing PV: BPMS:L3B:2183:X
+Warning: Missing PV: BPMS:COL0:320:X
+Warning: Missing PV: BPMS:L3B:3483:Y
+Warning: Missing PV: BPMS:L2B:0783:Y
+Warning: Missing PV: BPMS:COL1:880:Y
+Warning: Missing PV: BPMS:SPD:525:TMIT
+Warning: Missing PV: BPMS:L2B:0583:TMIT
+Warning: Missing PV: BPMS:COL0:940:Y
+Warning: Missing PV: BPMS:COL1:280:Y
+Warning: Missing PV: BPMS:SPD:955:X
+Warning: Missing PV: BPMS:HTR:320:Y
+Warning: Missing PV: BPMS:SPD:420:TMIT
+Warning: Missing PV: BPMS:EMIT2:300:Y
+Warning: Missing PV: BPMS:L2B:0483:Y
+Warning: Missing PV: BPMS:BPN25:400:Y
+Warning: Missing PV: BPMS:DOG:135:TMIT
+Warning: Missing PV: BPMS:COL0:400:X
+Warning: Missing PV: BPMS:BPN18:400:X
+Warning: Missing PV: BPMS:BPN18:400:Y
+Warning: Missing PV: BPMS:COL1:640:TMIT
+Warning: Missing PV: BPMS:BPN20:400:Y
+Warning: Missing PV: BPMS:COL1:560:Y
+Warning: Missing PV: BPMS:DOG:355:Y
+Warning: Missing PV: BPMS:L3B:3183:X
+Warning: Missing PV: BPMS:EXT:351:X
+Warning: Missing PV: BPMS:L2B:0983:TMIT
+Warning: Missing PV: BPMS:COL1:640:Y
+Warning: Missing PV: BPMS:L2B:1583:Y
+Warning: Missing PV: BPMS:L1B:H283:TMIT
+Warning: Missing PV: BPMS:DOG:120:X
+Warning: Missing PV: BPMS:COL1:960:TMIT
+Warning: Missing PV: BPMS:L3B:1783:X
+Warning: Missing PV: BPMS:COL1:260:X
+Warning: Missing PV: BPMS:COL0:880:X
+Warning: Missing PV: BPMS:L2B:1083:Y
+Warning: Missing PV: BPMS:L2B:0683:X
+Warning: Missing PV: BPMS:L3B:2583:TMIT
+Warning: Missing PV: BPMS:HTR:540:Y
+Warning: Missing PV: BPMS:COL0:135:TMIT
+Warning: Missing PV: BPMS:COL0:720:TMIT
+Warning: Missing PV: BPMS:COL0:720:X
+Warning: Missing PV: BPMS:EMIT2:150:Y
+Warning: Missing PV: BPMS:L3B:1883:X
+Warning: Missing PV: BPMS:COL1:720:Y
+Warning: Missing PV: BPMS:SLTD:895:X
+Warning: Missing PV: BPMS:COL1:120:TMIT
+Warning: Missing PV: BPMS:COL0:280:TMIT
+Warning: Missing PV: BPMS:DOG:230:X
+Warning: Missing PV: BPMS:HTR:365:Y
+Warning: Missing PV: BPMS:EXT:748:Y
+Warning: Missing PV: BPMS:L3B:2783:X
+Warning: Missing PV: BPMS:COL0:560:Y
+Warning: Missing PV: BPMS:BPN17:400:X
+Warning: Missing PV: BPMS:COL0:480:Y
+Warning: Missing PV: BPMS:L3B:2783:Y
+Warning: Missing PV: BPMS:COL0:640:X
+Warning: Missing PV: BPMS:BPN20:400:X
+Warning: Missing PV: BPMS:L3B:3383:X
+Warning: Missing PV: BPMS:BPN15:400:TMIT
+Warning: Missing PV: BPMS:DOG:200:TMIT
+Warning: Missing PV: BPMS:COL0:880:TMIT
+Warning: Missing PV: ACCL:GUNB:455:PACT_AVG
+Warning: Missing PV: BPMS:BC2B:150:X
+Warning: Missing PV: BPMS:DOG:405:X
+Warning: Missing PV: BPMS:BPN25:400:X
+Warning: Missing PV: BPMS:COL0:720:Y
+Warning: Missing PV: BPMS:COL0:260:TMIT
+Warning: Missing PV: BPMS:L3B:2683:X
+Warning: Missing PV: BPMS:L3B:2083:Y
+Warning: Missing PV: BPMS:COL0:240:TMIT
+Warning: Missing PV: BPMS:COL1:960:X
+Warning: Missing PV: BPMS:L3B:2983:TMIT
+Warning: Missing PV: BPMS:L3B:2383:Y
+Warning: Missing PV: BPMS:L2B:1283:Y
+Warning: Missing PV: BPMS:L3B:1683:Y
+Warning: Missing PV: BPMS:COL1:320:Y
+Warning: Missing PV: BPMS:SPD:135:Y
+Warning: Missing PV: BPMS:L2B:0783:TMIT
+Warning: Missing PV: BPMS:BPN28:400:Y
+Warning: Missing PV: BPMS:COL1:260:Y
+Warning: Missing PV: BPMS:COL0:135:Y
+Warning: Missing PV: BPMS:COL1:800:TMIT
+Warning: Missing PV: BPMS:SLTD:625:X
+Warning: Missing PV: BPMS:L2B:0883:Y
+Warning: Missing PV: BPMS:BPN13:400:X
+Warning: Missing PV: BPMS:HTR:760:TMIT
+Warning: Missing PV: BPMS:DOG:180:X
+Warning: Missing PV: BPMS:L1B:H183:TMIT
+Warning: Missing PV: BPMS:BC2B:530:TMIT
+Warning: Missing PV: BPMS:L3B:2983:X
+Warning: Missing PV: BPMS:L2B:0983:Y
+Warning: Missing PV: BPMS:L2B:0583:Y
+Warning: Missing PV: BPMS:L2B:1083:TMIT
+Warning: Missing PV: BPMS:L3B:2483:TMIT
+Warning: Missing PV: BPMS:L2B:0583:X
+Warning: Missing PV: BPMS:COL1:260:TMIT
+Warning: Missing PV: BPMS:HTR:320:TMIT
+Warning: Missing PV: BPMS:L1B:0383:Y
+Warning: Missing PV: BPMS:SPD:570:TMIT
+Warning: Missing PV: BPMS:COL0:240:Y
+Warning: Missing PV: BPMS:HTR:120:X
+Warning: Missing PV: BPMS:SPD:135:TMIT
+Warning: Missing PV: BPMS:COL0:480:TMIT
+Warning: Missing PV: BPMS:L2B:1583:TMIT
+Warning: Missing PV: BPMS:L3B:3283:Y
+Warning: Missing PV: BPMS:COL0:640:TMIT
+Warning: Missing PV: BPMS:COL0:880:Y
+Warning: Missing PV: BPMS:COL1:280:X
+Warning: Missing PV: BPMS:SPD:420:X
+Warning: Missing PV: BPMS:SPD:525:Y
+Warning: Missing PV: BPMS:COL0:560:TMIT
+Warning: Missing PV: BPMS:BC2B:530:X
+Warning: Missing PV: BPMS:BPN28:200:X
+Warning: Missing PV: BPMS:BPN19:400:TMIT
+Warning: Missing PV: BPMS:HTR:320:X
+Warning: Missing PV: BPMS:BPN21:400:X
+Warning: Missing PV: BPMS:HTR:960:Y
+Warning: Missing PV: BPMS:DOG:910:Y
+Warning: Missing PV: BPMS:L1B:H183:Y
+Warning: Missing PV: BPMS:L0B:0183:Y
+Warning: Missing PV: BPMS:HTR:980:TMIT
+Warning: Missing PV: BPMS:EMIT2:300:TMIT
+Warning: Missing PV: BPMS:L3B:1683:TMIT
+Warning: Missing PV: BPMS:BC1B:440:X
+Warning: Missing PV: BPMS:L3B:2083:TMIT
+Warning: Missing PV: BPMS:COL1:560:X
+Warning: Missing PV: BPMS:BPN20:400:TMIT
+Warning: Missing PV: BPMS:BPN25:400:TMIT
+Warning: Missing PV: BPMS:L1B:H283:X
+Warning: Missing PV: BPMS:DOG:165:X
+Warning: Missing PV: BPMS:L3B:1983:Y
+Warning: Missing PV: BPMS:COL0:480:X
+Warning: Missing PV: BPMS:HTR:120:Y
+Warning: Missing PV: BPMS:HTR:960:TMIT
+Warning: Missing PV: BPMS:EXT:351:Y
+Warning: Missing PV: BPMS:L1B:0383:TMIT
+Warning: Missing PV: BPMS:L3B:1983:X
+Warning: Missing PV: BPMS:BPN14:400:X
+Warning: Missing PV: BPMS:HTR:860:Y
+Warning: Missing PV: BPMS:HTR:460:TMIT
+Warning: Missing PV: BPMS:L2B:0783:X
+Warning: Missing PV: BPMS:EMIT2:800:X
+Warning: Missing PV: BPMS:BPN19:400:Y
+Warning: Missing PV: BPMS:BPN26:400:Y
+Warning: Missing PV: BPMS:COL1:400:X
+Warning: Missing PV: BPMS:L3B:1883:Y
+Warning: Missing PV: BPMS:BPN16:400:TMIT
+Warning: Missing PV: BPMS:L3B:2183:Y
+Warning: Missing PV: BPMS:L3B:3583:TMIT
+Warning: Missing PV: BPMS:DOG:355:X
+Warning: Missing PV: BPMS:COL1:720:X
+Warning: Missing PV: BPMS:COL0:260:X
+Warning: Missing PV: BPMS:DOG:150:TMIT
+Warning: Missing PV: BPMS:L2B:1183:X
+Warning: Missing PV: BPMS:BC2B:150:Y
+Warning: Missing PV: BPMS:L2B:1083:X
+Warning: Missing PV: BPMS:COL1:880:TMIT
+Warning: Missing PV: BPMS:DOG:215:X
+Warning: Missing PV: BPMS:L1B:0283:Y
+Warning: Missing PV: BPMS:BPN17:400:TMIT
+Warning: Missing PV: BPMS:SPD:340:TMIT
+Warning: Missing PV: BPMS:SPD:340:Y
+Warning: Missing PV: BPMS:L2B:1383:TMIT
+Warning: Missing PV: BPMS:L2B:1383:Y
+Warning: Missing PV: BPMS:L3B:2683:Y
+Warning: Missing PV: BPMS:BPN22:400:Y
+Warning: Missing PV: BPMS:L1B:H183:X
+Warning: Missing PV: BPMS:HTR:460:X
+Warning: Missing PV: BPMS:BC1B:125:X
+Warning: Missing PV: BPMS:DOG:135:Y
+Warning: Missing PV: BPMS:COL1:960:Y
+Warning: Missing PV: BPMS:COL0:800:Y
+Warning: Missing PV: BPMS:L2B:0883:X
+Warning: Missing PV: BPMS:BPN27:400:X
+Warning: Missing PV: BPMS:L2B:1483:X
+Warning: Missing PV: BPMS:L3B:3183:TMIT
+Warning: Missing PV: BPMS:SPD:700:X
+Warning: Missing PV: BPMS:L3B:2883:X
+Warning: Missing PV: BPMS:COL1:720:TMIT
+Warning: Missing PV: BPMS:SPD:570:Y
+Warning: Missing PV: BPMS:L3B:2483:X
+Warning: Missing PV: BPMS:L3B:3083:X
+Warning: Missing PV: BPMS:BC1B:440:Y
+Warning: Missing PV: BPMS:COL0:940:TMIT
+Warning: Missing PV: BPMS:L3B:2783:TMIT
+Warning: Missing PV: BPMS:BPN28:200:Y
+Warning: Missing PV: BPMS:COL1:560:TMIT
+Warning: Missing PV: BPMS:COL0:800:TMIT
+Warning: Missing PV: BPMS:DOG:280:Y
+Warning: Missing PV: BPMS:COL1:880:X
+Warning: Missing PV: BPMS:BPN28:400:TMIT
+Warning: Missing PV: BPMS:HTR:365:X
+Warning: Missing PV: BPMS:L3B:2583:Y
+Warning: Missing PV: BPMS:EMIT2:300:X
+Warning: Missing PV: BPMS:L3B:3583:Y
+Warning: Missing PV: BPMS:SPD:135:X
+Warning: Missing PV: BPMS:HTR:830:Y
+Warning: Missing PV: BPMS:L3B:2283:X
+Warning: Missing PV: BPMS:L2B:1283:TMIT
+Warning: Missing PV: BPMS:COL1:320:X
+Warning: Missing PV: BPMS:L3B:2583:X
+Warning: Missing PV: BPMS:COL0:260:Y
+Warning: Missing PV: BPMS:SPD:255:X
+Warning: Missing PV: BPMS:COL1:640:X
+Warning: Missing PV: BPMS:BPN24:400:X
+Warning: Missing PV: BPMS:EMIT2:800:TMIT
+Warning: Missing PV: BPMS:EMIT2:800:Y
+Warning: Missing PV: BPMS:L2B:1483:Y
+Warning: Missing PV: BPMS:SPD:570:X
+Warning: Missing PV: BPMS:COL1:480:X
+Warning: Missing PV: BPMS:DOG:335:TMIT
+Warning: Missing PV: BPMS:L3B:3583:X
+Warning: Missing PV: BPMS:EMIT2:900:X
+Warning: Missing PV: BPMS:DOG:910:TMIT
+Warning: Missing PV: BPMS:L3B:3183:Y
+Warning: Missing PV: BPMS:COL1:400:Y
+Warning: Missing PV: BPMS:DOG:180:TMIT
+Warning: Missing PV: BPMS:L3B:2983:Y
+Warning: Missing PV: BPMS:BPN21:400:Y
+Warning: Missing PV: BPMS:BC1B:440:TMIT
+Warning: Missing PV: BPMS:COL0:135:X
+Warning: Missing PV: BPMS:DOG:135:X
+Warning: Missing PV: BPMS:DOG:165:TMIT
+Warning: Missing PV: BPMS:COL1:120:X
+Warning: Missing PV: BPMS:DOG:200:Y
+Warning: Missing PV: BPMS:DOG:575:X
+Warning: Missing PV: BPMS:COL1:480:TMIT
+Warning: Missing PV: BPMS:DOG:910:X
+Warning: Missing PV: BPMS:HTR:760:Y
+Warning: Missing PV: BPMS:DOG:180:Y
+Warning: Missing PV: BPMS:L3B:3283:TMIT
+Warning: Missing PV: BPMS:L3B:3483:TMIT
+Warning: Missing PV: BPMS:COL0:400:TMIT
+Warning: Missing PV: BPMS:DOG:120:Y
+Warning: Missing PV: BPMS:HTR:980:Y
+Warning: Missing PV: BPMS:BPN27:400:Y
+Warning: Missing PV: BPMS:COL0:280:Y
+Warning: Missing PV: BPMS:L1B:0283:TMIT
+Warning: Missing PV: BPMS:SPD:955:Y
+Warning: Missing PV: BPMS:L3B:3083:TMIT
+Warning: Missing PV: BPMS:SPD:700:TMIT
+Warning: Missing PV: BPMS:L3B:3083:Y
+Warning: Missing PV: BPMS:COL1:400:TMIT
+Warning: Missing PV: BPMS:EMIT2:900:Y
+Warning: Missing PV: BPMS:HTR:830:TMIT
+Warning: Missing PV: BPMS:EXT:748:TMIT
+Warning: Missing PV: BPMS:COL1:480:Y
+Warning: Missing PV: BPMS:L3B:2283:TMIT
+Warning: Missing PV: BPMS:EXT:351:TMIT
+Warning: Missing PV: BPMS:COL1:280:TMIT
+Warning: Missing PV: BPMS:BC2B:150:TMIT
+Warning: Missing PV: BPMS:L1B:0383:X
+Warning: Missing PV: BPMS:BPN14:400:Y
+Warning: Missing PV: BPMS:SPD:700:Y
+Warning: Missing PV: BPMS:L2B:0483:TMIT
+Warning: Missing PV: BPMS:COL1:800:X
+Warning: Missing PV: BPMS:L3B:1983:TMIT
+Warning: Missing PV: BPMS:COL0:280:X
+Warning: Missing PV: BPMS:L2B:1183:TMIT
+Warning: Missing PV: BPMS:HTR:540:TMIT
+Warning: Missing PV: BPMS:L3B:3283:X
+Warning: Missing PV: BPMS:SPD:525:X
+Warning: Missing PV: BPMS:L3B:2383:TMIT
+Warning: Missing PV: BPMS:BPN28:200:TMIT
+Warning: Missing PV: BPMS:BPN16:400:X
+Warning: Missing PV: BPMS:COL0:640:Y
+Warning: Missing PV: BPMS:SPD:420:Y
+Warning: Missing PV: BPMS:BPN23:400:X
+Warning: Missing PV: BPMS:DOG:740:Y
+Warning: Missing PV: BPMS:L3B:3483:X
+Warning: Missing PV: BPMS:L2B:1583:X
+Warning: Missing PV: BPMS:L2B:0683:TMIT
+Warning: Missing PV: BPMS:DOG:230:TMIT
+Warning: Missing PV: BPMS:SPD:340:X
+Warning: Missing PV: BPMS:COL0:320:Y
+Warning: Missing PV: BPMS:L0B:0183:TMIT
+Warning: Missing PV: BPMS:DOG:150:Y
+Warning: Missing PV: BPMS:DOG:405:TMIT
+Warning: Missing PV: BPMS:BC1B:125:TMIT
+Warning: Missing PV: BPMS:HTR:830:X
+Warning: Missing PV: BPMS:HTR:860:X
+Warning: Missing PV: BPMS:L3B:2683:TMIT
+Warning: Missing PV: BPMS:SLTD:625:TMIT
+Warning: Missing PV: BPMS:HTR:120:TMIT
+Warning: Missing PV: BPMS:COL0:240:X
+Warning: Missing PV: BPMS:COL0:560:X
+Warning: Missing PV: BPMS:HTR:365:TMIT
+Warning: Missing PV: BPMS:BPN13:400:TMIT
+Warning: Missing PV: BPMS:DOG:335:Y
+Warning: Missing PV: BPMS:DOG:215:TMIT
+Warning: Missing PV: BPMS:DOG:165:Y
+Warning: Missing PV: BPMS:COL0:320:TMIT
+Warning: Missing PV: BPMS:COL1:320:TMIT
+Warning: Missing PV: BPMS:DOG:280:TMIT
+Warning: Missing PV: BPMS:L3B:2883:Y
+Warning: Missing PV: BPMS:SLTD:895:TMIT
+Warning: Missing PV: BPMS:DOG:250:X
+Warning: Missing PV: BPMS:BPN23:400:Y
+Warning: Missing PV: BPMS:L1B:H283:Y
+Warning: Missing PV: BPMS:SPD:255:Y
+Warning: Missing PV: BPMS:L2B:0983:X
+Warning: Missing PV: BPMS:L2B:0683:Y
+Warning: Missing PV: BPMS:DOG:215:Y
+Warning: Missing PV: BPMS:L3B:1783:TMIT
+Warning: Missing PV: BPMS:DOG:250:Y
+Warning: Missing PV: BPMS:L3B:3383:TMIT
+Warning: Missing PV: BPMS:L2B:1283:X
+Warning: Missing PV: BPMS:BPN22:400:X
+Warning: Missing PV: BPMS:EMIT2:150:TMIT
+Warning: Missing PV: BPMS:DOG:405:Y
+Warning: Missing PV: BPMS:SPD:255:TMIT
+Warning: Missing PV: BPMS:L3B:1683:X
+Warning: Missing PV: BPMS:BPN24:400:TMIT
+Warning: Missing PV: BPMS:BPN21:400:TMIT
+Warning: Missing PV: BPMS:HTR:860:TMIT
+Warning: Missing PV: BPMS:HTR:460:Y
+Warning: Missing PV: BPMS:L2B:1483:TMIT
+Warning: Missing PV: BPMS:BPN18:400:TMIT
+Warning: Missing PV: BPMS:DOG:575:TMIT
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=59ae9abb" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-14">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">cmds</span><span class="o">=</span><span class="n">tao_commands</span><span class="p">(</span><span class="n">PVDATA</span><span class="p">)</span>
+<span class="n">save_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;live_pvs_bsyd_08-06-23T23:09:50.tao&#39;</span><span class="p">)</span>
+</pre></div>
+<div id="cell-14" class="clipboard-copy-txt">cmds=tao_commands(PVDATA)
+save_cmds(cmds,filename='live_pvs_bsyd_08-06-23T23:09:50.tao')</div>
+        
+        </div>
+    </div>
+
+</div>
 </div>
 
 </div>
@@ -2576,12 +3101,12 @@ PVLIST[0:10]</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-11">
+                <clipboard-copy for="cell-15">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2598,7 +3123,7 @@ PVLIST[0:10]</div>
 <span class="k">def</span> <span class="nf">caget_dict</span><span class="p">(</span><span class="n">pvlist</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">pvlist</span><span class="p">,</span> <span class="n">caget_many</span><span class="p">(</span><span class="n">pvlist</span><span class="p">)))</span>
 </pre></div>
-<div id="cell-11" class="clipboard-copy-txt">import epics
+<div id="cell-15" class="clipboard-copy-txt">import epics
 from epics import caget_many, caget
 from time import sleep, time
 
@@ -2612,18 +3137,50 @@ def caget_dict(pvlist):
 </div>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div id="cell-id=defa1300-574c-4bd7-8b5c-100e41308265" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=364bb475" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-12">
+                <clipboard-copy for="cell-16">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">caget</span><span class="p">(</span><span class="s1">&#39;KLYS:LI22:11:KPHR&#39;</span><span class="p">)</span>
+</pre></div>
+<div id="cell-16" class="clipboard-copy-txt">caget('KLYS:LI22:11:KPHR')</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=defa1300-574c-4bd7-8b5c-100e41308265" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-17">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2639,7 +3196,7 @@ def caget_dict(pvlist):
 <span class="n">PVLIST_GOOD</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">PVDATA</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bad PV:&#39;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="c1">#print(&#39;Bad PV:&#39;, k)</span>
         <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
         <span class="n">BAD_DEVICES</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -2648,17 +3205,19 @@ def caget_dict(pvlist):
 <span class="c1"># Get bmad names</span>
 <span class="n">bdf</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[[</span><span class="s1">&#39;alias&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;alias&#39;</span><span class="p">)</span>
 <span class="n">BAD_NAMES</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">BAD_DEVICES</span><span class="p">)][</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
-<span class="n">BAD_NAMES</span>        
+<span class="c1">#BAD_NAMES        </span>
         
-<span class="n">BAD_DEVICES</span><span class="p">,</span> <span class="n">BAD_NAMES</span>
+<span class="c1">#BAD_DEVICES, BAD_NAMES</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">BAD_DEVICES</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">PVLIST_GOOD</span><span class="p">))</span>
 </pre></div>
-<div id="cell-12" class="clipboard-copy-txt"># Test get
+<div id="cell-17" class="clipboard-copy-txt"># Test get
 PVDATA = caget_dict(PVLIST)
 BAD_DEVICES = set()
 PVLIST_GOOD = []
 for k, v in PVDATA.items():
     if v is None:
-        print('Bad PV:', k)
+        #print('Bad PV:', k)
         device = ':'.join((k.split(':')[:-1]))
         BAD_DEVICES.add(device)
     else:
@@ -2667,52 +3226,16 @@ for k, v in PVDATA.items():
 # Get bmad names
 bdf = devices[['alias', 'name']].set_index('alias')
 BAD_NAMES = list(bdf.loc[list(BAD_DEVICES)]['name'])
-BAD_NAMES        
+#BAD_NAMES        
         
-BAD_DEVICES, BAD_NAMES   </div>
+#BAD_DEVICES, BAD_NAMES
+print(len(BAD_DEVICES))
+print(len(PVLIST_GOOD))</div>
         
         </div>
     </div>
 
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Bad PV: BPMS:DIAG0:330:X
-Bad PV: BPMS:HTR:980:X
-Bad PV: BPMS:DIAG0:330:Y
-Bad PV: BPMS:HTR:980:Y
-Bad PV: BPMS:HTR:980:TMIT
-Bad PV: BPMS:DIAG0:330:TMIT
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>({&#39;BPMS:DIAG0:330&#39;, &#39;BPMS:HTR:980&#39;}, [&#39;BPMHD04&#39;, &#39;BPMDG0RF&#39;])</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -2722,12 +3245,12 @@ Bad PV: BPMS:DIAG0:330:TMIT
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-13">
+                <clipboard-copy for="cell-18">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2740,7 +3263,7 @@ Bad PV: BPMS:DIAG0:330:TMIT
             <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">MONITOR</span> <span class="o">=</span> <span class="p">{</span><span class="n">pvname</span><span class="p">:</span><span class="n">epics</span><span class="o">.</span><span class="n">PV</span><span class="p">(</span><span class="n">pvname</span><span class="p">)</span> <span class="k">for</span> <span class="n">pvname</span> <span class="ow">in</span> <span class="n">PVLIST_GOOD</span><span class="p">}</span>
 <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Wait for all to connect</span>
 </pre></div>
-<div id="cell-13" class="clipboard-copy-txt">MONITOR = {pvname:epics.PV(pvname) for pvname in PVLIST_GOOD}
+<div id="cell-18" class="clipboard-copy-txt">MONITOR = {pvname:epics.PV(pvname) for pvname in PVLIST_GOOD}
 sleep(1) # Wait for all to connect</div>
         
         </div>
@@ -2756,12 +3279,12 @@ sleep(1) # Wait for all to connect</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-14">
+                <clipboard-copy for="cell-19">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2777,11 +3300,43 @@ sleep(1) # Wait for all to connect</div>
     <span class="k">return</span> <span class="n">pvdata</span>
 <span class="n">PVDATA</span> <span class="o">=</span> <span class="n">get_pvdata</span><span class="p">()</span>
 </pre></div>
-<div id="cell-14" class="clipboard-copy-txt">def get_pvdata():   
+<div id="cell-19" class="clipboard-copy-txt">def get_pvdata():   
     itime = isotime()
     pvdata =  {k:MONITOR[k].get() for k in MONITOR}
     return pvdata
 PVDATA = get_pvdata()</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=091ce246" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-20">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="c1">#print(PVDATA);</span>
+</pre></div>
+<div id="cell-20" class="clipboard-copy-txt">#print(PVDATA);</div>
         
         </div>
     </div>
@@ -2801,8 +3356,8 @@ PVDATA = get_pvdata()</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div id="cell-id=0ca856ef-529c-43f8-abbb-9ea3e2c47f9f" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div id="cell-id=0ca856ef-529c-43f8-abbb-9ea3e2c47f9f" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2812,7 +3367,7 @@ PVDATA = get_pvdata()</div>
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-15">
+                <clipboard-copy for="cell-21">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2825,13 +3380,40 @@ PVDATA = get_pvdata()</div>
             <div class="highlight-ipynb hl-python "><pre><span></span><span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">BAD_NAMES</span><span class="p">:</span>
     <span class="n">good_names</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
-<div id="cell-15" class="clipboard-copy-txt">for name in BAD_NAMES:
+<div id="cell-21" class="clipboard-copy-txt">for name in BAD_NAMES:
     good_names.remove(name)</div>
         
         </div>
     </div>
 
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[15], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> name <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span class="ansi-yellow-bg">BAD_NAMES</span>:
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     good_names<span style="color: rgb(98,98,98)">.</span>remove(name)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;BAD_NAMES&#39; is not defined</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -2841,12 +3423,12 @@ PVDATA = get_pvdata()</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-16">
+                <clipboard-copy for="cell-22">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2864,13 +3446,45 @@ PVDATA = get_pvdata()</div>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">DM_GOOD</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">filter_datamap</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">good_names</span><span class="p">)</span>
 </pre></div>
-<div id="cell-16" class="clipboard-copy-txt">DM_GOOD = {}
+<div id="cell-22" class="clipboard-copy-txt">DM_GOOD = {}
 for name, dm in DM.items():
     if name == 'tao_energy_measurements':
         # don't filter
         DM_GOOD[name] = dm
     else:
         DM_GOOD[name] = filter_datamap(dm, good_names)</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=7dd0d3ed" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-23">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">DM_GOOD</span><span class="p">[</span><span class="s1">&#39;bpms&#39;</span><span class="p">])</span>
+</pre></div>
+<div id="cell-23" class="clipboard-copy-txt">print(DM_GOOD['bpms'])</div>
         
         </div>
     </div>
@@ -2901,7 +3515,7 @@ for name, dm in DM.items():
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-17">
+                <clipboard-copy for="cell-24">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2917,11 +3531,43 @@ for name, dm in DM.items():
         <span class="n">cmds</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">as_tao</span><span class="p">(</span><span class="n">pvdata</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">cmds</span>
 </pre></div>
-<div id="cell-17" class="clipboard-copy-txt">def tao_commands(pvdata):
+<div id="cell-24" class="clipboard-copy-txt">def tao_commands(pvdata):
     cmds = []
     for name, dm in DM_GOOD.items():
         cmds.extend(dm.as_tao(pvdata))
     return cmds</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=8791e9a4" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-25">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span>
+</pre></div>
+<div id="cell-25" class="clipboard-copy-txt"></div>
         
         </div>
     </div>
@@ -2941,7 +3587,7 @@ for name, dm in DM.items():
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-18">
+                <clipboard-copy for="cell-26">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2955,16 +3601,20 @@ for name, dm in DM.items():
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set global lattice_calc_on = F</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set global plot_on = F</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>    
-        <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">CMDS</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set ele quad::* field_master = T&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set ele SC_L* is_on = F&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">cmds</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set global lattice_calc_on = T</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>        
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set global plot_on = T</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
-<div id="cell-18" class="clipboard-copy-txt">def save_cmds(cmds, filename='cmds.tao'): # Write to file for running with vanilla Tao
+<div id="cell-26" class="clipboard-copy-txt">def save_cmds(cmds, filename='cmds.tao'): # Write to file for running with vanilla Tao
     with open(filename, 'w') as f:
         f.write('set global lattice_calc_on = F\n')
         f.write('set global plot_on = F\n')    
-        for cmd in CMDS:
+        f.write('set ele quad::* field_master = T')
+        f.write('set ele SC_L* is_on = F')
+        for cmd in cmds:
             f.write(cmd+'\n')
         f.write('set global lattice_calc_on = T\n')        
         f.write('set global plot_on = T\n')   </div>
@@ -2982,12 +3632,12 @@ for name, dm in DM.items():
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-19">
+                <clipboard-copy for="cell-27">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3002,6 +3652,7 @@ for name, dm in DM.items():
     <span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">vv</span>
 <span class="s2">vd</span>
+<span class="s2">set data HTR.begtwiss|meas = HTR.begtwiss|design</span>
 <span class="s2">use dat HTR.begtwiss[1:4]</span>
 <span class="s2">use var begtwiss[1:4]</span>
 <span class="s2">olmdif</span>
@@ -3012,11 +3663,12 @@ for name, dm in DM.items():
     <span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set global plot_on = T&#39;</span><span class="p">)</span>
 <span class="c1">#set_htr_twiss(tao)</span>
 </pre></div>
-<div id="cell-19" class="clipboard-copy-txt"># Match HTR to design
+<div id="cell-27" class="clipboard-copy-txt"># Match HTR to design
 def set_htr_twiss(tao):
     cmds="""
 vv
 vd
+set data HTR.begtwiss|meas = HTR.begtwiss|design
 use dat HTR.begtwiss[1:4]
 use var begtwiss[1:4]
 olmdif
@@ -3040,12 +3692,12 @@ olmdif
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-20">
+                <clipboard-copy for="cell-28">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3062,7 +3714,7 @@ olmdif
     <span class="n">mat2y</span> <span class="o">=</span> <span class="n">mat6</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">mat2x</span><span class="p">,</span> <span class="n">mat2y</span>
 </pre></div>
-<div id="cell-20" class="clipboard-copy-txt"># mat2 x, y for PyEmittance
+<div id="cell-28" class="clipboard-copy-txt"># mat2 x, y for PyEmittance
 def get_mats():
     mat6 = tao.matrix('Q0H01#2', 'OTR0H04')['mat6']
     mat2x = mat6[0:2, 0:2]
@@ -3093,12 +3745,12 @@ def get_mats():
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-21">
+                <clipboard-copy for="cell-29">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3117,7 +3769,7 @@ def get_mats():
 <span class="k">if</span> <span class="n">MODEL</span> <span class="o">==</span> <span class="s1">&#39;sc_inj&#39;</span><span class="p">:</span>
     <span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set ele lcavity::* autoscale_phase = T&#39;</span><span class="p">)</span>
 </pre></div>
-<div id="cell-21" class="clipboard-copy-txt"># Master switches for element scaling
+<div id="cell-29" class="clipboard-copy-txt"># Master switches for element scaling
 tao.cmd('set ele quad::* field_master = T')
 
 # Turn off phase overlays 
@@ -3125,6 +3777,74 @@ tao.cmd('set ele SC_L* is_on = F', raises=False)
 
 if MODEL == 'sc_inj':
     tao.cmd('set ele lcavity::* autoscale_phase = T')</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=b687eb35" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-30">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">pvdata</span> <span class="o">=</span> <span class="n">get_pvdata</span><span class="p">()</span>
+<span class="n">cmds</span><span class="o">=</span><span class="n">tao_commands</span><span class="p">(</span><span class="n">pvdata</span><span class="p">)</span>
+<span class="n">save_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;live_pvs_26_05_23_1500.tao&#39;</span><span class="p">)</span>
+</pre></div>
+<div id="cell-30" class="clipboard-copy-txt">pvdata = get_pvdata()
+cmds=tao_commands(pvdata)
+save_cmds(cmds,filename='live_pvs_26_05_23_1500.tao')</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=c434ccd3" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-31">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;scale top 0 5000&#39;</span><span class="p">)</span>
+</pre></div>
+<div id="cell-31" class="clipboard-copy-txt">tao.cmd('scale top 0 5000')</div>
         
         </div>
     </div>
@@ -3150,12 +3870,12 @@ if MODEL == 'sc_inj':
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-22">
+                <clipboard-copy for="cell-32">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3180,7 +3900,7 @@ if MODEL == 'sc_inj':
     <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t1</span>
     <span class="c1">#print(dt)</span>
 </pre></div>
-<div id="cell-22" class="clipboard-copy-txt">def run1():
+<div id="cell-32" class="clipboard-copy-txt">def run1():
     #sleep(.001)
     t1 = time()
     pvdata = get_pvdata()
@@ -3203,18 +3923,52 @@ if MODEL == 'sc_inj':
 </div>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div id="cell-id=e6dc4b75-22ea-4e30-bdca-584655072b34" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=67710ef9" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-23">
+                <clipboard-copy for="cell-33">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set var *|model=*|design&#39;</span><span class="p">)</span>
+<span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set global lattice_calc_on=T&#39;</span><span class="p">)</span>
+</pre></div>
+<div id="cell-33" class="clipboard-copy-txt">tao.cmd('set var *|model=*|design')
+tao.cmd('set global lattice_calc_on=T')</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=e6dc4b75-22ea-4e30-bdca-584655072b34" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-34">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3227,35 +3981,13 @@ if MODEL == 'sc_inj':
             <div class="highlight-ipynb hl-python "><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="n">run1</span><span class="p">()</span>
 </pre></div>
-<div id="cell-23" class="clipboard-copy-txt">%%time
+<div id="cell-34" class="clipboard-copy-txt">%%time
 run1()</div>
         
         </div>
     </div>
 
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>CPU times: user 23.9 ms, sys: 2.26 ms, total: 26.2 ms
-Wall time: 29.8 ms
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -3265,12 +3997,12 @@ Wall time: 29.8 ms
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-24">
+                <clipboard-copy for="cell-35">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3283,7 +4015,7 @@ Wall time: 29.8 ms
             <div class="highlight-ipynb hl-python "><pre><span></span><span class="c1"># Set twiss</span>
 <span class="n">set_htr_twiss</span><span class="p">(</span><span class="n">tao</span><span class="p">)</span>
 </pre></div>
-<div id="cell-24" class="clipboard-copy-txt"># Set twiss
+<div id="cell-35" class="clipboard-copy-txt"># Set twiss
 set_htr_twiss(tao)</div>
         
         </div>
@@ -3293,18 +4025,18 @@ set_htr_twiss(tao)</div>
 </div>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div id="cell-id=d263d16d-924c-44af-b48b-ad2dab231667" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=d263d16d-924c-44af-b48b-ad2dab231667" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-25">
+                <clipboard-copy for="cell-36">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3319,7 +4051,7 @@ set_htr_twiss(tao)</div>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;charge_live&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;meas_value&#39;</span><span class="p">]</span><span class="o">*</span><span class="mf">1e12</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;ele_name&#39;</span><span class="p">,</span> <span class="s1">&#39;charge_live&#39;</span><span class="p">]]</span>
 </pre></div>
-<div id="cell-25" class="clipboard-copy-txt"># Check charge (pC)
+<div id="cell-36" class="clipboard-copy-txt"># Check charge (pC)
 df = pd.DataFrame(tao.data_d_array('orbit', 'charge'))
 df['charge_live'] =df['meas_value']*1e12
 df[['ele_name', 'charge_live']]</div>
@@ -3330,181 +4062,51 @@ df[['ele_name', 'charge_live']]</div>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ele_name</th>
-      <th>charge_live</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>BPM1B</td>
-      <td>78.840369</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>BPM2B</td>
-      <td>65.290631</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>BPM0H01</td>
-      <td>63.795613</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>BPM0H04</td>
-      <td>55.929705</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>BPM0H05</td>
-      <td>65.769464</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>BPM0H08</td>
-      <td>63.446005</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>BPMH1</td>
-      <td>63.412162</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>BPMH2</td>
-      <td>23.395678</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>BPMHD01</td>
-      <td>5.000936</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>BPMHD02</td>
-      <td>2.479826</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>BPMHD03</td>
-      <td>1.802031</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>BPMHD04</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>BPMDG000</td>
-      <td>1.633812</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>BPMDG001</td>
-      <td>1.591310</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>BPMDG002</td>
-      <td>0.895909</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>BPMDG003</td>
-      <td>1.373474</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>BPMDG004</td>
-      <td>0.616444</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>BPMDG005</td>
-      <td>1.060640</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>BPMDG0RF</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>BPMDG008</td>
-      <td>0.354604</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>BPMDG009</td>
-      <td>0.356177</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>BPMDG011</td>
-      <td>0.467173</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>BPMDG012</td>
-      <td>0.717575</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div id="cell-id=f47b5131-b88c-4aab-a7b8-6dd8501bdb86" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=af5bac98" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-26">
+                <clipboard-copy for="cell-37">
+                <div>
+                    <span class="notice" hidden>Copied!</span>
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                        <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                        <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                    </svg>
+                    </div>
+                </clipboard-copy>
+            </div>
+            <div class="highlight-ipynb hl-python "><pre><span></span><span class="n">tao</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s1">&#39;set var *|model=*|design&#39;</span><span class="p">)</span>
+</pre></div>
+<div id="cell-37" class="clipboard-copy-txt">tao.cmd('set var *|model=*|design')</div>
+        
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div id="cell-id=f47b5131-b88c-4aab-a7b8-6dd8501bdb86" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="zeroclipboard-container">
+                <clipboard-copy for="cell-38">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3518,55 +4120,22 @@ df[['ele_name', 'charge_live']]</div>
 <span class="n">use</span> <span class="n">dat</span> <span class="n">orbit</span><span class="o">.</span><span class="n">x</span>
 <span class="n">use</span> <span class="n">dat</span> <span class="n">orbit</span><span class="o">.</span><span class="n">y</span>
 <span class="n">sc</span> <span class="n">floor</span> <span class="o">-</span><span class="mi">5</span> <span class="mi">5</span>
-<span class="n">sc</span> <span class="n">top</span> <span class="mi">0</span> <span class="mi">80</span>
+<span class="n">sc</span> <span class="n">top</span>
+<span class="n">x_scale</span> <span class="o">*</span> <span class="mi">0</span> <span class="mi">50</span>
+<span class="n">sc</span> <span class="n">top</span>
 </pre></div>
-<div id="cell-26" class="clipboard-copy-txt">%%tao
+<div id="cell-38" class="clipboard-copy-txt">%%tao
 use dat orbit.x
 use dat orbit.y
 sc floor -5 5
-sc top 0 80
-</div>
+sc top
+x_scale * 0 50
+sc top</div>
         
         </div>
     </div>
 
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>-------------------------
-Tao&gt; use dat orbit.x
-  orbit.x[1:23]                                  Using: 1:11 13:18 20:23
-  orbit.y[1:23]                                  Using:
-  orbit.charge[1:23]                             Using:
--------------------------
-Tao&gt; use dat orbit.y
-  orbit.x[1:23]                                  Using: 1:11 13:18 20:23
-  orbit.y[1:23]                                  Using: 1:11 13:18 20:23
-  orbit.charge[1:23]                             Using:
--------------------------
-Tao&gt; sc floor -5 5
--------------------------
-Tao&gt; sc top 0 80
--------------------------
-Tao&gt; 
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -3592,7 +4161,7 @@ Tao&gt;
         
         <div class="CodeMirror cm-s-jupyter">
             <div class="zeroclipboard-container">
-                <clipboard-copy for="cell-27">
+                <clipboard-copy for="cell-39">
                 <div>
                     <span class="notice" hidden>Copied!</span>
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -3606,7 +4175,7 @@ Tao&gt;
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">run1</span><span class="p">()</span>
 </pre></div>
-<div id="cell-27" class="clipboard-copy-txt"># Run forever
+<div id="cell-39" class="clipboard-copy-txt"># Run forever
 while True:
     run1()</div>
         
@@ -3674,7 +4243,7 @@ while True:
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tabs", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.a51614de.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>
