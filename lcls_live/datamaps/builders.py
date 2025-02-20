@@ -498,8 +498,8 @@ def build_sc_quad_corrector_dm(tao):
 # Bmad models are scaled for the peak field
 SC_INJ_SOLENOID_FACTOR = {
     'SOL1BKB': 0, # unknown
-    'SOL1B': 0.1/0.12896517423475376 , # kG-m to T:  \int B dL = B_max * 0.12896517423475376 m
-    'SOL2B': 0.1/0.12896517423475376 , # Same as SOL1B
+    'SOL1B': 0.1/0.08623995 , # kG-m to T:  \int B dL = B_max * 0.1/0.08623995 m
+    'SOL2B': 0.1/0.08623995 , # Same as SOL1B
 }
     
     
