@@ -1,6 +1,5 @@
 from .klystron import KlystronDataMap
 from .tabular import TabularDataMap
-import imp
 from lcls_live import data_dir
 import json
 import pandas as pd
