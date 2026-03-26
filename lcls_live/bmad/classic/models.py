@@ -1,4 +1,4 @@
-from pytao import TaoModel
+from pytao.model import TaoModel
 
 from lcls_live.archiver import lcls_archiver_restore
 from lcls_live.klystron import existing_LCLS_klystrons
