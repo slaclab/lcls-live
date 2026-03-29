@@ -2,7 +2,7 @@
 
 import requests
 import pandas as pd
-
+import json
 
 
 def lcls_archiver_restore(pvlist, isotime='2018-08-11T10:40:00.000-07:00', verbose=True):
@@ -40,7 +40,11 @@ def lcls_archiver_restore(pvlist, isotime='2018-08-11T10:40:00.000-07:00', verbo
 
 
 
-def lcls_archiver_history(pvname, start='2018-08-11T10:40:00.000-07:00', end='2018-08-11T11:40:00.000-07:00', verbose=True):
+def lcls_archiver_history(pvname:str,
+                        start: str ='2018-08-11T10:40:00.000-07:00', 
+                        end: str ='2018-08-11T11:40:00.000-07:00',
+                        verbose=True, full_timestamp = False,
+                        raise_error: bool = True):
     """
     Get time series data from a PV name pvname,
         with start and end times in ISO 8601 format, using the EPICS Archiver Appliance:
@@ -48,9 +52,7 @@ def lcls_archiver_history(pvname, start='2018-08-11T10:40:00.000-07:00', end='20
     https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
     
     Returns tuple: 
-        secs, vals
-    where secs is the UNIX timestamp, seconds since January 1, 1970, and vals are the values at those times.
-    
+        timestamp, vals    
     Seconds can be converted to a datetime object using:
     import datetime
     datetime.datetime.utcfromtimestamp(secs[0])
@@ -63,27 +65,63 @@ def lcls_archiver_history(pvname, start='2018-08-11T10:40:00.000-07:00', end='20
     #url += "&donotchunk"
     #url="http://lcls-archapp.slac.stanford.edu/retrieval/data/getData.json?pv=VPIO:IN20:111:VRAW&donotchunk"
     print(url)
+
+    #TODO: do some exception handling here so the code doesn't break if you access multiple pvs
     r = requests.get(url)
-    data =  r.json()
-    secs = [x['secs'] for x in data[0]['data']]
-    vals = [x['val'] for x in data[0]['data']]
-    return secs, vals
 
+    if r.ok:
+        data =  r.json()
+        #print(data)
+        #with open("output.json", "w") as f:
+        #    json.dump(data, f, indent=4)
+        if full_timestamp:
+            try:
+                timestamp = [(x['secs'] + x['nanos']*1e-9) for x in data[0]['data']]
+            except KeyError as e: 
+                print(f'Error with returned data for {pvname} : {e}')
+                print(f'Using seconds time resolution')
+                timestamp = [x['secs'] for x in data[0]['data']]
+        else:
+            timestamp = [x['secs'] for x in data[0]['data']]
+        
+        vals = [x['val'] for x in data[0]['data']]
+        return timestamp, vals
+    
+    msg = f"Archiver request failed for {pvname}. Response was: {r.status_code} - {r.reason}"
+    if raise_error:
+        raise RuntimeError(msg)
 
-def lcls_archiver_history_dataframe(pvname, **kwargs):
+    print(msg)
+    print("Returning Empty Lists")
+    return [], []
+
+def lcls_archiver_history_dataframe(
+    pvname: str | list[str],
+    **kwargs,
+) -> pd.DataFrame:
     """
-    Same as lcls_archiver_history, but returns a dataframe with the index as the time. 
+    Same as lcls_archiver_history, but returns a DataFrame with the index as time.
+    Accepts a single PV name or a list of PV names.
     """
 
-    secs, vals = lcls_archiver_history(pvname, **kwargs)
     
-    # Get time series
-    ser = pd.to_datetime(pd.Series(secs), unit='s' )
-    df = pd.DataFrame({'time':ser, pvname:vals})
-    df = df.set_index('time')
-    
-    return df
+    pvs = [pvname] if isinstance(pvname, str) else pvname
+
+    dfs = []
+
+    for pv in pvs:
+        timestamp, vals= lcls_archiver_history(pv, **kwargs)
+
+        ser = pd.to_datetime(timestamp, unit="s")
+        df = pd.DataFrame({pv: vals}, index=ser)
+        df.index.name = "time"
+        df = df[~df.index.duplicated(keep="last")]
+
+        dfs.append(df)
+        
+
+    #outer join to keep all data. this will introduce NaNs where data is missing
+    return pd.concat(dfs, axis=1,join ='outer')
 
 
-    
     
