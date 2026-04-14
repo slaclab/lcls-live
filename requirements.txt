@@ -4,4 +4,4 @@ pandas
 requests
 pyepics
 pyyaml
-pytao
+pytao >= 1.0.0
